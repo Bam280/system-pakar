@@ -4,7 +4,7 @@
 @include('frontend.partials.head')
 
 <body>
-       
+
 
     @include('frontend.partials.navbar')
 
@@ -12,7 +12,8 @@
 
     @include('frontend.partials.footer')
     @include('frontend.partials.script')
-    @yield('scripts')
+    @yield('script')
 
 </body>
+
 </html>
