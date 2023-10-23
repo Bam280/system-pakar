@@ -13,7 +13,6 @@
             </div>
         </div>
     </div>
-    @include('admin.partials.footer')
     @include('admin.partials.script')
     @yield('script')
 </body>

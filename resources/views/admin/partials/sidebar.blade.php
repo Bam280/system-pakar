@@ -38,7 +38,7 @@
                      </a>
                  </li>
                  <li class="sidebar-nav-item">
-                     <a href="#" class="sidebar-nav-link">
+                     <a href="" class="sidebar-nav-link">
                          <span class="sidebar-nav-abbr">
                              Mn
                          </span>
@@ -72,7 +72,7 @@
 
              <ul class="sidebar-sub-nav collapse" id="navTables">
                  <li class="sidebar-nav-item">
-                     <a href="#" class="sidebar-nav-link">
+                     <a href="" class="sidebar-nav-link">
                          <span class="sidebar-nav-abbr">
                              Ps
                          </span>
@@ -82,7 +82,7 @@
                      </a>
                  </li>
                  <li class="sidebar-nav-item">
-                     <a href="#" class="sidebar-nav-link">
+                     <a href="" class="sidebar-nav-link">
                          <span class="sidebar-nav-abbr">
                              Pm
                          </span>
@@ -109,7 +109,7 @@
 
              <ul class="sidebar-sub-nav collapse" id="navForms">
                  <li class="sidebar-nav-item">
-                     <a href="#" class="sidebar-nav-link">
+                     <a href="" class="sidebar-nav-link">
                          <span class="sidebar-nav-abbr">
                              Mw
                          </span>
@@ -153,7 +153,7 @@
 
              <ul class="sidebar-sub-nav collapse" id="navTables2">
                  <li class="sidebar-nav-item">
-                     <a href="#" class="sidebar-nav-link">
+                     <a href="" class="sidebar-nav-link">
                          <span class="sidebar-nav-abbr">
                              Ma
                          </span>
