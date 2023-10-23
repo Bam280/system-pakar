@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg">
+<nav class="navbar navbar-expand-lg" style="background-color: #cecece;">
     <div class="container-fluid">
         <a class="navbar-brand logo scroller" href="#">
             Sistem Pakar
@@ -21,7 +21,7 @@
                         <a href="/" class="nav-link">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="btn nav-link" role="button" href="/home">
+                        <a class="btn nav-link" role="button" href="#">
                             Instruksi Pengguna
                         </a>
                     </li>
