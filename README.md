@@ -1,3 +1,5 @@
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
@@ -6,6 +8,24 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
+
+## Deployment
+
+1. Pertama silahkan klik tombol fork yang ada pada pojok kanan atas, agar kalian dapat repository sendiri dari repo ini.
+2. Selanjutnya silahkan clone templatenya dari repository yang baru saja kalian fork.
+3. Setelah berhasil di clone, jalankan perintah `composer install` atau `composer update`
+4. Silahkan buat database baru pada local kalian, selanjutnya rename file `env.example` menjadi `.env`, kemudian isi bagian database dengan nama database, username database, dan password database kalian (apabila tidak menggunakan password, harap dibiarkan kosong) yang baru kalian buat.
+5. Jalankan perintah `php artisan migrate:fresh`, kemudian jalankan perintah `php artisan generate:key`
+
+To Run this project
+
+```bash
+  php artisan serve
+```
+&
+```bash
+  npm run dev
+```
 
 ## About Laravel
 
