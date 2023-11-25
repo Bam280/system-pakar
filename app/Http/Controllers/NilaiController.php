@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Nilai;
 use Illuminate\Http\Request;
 
 class NilaiController extends Controller
@@ -11,7 +12,8 @@ class NilaiController extends Controller
      */
     public function index()
     {
-        //
+        $nilai = Nilai::all();
+        return view('admin.nilai.index', compact('nilai'));
     }
 
     /**
@@ -19,7 +21,7 @@ class NilaiController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.nilai.create');
     }
 
     /**
@@ -27,7 +29,9 @@ class NilaiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $store = Nilai::create(array_merge($request->all()));
+
+        return redirect('/diagnose')->with('success', 'Nilai berhasil disimpan');
     }
 
     /**

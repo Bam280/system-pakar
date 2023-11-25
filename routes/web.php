@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\NilaiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,8 +18,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('frontend.index');
 });
-
-
+Route::get('/diagnose', function () {
+    return view('frontend.diagnose.index');
+});
+Route::post('/diagnose', [NilaiController::class, 'store'])->name('nilai.store');
 
 Route::get('/dashboard', function () {
     return view('admin.index');
@@ -28,6 +31,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
+    Route::get('/nilai', [NilaiController::class, 'index'])->name('nilai.index');
 });
 
 

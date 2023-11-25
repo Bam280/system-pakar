@@ -56,8 +56,8 @@
              </ul>
          </li> --}}
          <li class="sidebar-nav-item">
-             <a class="sidebar-nav-link collapsed" data-toggle="collapse" href="#navForms" aria-expanded="false"
-                 aria-controls="navForms">
+             <a class="sidebar-nav-link collapsed" data-toggle="collapse" href="{{ route('nilai.index') }}"
+                 aria-expanded="false" aria-controls="navForms">
                  <span class="sidebar-nav-icon">
                      <i data-feather="edit"></i>
                  </span>
