@@ -29,17 +29,9 @@ class NilaiController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'name' => 'required',
-            'value' => 'required|numeric',
-        ]);
+        $store = Nilai::create(array_merge($request->all()));
 
-        $nilai = new Nilai();
-        $nilai->name = $validatedData['name'];
-        $nilai->value = $validatedData['value'];
-        $nilai->save();
-
-        return redirect('/diagnose')->with('success', 'Nilai created successfully.');
+        return redirect('/diagnose')->with('success', 'Nilai berhasil disimpan');
     }
 
     /**

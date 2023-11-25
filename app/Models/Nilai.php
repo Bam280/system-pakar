@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Nilai extends Model
 {
-    protected $table = 'tb_nilai';
+    protected $table = 'nilai';
     protected $primarykey = 'id';
     protected $fillable = ['title'];
 }
