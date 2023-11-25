@@ -9,7 +9,7 @@
                         <div class="site-heading">
                             <img src="{{ asset('img') }}/Pakar.png" class="rounded mx-auto d-block" alt="logo-pakar">
                             <div class="d-grid col-6 mx-auto pt-5">
-                                <button type="button" class="btn btn-outline-secondary btn-lg">Mulai Diagnosis</button>
+                                <a class="btn btn-outline-secondary btn-lg" href="#">Mulai Diagnosis</a>
                             </div>
                         </div>
                     </div>
