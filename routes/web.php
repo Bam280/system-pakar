@@ -21,7 +21,7 @@ Route::get('/', function () {
 Route::get('/diagnose', function () {
     return view('frontend.diagnose.index');
 });
-Route::post('/diagnose', [NilaiController::class, 'store'])->name('nilai.store');
+Route::post('/diagnose', [DiagnoseController::class, 'store']);
 
 Route::get('/dashboard', function () {
     return view('admin.index');
