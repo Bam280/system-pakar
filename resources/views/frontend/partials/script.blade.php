@@ -32,6 +32,18 @@
         }
     }
 
+    function addTextField() {
+        const dynamicFields = document.getElementById('dynamicFields');
+
+        const newInput = document.createElement('textarea');
+        newInput.setAttribute('type', 'text');
+        newInput.setAttribute('class', 'form-control mt-2');
+        newInput.setAttribute('name', 'additionalText[]');
+        newInput.setAttribute('placeholder', 'Isian Text Tambahan');
+
+        dynamicFields.appendChild(newInput);
+    }
+
     function saveToDatabase(options, longText) {
         // Kirim data ke Laravel dengan menggunakan AJAX atau fetch API
         fetch('/diagnose', {

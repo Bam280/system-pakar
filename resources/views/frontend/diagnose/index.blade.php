@@ -99,11 +99,21 @@
                         </div>
                         <div class="card-body">
                             <form>
+                                @csrf
                                 <div class="form-group">
-                                    <label for="longText">Masukkan Text Panjang:</label>
-                                    <textarea class="form-control" id="longText" rows="5" placeholder="Ketikkan text panjang di sini..."></textarea>
+                                    <label for="longText">Masukkan Point:</label>
+                                    <textarea class="form-control" id="longText" name="longText" rows="3"
+                                        placeholder="Ketikkan text panjang di sini..."></textarea>
                                 </div>
-                                <button type="button" class="btn btn-primary mt-3" onclick="saveAndNext(3)">Lanjut</button>
+                                <div class="form-group">
+                                    <label>Tambahkan point :</label>
+                                    <div id="dynamicFields">
+                                        <!-- Kolom isian teks dinamis akan ditambahkan di sini -->
+                                    </div>
+                                    <button type="button" class="btn btn-primary mt-3" onclick="addTextField()">Tambah
+                                        Kolom</button>
+                                </div>
+                                <button type="submit" class="btn btn-primary mt-3">Simpan</button>
                             </form>
                         </div>
                     </div>
@@ -113,8 +123,41 @@
                         <div class="card-header">
                             Langkah 3: Hasil
                         </div>
-                        <div class="card-body">
+                        <div class="card-body pb-2">
                             <p id="result">Hasil akan ditampilkan di sini</p>
+                            <div class="card">
+                                <div class="card-body">
+                                    <table class="table table-bordered border-dark">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">First</th>
+                                                <th scope="col">Last</th>
+                                                <th scope="col">Handle</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">2</th>
+                                                <td>Jacob</td>
+                                                <td>Thornton</td>
+                                                <td>@fat</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">3</th>
+                                                <td colspan="2">Larry the Bird</td>
+                                                <td>@twitter</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                             <button type="button" class="btn btn-success" id="saveToDbButton" style="display: none;"
                                 onclick="saveToDatabase()">Simpan ke Database</button>
                         </div>
