@@ -99,21 +99,11 @@
                         </div>
                         <div class="card-body">
                             <form>
-                                @csrf
                                 <div class="form-group">
-                                    <label for="longText">Masukkan Point:</label>
-                                    <textarea class="form-control" id="longText" name="longText" rows="3"
-                                        placeholder="Ketikkan text panjang di sini..."></textarea>
+                                    <label for="longText">Masukkan Text Panjang:</label>
+                                    <textarea class="form-control" id="longText" rows="5" placeholder="Ketikkan text panjang di sini..."></textarea>
                                 </div>
-                                <div class="form-group">
-                                    <label>Tambahkan point :</label>
-                                    <div id="dynamicFields">
-                                        <!-- Kolom isian teks dinamis akan ditambahkan di sini -->
-                                    </div>
-                                    <button type="button" class="btn btn-primary mt-3" onclick="addTextField()">Tambah
-                                        Kolom</button>
-                                </div>
-                                <button type="submit" class="btn btn-primary mt-3">Simpan</button>
+                                <button type="button" class="btn btn-primary mt-3" onclick="saveAndNext(3)">Lanjut</button>
                             </form>
                         </div>
                     </div>
