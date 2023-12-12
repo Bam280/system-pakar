@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Nilai;
 use Illuminate\Http\Request;
 
-class NilaiController extends Controller
+class DiagnoseController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $nilai = Nilai::all();
-        return view('admin.nilai.index', compact('nilai'));
+        //
     }
 
     /**
@@ -21,7 +19,7 @@ class NilaiController extends Controller
      */
     public function create()
     {
-        return view('admin.nilai.create');
+        //
     }
 
     /**
@@ -29,9 +27,16 @@ class NilaiController extends Controller
      */
     public function store(Request $request)
     {
-        $store = Nilai::create(array_merge($request->all()));
+        $options = $request->input('options');
+        $longText = $request->input('longText');
 
-        return redirect('/diagnose')->with('success', 'Nilai berhasil disimpan');
+        // Simpan data ke database (gunakan Eloquent)
+        $formData = new FormData();
+        $formData->form_1_data = json_encode($options);
+        $formData->form_2_data = $longText;
+        $formData->save();
+
+        return response()->json(['message' => 'Data berhasil disimpan di database']);
     }
 
     /**
