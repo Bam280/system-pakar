@@ -68,26 +68,48 @@
                     <!-- Langkah 1: 3 Pilihan dengan Checkbox -->
                     <div class="card" id="step1">
                         <div class="card-header">
-                            Langkah 1: Pilih Metode
+                            Form Identifikasi
                         </div>
                         <div class="card-body">
                             <form>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="option1" name="options[]"
-                                        value="Option 1">
-                                    <label class="form-check-label" for="option1">Option 1</label>
+                                <div class="mb-3">
+                                    <label for="formGroupExampleInput" class="form-label">Nama Sistem elektronik</label>
+                                    <input type="text" class="form-control" id="formGroupExampleInput"
+                                        placeholder="Example input placeholder">
                                 </div>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="option2" name="options[]"
-                                        value="Option 2">
-                                    <label class="form-check-label" for="option2">Option 2</label>
+                                <div class="mb-3">
+                                    <label for="formGroupExampleInput2" class="form-label">Deskripsi
+                                        SistemElektronik</label>
+                                    <input type="text" class="form-control" id="formGroupExampleInput2"
+                                        placeholder="Another input placeholder">
                                 </div>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="option3" name="options[]"
-                                        value="Option 3">
-                                    <label class="form-check-label" for="option3">Option 3</label>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Sistem yang terhubung</h5>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="1"
+                                                id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Sistem 1
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="2"
+                                                id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Sistem 2
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="3"
+                                                id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Sistem 3
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
-                                <button type="button" class="btn btn-primary mt-3" onclick="saveAndNext(2)">Lanjut</button>
+                                <button type="button" class="btn btn-primary mt-3" onclick="nextStep(2)">Lanjut</button>
                             </form>
                         </div>
                     </div>
@@ -103,7 +125,7 @@
                                     <label for="longText">Masukkan Text Panjang:</label>
                                     <textarea class="form-control" id="longText" rows="5" placeholder="Ketikkan text panjang di sini..."></textarea>
                                 </div>
-                                <button type="button" class="btn btn-primary mt-3" onclick="saveAndNext(3)">Lanjut</button>
+                                <button type="button" class="btn btn-primary mt-3" onclick="nextStep(3)">Lanjut</button>
                             </form>
                         </div>
                     </div>
