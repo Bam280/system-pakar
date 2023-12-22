@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Nilai;
 use Illuminate\Http\Request;
 
 class DiagnoseController extends Controller
@@ -9,9 +10,12 @@ class DiagnoseController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $query = $request->input('query');
+        $nilai = Nilai::where('title', 'like', "%query%")->get(['title']);
+        // return response()->json($nilai);
+        return view('frontend.diagnose.index', compact('nilai'));
     }
 
     /**

@@ -66,6 +66,26 @@
                         </div>
                     </div> --}}
                     <!-- Langkah 1: 3 Pilihan dengan Checkbox -->
+                    @php
+                        $nilai = App\Models\Nilai::all();
+                    @endphp
+                    <script>
+                        $(document).ready(function() {
+                            const data = [
+                                @foreach ($nilai as $n)
+                                    "{{ $n->value }}",
+                                @endforeach
+                            ];
+
+                            $('#myInput').autocomplete({
+                                source: data,
+                                select: function(event, ui) {
+                                    $('#myUL').text(ui.item.value);
+                                },
+                            });
+                        });
+                    </script>
+
                     <div class="card" id="step1">
                         <div class="card-header">
                             Form Identifikasi
@@ -117,21 +137,79 @@
                     <!-- Langkah 2: Form untuk Input Text Panjang -->
                     <div class="card mt-3" id="step2" style="display: none;">
                         <div class="card-header">
-                            Langkah 2: Isi Text Panjang
+                            Identitas Sistem Elektronik lain yang terhubung
                         </div>
                         <div class="card-body">
                             <form>
                                 <div class="form-group">
-                                    <label for="longText">Masukkan Text Panjang:</label>
-                                    <textarea class="form-control" id="longText" rows="5" placeholder="Ketikkan text panjang di sini..."></textarea>
+                                    <label for="myInput" class="form-label">Sistem Elektronik lain yang terhubung langsung
+                                        dalam satu jaringan elektronik (LAN)</label>
+                                    <input type="text" class="form-control" id="myInput" placeholder="Type something">
+                                    <ul id="myUL"></ul>
+                                    <label for="myInput" class="form-label">Sistem Elektronik lain yang berbagi data dalam
+                                        database</label>
+                                    <input type="text" class="form-control" id="myInput2" placeholder="Type something">
+                                    <ul id="myUL2"></ul>
+                                    <label for="myInput" class="form-label">Sistem Elektronik lain yang memiliki hardware
+                                        yang sama</label>
+                                    <input type="text" class="form-control" id="myInput3" placeholder="Type something">
+                                    <ul id="myUL3"></ul>
                                 </div>
                                 <button type="button" class="btn btn-primary mt-3" onclick="nextStep(3)">Lanjut</button>
                             </form>
                         </div>
                     </div>
 
-                    <!-- Langkah 3: Card Menampilkan Hasil dan Tombol Simpan ke Database -->
                     <div class="card mt-3" id="step3" style="display: none;">
+                        <div class="card-header">
+                            Langkah 3: Hasil
+                        </div>
+                        <div class="card-body pb-2">
+                            <form>
+                                <div class="form-group">
+                                    <label for="deskripsiRisiko" class="form-label">1. Deskripsi Risiko:</label>
+                                    <textarea type="text" class="form-control" id="deskripsiRisiko" name="deskripsiRisiko" required></textarea>
+
+                                    <label for="deskripsiKemungkinan" class="form-label">2. Deskripsi Kemungkinan:</label>
+                                    <textarea type="text" class="form-control" id="deskripsiKemungkinan" name="deskripsiKemungkinan" required></textarea>
+
+                                    <label for="nilaiKemungkinan" class="form-label">3. Nilai Kemungkinan (1-5):</label>
+                                    <input type="range" class="form-range" min="0" max="5"
+                                        id="nilaiKemungkinan">
+
+                                    <label for="deskripsiDampakOrg" class="form-label">4. Deskripsi Dampak
+                                        Organisasi:</label>
+                                    <input type="text" class="form-control" id="deskripsiDampakOrg"
+                                        name="deskripsiDampakOrg" required>
+
+                                    <label for="nilaiDampakOrg" class="form-label">5. Nilai Dampak Organisasi
+                                        (1-5):</label>
+                                    <input type="range" class="form-range" min="0" max="5"
+                                        id="nilaiDampakOrg">
+
+                                    <label for="deskripsiDampakNasional" class="form-label">6. Deskripsi Dampak
+                                        Nasional:</label>
+                                    <input type="text" class="form-control" id="deskripsiDampakNasional"
+                                        name="deskripsiDampakNasional" required>
+
+                                    <label for="nilaiDampakNasional" class="form-label">7. Nilai Dampak Nasional
+                                        (1-5):</label>
+                                    <input type="range" class="form-range" min="0" max="5"
+                                        id="nilaiDampakNasional">
+
+                                    <label for="nilaiRisiko" class="form-label">8. Nilai Risiko (Auto-calculated):</label>
+                                    <input type="range" class="form-range" min="0" max="5"
+                                        id="nilaiRisiko">
+
+                                    <button type="button" class="btn btn-primary mt-3"
+                                        onclick="nextStep(4)">Lanjut</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Langkah 4: Card Menampilkan Hasil dan Tombol Simpan ke Database -->
+                    <div class="card mt-3" id="step4" style="display: none;">
                         <div class="card-header">
                             Langkah 3: Hasil
                         </div>
@@ -143,19 +221,20 @@
                                         <thead>
                                             <tr>
                                                 <th scope="col">#</th>
-                                                <th scope="col">First</th>
-                                                <th scope="col">Last</th>
-                                                <th scope="col">Handle</th>
+                                                <th scope="col">Sistem yang diajukan</th>
+                                                <th scope="col">Keterhubungan Asset</th>
+                                                <th scope="col">Regulasi Nasional</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <th scope="row">1</th>
-                                                <td>Mark</td>
-                                                <td>Otto</td>
-                                                <td>@mdo</td>
+                                                <th scope="row"></th>
+                                                <td>isian Form 1</td>
+                                                <td>isian Form 2</td>
+                                                <td>berisi daftar semua peraturan nasional yang mendasari proses dalam
+                                                    sistem elektronik</td>
                                             </tr>
-                                            <tr>
+                                            {{-- <tr>
                                                 <th scope="row">2</th>
                                                 <td>Jacob</td>
                                                 <td>Thornton</td>
@@ -165,7 +244,7 @@
                                                 <th scope="row">3</th>
                                                 <td colspan="2">Larry the Bird</td>
                                                 <td>@twitter</td>
-                                            </tr>
+                                            </tr> --}}
                                         </tbody>
                                     </table>
                                 </div>

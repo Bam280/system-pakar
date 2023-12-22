@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\NilaiController;
+use App\Http\Controllers\DiagnoseController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Nilai;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,8 +21,11 @@ Route::get('/', function () {
     return view('frontend.index');
 });
 Route::get('/diagnose', function () {
-    return view('frontend.diagnose.index');
+    $data = Nilai::pluck('title')->toArray();
+    // return response()->json($data);
+    return view('frontend.diagnose.index', compact('data'));
 });
+
 Route::post('/diagnose', [DiagnoseController::class, 'store']);
 
 Route::get('/dashboard', function () {
