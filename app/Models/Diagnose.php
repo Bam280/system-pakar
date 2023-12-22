@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Diagnose extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+        'title',
+        // add other fields as needed
+    ];
+
 }
