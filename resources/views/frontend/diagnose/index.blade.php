@@ -140,7 +140,7 @@
                             Identitas Sistem Elektronik lain yang terhubung
                         </div>
                         <div class="card-body">
-                            <form>
+                            {{-- <form>
                                 <div class="form-group">
                                     <label for="myInput" class="form-label">Sistem Elektronik lain yang terhubung langsung
                                         dalam satu jaringan elektronik (LAN)</label>
@@ -156,6 +156,93 @@
                                     <ul id="myUL3"></ul>
                                 </div>
                                 <button type="button" class="btn btn-primary mt-3" onclick="nextStep(3)">Lanjut</button>
+                            </form> --}}
+                            <form>
+                                <div class="form-group">
+                                    <label>Pilih Jenis Input untuk Isian 1:</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="inputType1" id="text1"
+                                            value="text" checked>
+                                        <label class="form-check-label" for="text1">Input Teks</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="inputType1" id="select1"
+                                            value="select">
+                                        <label class="form-check-label" for="select1">Input Pilihan</label>
+                                    </div>
+                                </div>
+
+                                <div id="textInput1" class="form-group">
+                                    <label for="textValue1">Nilai Input Teks:</label>
+                                    <input type="text" class="form-control" id="textValue1" name="textValue1">
+                                </div>
+
+                                <div id="selectInput1" class="form-group" style="display:none;">
+                                    <label for="selectValue1">Pilih Nilai:</label>
+                                    <select class="form-control" id="selectValue1" name="selectValue1">
+                                        @foreach ($nilai as $n)
+                                            <option value="option1">{{ $n->title }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="form-group mt-3">
+                                    <label>Pilih Jenis Input untuk Isian 2:</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="inputType2" id="text2"
+                                            value="text" checked>
+                                        <label class="form-check-label" for="text2">Input Teks</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="inputType2" id="select2"
+                                            value="select">
+                                        <label class="form-check-label" for="select2">Input Pilihan</label>
+                                    </div>
+                                </div>
+
+                                <div id="textInput2" class="form-group">
+                                    <label for="textValue2">Nilai Input Teks:</label>
+                                    <input type="text" class="form-control" id="textValue2" name="textValue2">
+                                </div>
+
+                                <div id="selectInput2" class="form-group" style="display:none;">
+                                    <label for="selectValue2">Pilih Nilai:</label>
+                                    <select class="form-control" id="selectValue2" name="selectValue2">
+                                        @foreach ($nilai as $n)
+                                            <option value="option1">{{ $n->title }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="form-group mt-3">
+                                    <label>Pilih Jenis Input untuk Isian 3:</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="inputType3" id="text3"
+                                            value="text" checked>
+                                        <label class="form-check-label" for="text3">Input Teks</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="inputType3" id="select3"
+                                            value="select">
+                                        <label class="form-check-label" for="select3">Input Pilihan</label>
+                                    </div>
+                                </div>
+
+                                <div id="textInput3" class="form-group">
+                                    <label for="textValue3">Nilai Input Teks:</label>
+                                    <input type="text" class="form-control" id="textValue3" name="textValue3">
+                                </div>
+
+                                <div id="selectInput3" class="form-group" style="display:none;">
+                                    <label for="selectValue3">Pilih Nilai:</label>
+                                    <select class="form-control" id="selectValue3" name="selectValue3">
+                                        @foreach ($nilai as $n)
+                                            <option value="option1">{{ $n->title }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <button type="button" class="btn btn-primary" onclick="nextStep(3)">Lanjut</button>
                             </form>
                         </div>
                     </div>
