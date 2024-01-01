@@ -11,7 +11,8 @@
         document.getElementById('step' + step).style.display = 'block';
     }
 </script>
-<script>
+{{-- <script>
+    // <<untuk Form pakai radio button>> 
     function submitForm() {
         for (let i = 1; i <= 3; i++) {
             var inputType = document.querySelector(`input[name="inputType${i}"]:checked`).value;
@@ -42,7 +43,9 @@
             });
         });
     }
-</script>
+</script> --}}
+
+
 
 {{-- <script>
     $(document).ready(function() {

@@ -66,7 +66,7 @@
                         </div>
                     </div> --}}
                     <!-- Langkah 1: 3 Pilihan dengan Checkbox -->
-                    @php
+                    {{-- @php
                         $nilai = App\Models\Nilai::all();
                     @endphp
                     <script>
@@ -84,7 +84,7 @@
                                 },
                             });
                         });
-                    </script>
+                    </script> --}}
 
                     <div class="card" id="step1">
                         <div class="card-header">
@@ -140,24 +140,25 @@
                             Identitas Sistem Elektronik lain yang terhubung
                         </div>
                         <div class="card-body">
-                            {{-- <form>
+                            <form>
+                                @csrf
                                 <div class="form-group">
-                                    <label for="myInput" class="form-label">Sistem Elektronik lain yang terhubung langsung
+                                    <label for="myInput1" class="form-label">Sistem Elektronik lain yang terhubung langsung
                                         dalam satu jaringan elektronik (LAN)</label>
-                                    <input type="text" class="form-control" id="myInput" placeholder="Type something">
-                                    <ul id="myUL"></ul>
-                                    <label for="myInput" class="form-label">Sistem Elektronik lain yang berbagi data dalam
+                                    <input type="text" class="form-control" id="myInput1" placeholder="Type something">
+                                    <div id="myUL1"></div>
+                                    <label for="myInput2" class="form-label">Sistem Elektronik lain yang berbagi data dalam
                                         database</label>
                                     <input type="text" class="form-control" id="myInput2" placeholder="Type something">
-                                    <ul id="myUL2"></ul>
-                                    <label for="myInput" class="form-label">Sistem Elektronik lain yang memiliki hardware
+                                    <div id="myUL2"></div>
+                                    <label for="myInput3" class="form-label">Sistem Elektronik lain yang memiliki hardware
                                         yang sama</label>
                                     <input type="text" class="form-control" id="myInput3" placeholder="Type something">
-                                    <ul id="myUL3"></ul>
+                                    <div id="myUL3"></div>
                                 </div>
                                 <button type="button" class="btn btn-primary mt-3" onclick="nextStep(3)">Lanjut</button>
-                            </form> --}}
-                            <form>
+                            </form>
+                            {{-- <form>
                                 <div class="form-group">
                                     <label>Pilih Jenis Input untuk Isian 1:</label>
                                     <div class="form-check">
@@ -243,7 +244,7 @@
                                 </div>
 
                                 <button type="button" class="btn btn-primary" onclick="nextStep(3)">Lanjut</button>
-                            </form>
+                            </form> --}}
                         </div>
                     </div>
 
@@ -261,7 +262,7 @@
                                     <textarea type="text" class="form-control" id="deskripsiKemungkinan" name="deskripsiKemungkinan" required></textarea>
 
                                     <label for="nilaiKemungkinan" class="form-label">3. Nilai Kemungkinan (1-5):</label>
-                                    <input type="range" class="form-range" min="0" max="5"
+                                    <input type="range" class="form-range" min="1" max="5"
                                         id="nilaiKemungkinan">
 
                                     <label for="deskripsiDampakOrg" class="form-label">4. Deskripsi Dampak
@@ -271,7 +272,7 @@
 
                                     <label for="nilaiDampakOrg" class="form-label">5. Nilai Dampak Organisasi
                                         (1-5):</label>
-                                    <input type="range" class="form-range" min="0" max="5"
+                                    <input type="range" class="form-range" min="1" max="5"
                                         id="nilaiDampakOrg">
 
                                     <label for="deskripsiDampakNasional" class="form-label">6. Deskripsi Dampak
@@ -281,11 +282,11 @@
 
                                     <label for="nilaiDampakNasional" class="form-label">7. Nilai Dampak Nasional
                                         (1-5):</label>
-                                    <input type="range" class="form-range" min="0" max="5"
+                                    <input type="range" class="form-range" min="1" max="5"
                                         id="nilaiDampakNasional">
 
                                     <label for="nilaiRisiko" class="form-label">8. Nilai Risiko (Auto-calculated):</label>
-                                    <input type="range" class="form-range" min="0" max="5"
+                                    <input type="range" class="form-range" min="1" max="5"
                                         id="nilaiRisiko">
 
                                     <button type="button" class="btn btn-primary mt-3"
@@ -343,5 +344,75 @@
                 </div>
             </div>
         </div>
+        {{-- <script>
+            $(document).ready(function() {
+
+                $('#myInput').keyup(function() {
+                    var query = $(this).val();
+                    if (query != '') {
+                        var _token = $('input[name="_token"]').val();
+                        $.ajax({
+                            url: "{{ route('nilai.fetch') }}",
+                            method: "POST",
+                            data: {
+                                query: query,
+                                _token: _token
+                            },
+                            success: function(data) {
+                                $('#myUL').fadeIn();
+                                $('#myUL').html(data);
+                            }
+                        });
+                    }
+                });
+
+                $(document).on('click', 'li', function() {
+                    $('#myInput').val($(this).text());
+                    $('#myUL').fadeOut();
+                });
+
+            });
+        </script> --}}
+        <script>
+            $(document).ready(function() {
+                // Function to handle autocomplete for each input field
+                function setupAutocomplete(inputId, resultsId) {
+                    $('#' + inputId).keyup(function() {
+                        var query = $(this).val();
+                        if (query !== '') {
+                            var _token = $('input[name="_token"]').val();
+                            $.ajax({
+                                url: "{{ route('nilai.fetch') }}",
+                                method: "POST",
+                                data: {
+                                    query: query,
+                                    _token: _token
+                                },
+                                success: function(data) {
+                                    $('#' + resultsId).fadeIn();
+                                    $('#' + resultsId).html(data);
+                                }
+                            });
+                        }
+                    });
+
+                    $(document).on('click', '#' + resultsId + ' li', function() {
+                        $('#' + inputId).val($(this).text());
+                        $('#' + resultsId).fadeOut();
+                    });
+                }
+
+                // Setup autocomplete for each input field
+                setupAutocomplete('myInput1', 'myUL1');
+                setupAutocomplete('myInput2', 'myUL2');
+                setupAutocomplete('myInput3', 'myUL3');
+                // Setup autocomplete for myInput2, myInput3, and myInput4 similarly
+                // for (var i = 1; i <= 4; i++) {
+                //     var inputId = 'myInput' + i;
+                //     var resultsId = 'myUL' + i;
+                //     setupAutocomplete(inputId, resultsId);
+                // }
+            });
+        </script>
     </section>
 @endsection

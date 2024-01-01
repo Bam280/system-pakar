@@ -4,18 +4,35 @@ namespace App\Http\Controllers;
 
 use App\Models\Nilai;
 use Illuminate\Http\Request;
+use DB;
 
 class DiagnoseController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
     {
-        $query = $request->input('query');
-        $nilai = Nilai::where('title', 'like', "%query%")->get(['title']);
-        // return response()->json($nilai);
-        return view('frontend.diagnose.index', compact('nilai'));
+        return view('frontend.diagnose.index');
+    }
+
+    public function fetch(Request $request){
+        if($request->get('query'))
+        {
+            $query = $request->get('query');
+            $data = DB::table('nilai')
+                ->where('title', 'LIKE', "%{$query}%")
+                ->get();
+            $output = '<ul class="dropdown-menu" style="display:block; position:relative;width:100%;">';
+            foreach($data as $row)
+            {
+                $output .= '
+                <li><a class="dropdown-item" href="#">'.$row->title.'</a></li>
+                ';
+            }
+            $output .= '</ul>';
+            echo $output;
+        }
     }
 
     /**

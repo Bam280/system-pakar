@@ -21,10 +21,10 @@ Route::get('/', function () {
     return view('frontend.index');
 });
 Route::get('/diagnose', function () {
-    $data = Nilai::pluck('title')->toArray();
-    // return response()->json($data);
-    return view('frontend.diagnose.index', compact('data'));
+    return view('frontend.diagnose.index');
 });
+
+Route::post('/diagnose/fetch', [DiagnoseController::class, 'fetch'])->name('nilai.fetch');
 
 Route::post('/diagnose', [DiagnoseController::class, 'store']);
 
