@@ -26,9 +26,12 @@ class DiagnoseController extends Controller
             $output = '<ul class="dropdown-menu" style="display:block; position:relative;width:100%;">';
             foreach($data as $row)
             {
-                $output .= '
-                <li><a class="dropdown-item" href="#">'.$row->title.'</a></li>
-                ';
+                // $g = strpos($row->title, $query);
+                // $output .= '
+                // <li style="word-wrap: break-word;">'.substr($row->title, $g, 50).'. . .</li>
+                // ';
+                $highlightedTitle = preg_replace("/($query)/i", '<strong>$1</strong>', $row->title); // Highlight the matched part
+                $output .= '<li class="dropdown-item" style="word-wrap: break-word; white-space: normal; overflow: hidden; text-overflow: ellipsis;">'.$highlightedTitle.'</a></li>';
             }
             $output .= '</ul>';
             echo $output;

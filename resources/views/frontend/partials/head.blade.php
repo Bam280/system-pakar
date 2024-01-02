@@ -8,4 +8,12 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <style>
+        #myUL1 li.hovered-item,
+        #myUL2 li.hovered-item,
+        #myUL3 li.hovered-item,
+        #myUL4 li.hovered-item {
+            background-color: #BCECE0;
+        }
+    </style>
 </head>

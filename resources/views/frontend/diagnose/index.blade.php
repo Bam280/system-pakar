@@ -400,6 +400,15 @@
                         $('#' + inputId).val($(this).text());
                         $('#' + resultsId).fadeOut();
                     });
+
+                    // Add hover effect to dropdown items
+                    $(document).on('mouseenter', '#' + resultsId + ' li', function() {
+                        $(this).addClass('hovered-item');
+                    });
+
+                    $(document).on('mouseleave', '#' + resultsId + ' li', function() {
+                        $(this).removeClass('hovered-item');
+                    });
                 }
 
                 // Setup autocomplete for each input field
