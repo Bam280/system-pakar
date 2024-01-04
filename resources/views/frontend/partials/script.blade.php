@@ -12,6 +12,42 @@
     }
 </script>
 {{-- <script>
+    // <<untuk Form pakai radio button>> 
+    function submitForm() {
+        for (let i = 1; i <= 3; i++) {
+            var inputType = document.querySelector(`input[name="inputType${i}"]:checked`).value;
+            var value;
+
+            if (inputType === 'text') {
+                value = document.getElementById(`textValue${i}`).value;
+            } else {
+                value = document.getElementById(`selectValue${i}`).value;
+            }
+
+            // Lakukan sesuatu dengan nilai yang dipilih
+            console.log(`Nilai yang Dipilih untuk Isian ${i}:`, value);
+        }
+    }
+
+    // Tambahkan event listener untuk mengubah tampilan input berdasarkan pilihan radio button
+    for (let i = 1; i <= 3; i++) {
+        document.querySelectorAll(`input[name="inputType${i}"]`).forEach(function(radio) {
+            radio.addEventListener('change', function() {
+                if (this.value === 'text') {
+                    document.getElementById(`textInput${i}`).style.display = 'block';
+                    document.getElementById(`selectInput${i}`).style.display = 'none';
+                } else {
+                    document.getElementById(`textInput${i}`).style.display = 'none';
+                    document.getElementById(`selectInput${i}`).style.display = 'block';
+                }
+            });
+        });
+    }
+</script> --}}
+
+
+
+{{-- <script>
     $(document).ready(function() {
         $('#myInput').on('input', function() {
             const query = $(this).val();

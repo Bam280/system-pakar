@@ -66,7 +66,7 @@
                         </div>
                     </div> --}}
                     <!-- Langkah 1: 3 Pilihan dengan Checkbox -->
-                    @php
+                    {{-- @php
                         $nilai = App\Models\Nilai::all();
                     @endphp
                     <script>
@@ -84,7 +84,7 @@
                                 },
                             });
                         });
-                    </script>
+                    </script> --}}
 
                     <div class="card" id="step1">
                         <div class="card-header">
@@ -141,22 +141,110 @@
                         </div>
                         <div class="card-body">
                             <form>
+                                @csrf
                                 <div class="form-group">
-                                    <label for="myInput" class="form-label">Sistem Elektronik lain yang terhubung langsung
+                                    <label for="myInput1" class="form-label">Sistem Elektronik lain yang terhubung langsung
                                         dalam satu jaringan elektronik (LAN)</label>
-                                    <input type="text" class="form-control" id="myInput" placeholder="Type something">
-                                    <ul id="myUL"></ul>
-                                    <label for="myInput" class="form-label">Sistem Elektronik lain yang berbagi data dalam
+                                    <input type="text" class="form-control" id="myInput1" placeholder="Type something">
+                                    <div id="myUL1"></div>
+                                    <label for="myInput2" class="form-label">Sistem Elektronik lain yang berbagi data dalam
                                         database</label>
                                     <input type="text" class="form-control" id="myInput2" placeholder="Type something">
-                                    <ul id="myUL2"></ul>
-                                    <label for="myInput" class="form-label">Sistem Elektronik lain yang memiliki hardware
+                                    <div id="myUL2"></div>
+                                    <label for="myInput3" class="form-label">Sistem Elektronik lain yang memiliki hardware
                                         yang sama</label>
                                     <input type="text" class="form-control" id="myInput3" placeholder="Type something">
-                                    <ul id="myUL3"></ul>
+                                    <div id="myUL3"></div>
                                 </div>
                                 <button type="button" class="btn btn-primary mt-3" onclick="nextStep(3)">Lanjut</button>
                             </form>
+                            {{-- <form>
+                                <div class="form-group">
+                                    <label>Pilih Jenis Input untuk Isian 1:</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="inputType1" id="text1"
+                                            value="text" checked>
+                                        <label class="form-check-label" for="text1">Input Teks</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="inputType1" id="select1"
+                                            value="select">
+                                        <label class="form-check-label" for="select1">Input Pilihan</label>
+                                    </div>
+                                </div>
+
+                                <div id="textInput1" class="form-group">
+                                    <label for="textValue1">Nilai Input Teks:</label>
+                                    <input type="text" class="form-control" id="textValue1" name="textValue1">
+                                </div>
+
+                                <div id="selectInput1" class="form-group" style="display:none;">
+                                    <label for="selectValue1">Pilih Nilai:</label>
+                                    <select class="form-control" id="selectValue1" name="selectValue1">
+                                        @foreach ($nilai as $n)
+                                            <option value="option1">{{ $n->title }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="form-group mt-3">
+                                    <label>Pilih Jenis Input untuk Isian 2:</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="inputType2" id="text2"
+                                            value="text" checked>
+                                        <label class="form-check-label" for="text2">Input Teks</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="inputType2" id="select2"
+                                            value="select">
+                                        <label class="form-check-label" for="select2">Input Pilihan</label>
+                                    </div>
+                                </div>
+
+                                <div id="textInput2" class="form-group">
+                                    <label for="textValue2">Nilai Input Teks:</label>
+                                    <input type="text" class="form-control" id="textValue2" name="textValue2">
+                                </div>
+
+                                <div id="selectInput2" class="form-group" style="display:none;">
+                                    <label for="selectValue2">Pilih Nilai:</label>
+                                    <select class="form-control" id="selectValue2" name="selectValue2">
+                                        @foreach ($nilai as $n)
+                                            <option value="option1">{{ $n->title }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="form-group mt-3">
+                                    <label>Pilih Jenis Input untuk Isian 3:</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="inputType3" id="text3"
+                                            value="text" checked>
+                                        <label class="form-check-label" for="text3">Input Teks</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="inputType3" id="select3"
+                                            value="select">
+                                        <label class="form-check-label" for="select3">Input Pilihan</label>
+                                    </div>
+                                </div>
+
+                                <div id="textInput3" class="form-group">
+                                    <label for="textValue3">Nilai Input Teks:</label>
+                                    <input type="text" class="form-control" id="textValue3" name="textValue3">
+                                </div>
+
+                                <div id="selectInput3" class="form-group" style="display:none;">
+                                    <label for="selectValue3">Pilih Nilai:</label>
+                                    <select class="form-control" id="selectValue3" name="selectValue3">
+                                        @foreach ($nilai as $n)
+                                            <option value="option1">{{ $n->title }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <button type="button" class="btn btn-primary" onclick="nextStep(3)">Lanjut</button>
+                            </form> --}}
                         </div>
                     </div>
 
@@ -174,7 +262,7 @@
                                     <textarea type="text" class="form-control" id="deskripsiKemungkinan" name="deskripsiKemungkinan" required></textarea>
 
                                     <label for="nilaiKemungkinan" class="form-label">3. Nilai Kemungkinan (1-5):</label>
-                                    <input type="range" class="form-range" min="0" max="5"
+                                    <input type="range" class="form-range" min="1" max="5"
                                         id="nilaiKemungkinan">
 
                                     <label for="deskripsiDampakOrg" class="form-label">4. Deskripsi Dampak
@@ -184,7 +272,7 @@
 
                                     <label for="nilaiDampakOrg" class="form-label">5. Nilai Dampak Organisasi
                                         (1-5):</label>
-                                    <input type="range" class="form-range" min="0" max="5"
+                                    <input type="range" class="form-range" min="1" max="5"
                                         id="nilaiDampakOrg">
 
                                     <label for="deskripsiDampakNasional" class="form-label">6. Deskripsi Dampak
@@ -194,11 +282,11 @@
 
                                     <label for="nilaiDampakNasional" class="form-label">7. Nilai Dampak Nasional
                                         (1-5):</label>
-                                    <input type="range" class="form-range" min="0" max="5"
+                                    <input type="range" class="form-range" min="1" max="5"
                                         id="nilaiDampakNasional">
 
                                     <label for="nilaiRisiko" class="form-label">8. Nilai Risiko (Auto-calculated):</label>
-                                    <input type="range" class="form-range" min="0" max="5"
+                                    <input type="range" class="form-range" min="1" max="5"
                                         id="nilaiRisiko">
 
                                     <button type="button" class="btn btn-primary mt-3"
@@ -256,5 +344,84 @@
                 </div>
             </div>
         </div>
+        {{-- <script>
+            $(document).ready(function() {
+
+                $('#myInput').keyup(function() {
+                    var query = $(this).val();
+                    if (query != '') {
+                        var _token = $('input[name="_token"]').val();
+                        $.ajax({
+                            url: "{{ route('nilai.fetch') }}",
+                            method: "POST",
+                            data: {
+                                query: query,
+                                _token: _token
+                            },
+                            success: function(data) {
+                                $('#myUL').fadeIn();
+                                $('#myUL').html(data);
+                            }
+                        });
+                    }
+                });
+
+                $(document).on('click', 'li', function() {
+                    $('#myInput').val($(this).text());
+                    $('#myUL').fadeOut();
+                });
+
+            });
+        </script> --}}
+        <script>
+            $(document).ready(function() {
+                // Function to handle autocomplete for each input field
+                function setupAutocomplete(inputId, resultsId) {
+                    $('#' + inputId).keyup(function() {
+                        var query = $(this).val();
+                        if (query !== '') {
+                            var _token = $('input[name="_token"]').val();
+                            $.ajax({
+                                url: "{{ route('nilai.fetch') }}",
+                                method: "POST",
+                                data: {
+                                    query: query,
+                                    _token: _token
+                                },
+                                success: function(data) {
+                                    $('#' + resultsId).fadeIn();
+                                    $('#' + resultsId).html(data);
+                                }
+                            });
+                        }
+                    });
+
+                    $(document).on('click', '#' + resultsId + ' li', function() {
+                        $('#' + inputId).val($(this).text());
+                        $('#' + resultsId).fadeOut();
+                    });
+
+                    // Add hover effect to dropdown items
+                    $(document).on('mouseenter', '#' + resultsId + ' li', function() {
+                        $(this).addClass('hovered-item');
+                    });
+
+                    $(document).on('mouseleave', '#' + resultsId + ' li', function() {
+                        $(this).removeClass('hovered-item');
+                    });
+                }
+
+                // Setup autocomplete for each input field
+                setupAutocomplete('myInput1', 'myUL1');
+                setupAutocomplete('myInput2', 'myUL2');
+                setupAutocomplete('myInput3', 'myUL3');
+                // Setup autocomplete for myInput2, myInput3, and myInput4 similarly
+                // for (var i = 1; i <= 4; i++) {
+                //     var inputId = 'myInput' + i;
+                //     var resultsId = 'myUL' + i;
+                //     setupAutocomplete(inputId, resultsId);
+                // }
+            });
+        </script>
     </section>
 @endsection
