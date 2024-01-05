@@ -13,7 +13,7 @@
         #myUL2 li.hovered-item,
         #myUL3 li.hovered-item,
         #myUL4 li.hovered-item {
-            background-color: #BCECE0;
+            background-color: #c3c3c3;
         }
     </style>
 </head>

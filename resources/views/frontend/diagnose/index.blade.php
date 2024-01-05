@@ -146,14 +146,17 @@
                                     <label for="myInput1" class="form-label">Sistem Elektronik lain yang terhubung langsung
                                         dalam satu jaringan elektronik (LAN)</label>
                                     <input type="text" class="form-control" id="myInput1" placeholder="Type something">
+                                    <button type="button" class="btn btn-success">Add+</button>
                                     <div id="myUL1"></div>
                                     <label for="myInput2" class="form-label">Sistem Elektronik lain yang berbagi data dalam
                                         database</label>
                                     <input type="text" class="form-control" id="myInput2" placeholder="Type something">
+                                    <button type="button" class="btn btn-success">Add+</button>
                                     <div id="myUL2"></div>
                                     <label for="myInput3" class="form-label">Sistem Elektronik lain yang memiliki hardware
                                         yang sama</label>
                                     <input type="text" class="form-control" id="myInput3" placeholder="Type something">
+                                    <button type="button" class="btn btn-success">Add+</button>
                                     <div id="myUL3"></div>
                                 </div>
                                 <button type="button" class="btn btn-primary mt-3" onclick="nextStep(3)">Lanjut</button>
