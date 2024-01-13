@@ -142,22 +142,47 @@
                         <div class="card-body">
                             <form>
                                 @csrf
-                                <div class="form-group">
-                                    <label for="myInput1" class="form-label">Sistem Elektronik lain yang terhubung langsung
-                                        dalam satu jaringan elektronik (LAN)</label>
-                                    <input type="text" class="form-control" id="myInput1" placeholder="Type something">
-                                    <button type="button" class="btn btn-success">Add+</button>
-                                    <div id="myUL1"></div>
-                                    <label for="myInput2" class="form-label">Sistem Elektronik lain yang berbagi data dalam
-                                        database</label>
-                                    <input type="text" class="form-control" id="myInput2" placeholder="Type something">
-                                    <button type="button" class="btn btn-success">Add+</button>
-                                    <div id="myUL2"></div>
-                                    <label for="myInput3" class="form-label">Sistem Elektronik lain yang memiliki hardware
-                                        yang sama</label>
-                                    <input type="text" class="form-control" id="myInput3" placeholder="Type something">
-                                    <button type="button" class="btn btn-success">Add+</button>
-                                    <div id="myUL3"></div>
+                                <label for="myInput1" class="form-label">Sistem Elektronik lain yang terhubung
+                                    langsung
+                                    dalam satu jaringan elektronik (LAN)</label>
+                                <button type="button" class="btn btn-outline-success add-input" data-input-id="myInput1"
+                                    data-results-id="myUL1"
+                                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem; border-radius: 100px;">Add+</button>
+                                <div class="form-group" id="inputGroupContainer1">
+                                    <div class="input-group" id="inputGroup1">
+                                        <input type="text" class="form-control" id="myInput1"
+                                            placeholder="Type something">
+                                        <div class="myUL" id="myUL1"></div>
+                                    </div>
+                                    <br>
+                                </div>
+                                <label for="myInput2" class="form-label">Sistem Elektronik lain yang berbagi data
+                                    dalam
+                                    database</label>
+                                <button type="button" class="btn btn-outline-success add-input" data-input-id="myInput2"
+                                    data-results-id="myUL2"
+                                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem; border-radius: 100px;">Add+</button>
+                                <div class="form-group" id="inputGroupContainer2">
+                                    <div class="input-group" id="inputGroup2">
+                                        <input type="text" class="form-control" id="myInput2"
+                                            placeholder="Type something">
+                                        <div id="myUL2"></div>
+                                    </div>
+                                    <br>
+                                </div>
+                                <label for="myInput3" class="form-label">Sistem Elektronik lain yang memiliki
+                                    hardware
+                                    yang sama</label>
+                                <button type="button" class="btn btn-outline-success add-input" data-input-id="myInput3"
+                                    data-results-id="myUL3"
+                                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem; border-radius: 100px;">Add+</button>
+                                <div class="form-group" id="inputGroupContainer3">
+                                    <div class="input-group" id="inputGroup3">
+                                        <input type="text" class="form-control" id="myInput3"
+                                            placeholder="Type something">
+                                        <div id="myUL3"></div>
+                                    </div>
+                                    <br>
                                 </div>
                                 <button type="button" class="btn btn-primary mt-3" onclick="nextStep(3)">Lanjut</button>
                             </form>
@@ -412,6 +437,13 @@
                     $(document).on('mouseleave', '#' + resultsId + ' li', function() {
                         $(this).removeClass('hovered-item');
                     });
+
+                    $(document).on('click', function(e) {
+                        // Cek apakah yang diklik bukan bagian dari dropdown atau input
+                        if (!$(e.target).closest('#' + resultsId).length && !$(e.target).is('#' + inputId)) {
+                            $('#' + resultsId).fadeOut();
+                        }
+                    });
                 }
 
                 // Setup autocomplete for each input field
@@ -424,6 +456,37 @@
                 //     var resultsId = 'myUL' + i;
                 //     setupAutocomplete(inputId, resultsId);
                 // }
+                // Add input dynamically on button click
+                // Add input dynamically on button click for myInput1
+                $('.add-input[data-input-id="myInput1"]').on('click', function() {
+                    addDynamicInput('myInput1', 'myUL1', 'inputGroupContainer1');
+                });
+
+                // Add input dynamically on button click for myInput2
+                $('.add-input[data-input-id="myInput2"]').on('click', function() {
+                    addDynamicInput('myInput2', 'myUL2', 'inputGroupContainer2');
+                });
+
+                // Add input dynamically on button click for myInput3
+                $('.add-input[data-input-id="myInput3"]').on('click', function() {
+                    addDynamicInput('myInput3', 'myUL3', 'inputGroupContainer3');
+                });
+
+                function addDynamicInput(inputId, resultsId, containerId) {
+                    var inputCount = $('.dynamic-input').length;
+                    inputCount++;
+                    var newInputId = inputId + inputCount;
+                    var newResultsId = resultsId + inputCount;
+
+                    var newInputGroup = $('<div class="input-group" id="inputGroup' + inputCount + '">' +
+                        '<input type="text" class="form-control myInput" id="' + newInputId +
+                        '" placeholder="Type something">' +
+                        '<div class="myUL" id="' + newResultsId + '"></div>' +
+                        '</div>' + '<br>');
+
+                    $('#' + containerId).append(newInputGroup);
+                    setupAutocomplete(newInputId, newResultsId);
+                }
             });
         </script>
     </section>
