@@ -51,15 +51,7 @@ class DiagnoseController extends Controller
      */
     public function store(Request $request)
     {
-        $options = $request->input('options');
-        $longText = $request->input('longText');
-
-        // Simpan data ke database (gunakan Eloquent)
-        $formData = new FormData();
-        $formData->form_1_data = json_encode($options);
-        $formData->form_2_data = $longText;
-        $formData->save();
-
+        dd($request);
         return response()->json(['message' => 'Data berhasil disimpan di database']);
     }
 

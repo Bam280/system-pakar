@@ -4,94 +4,14 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8">
-                    {{-- <div class="card">
-                        <div class="card-header">Form Diagnose</div>
-                        <div class="card-body">
-                            @php
-                                $nilai = \App\Models\Nilai::all();
-                            @endphp --}}
 
-                    {{-- <form method="POST" action="{{ route('nilai.store') }}">
-                                @csrf
-                                <label for="exampleDataList" class="form-label">Datalist example</label>
-                                <input class="form-control" list="datalistOptions" id="exampleDataList"
-                                    placeholder="Type to search..." name="title">
-                                <datalist id="datalistOptions">
-                                    @foreach ($nilai as $item)
-                                        <option value={{ $item->title }}>
-                                    @endforeach
-                                </datalist>
-
-                                <label for="exampleDataList" class="form-label">Datalist example</label>
-                                <input class="form-control" list="datalistOptions" id="exampleDataList"
-                                    placeholder="Type to search..." name="title">
-                                <datalist id="datalistOptions">
-                                    @foreach ($nilai as $item)
-                                        <option value={{ $item->title }}>
-                                    @endforeach
-                                </datalist>
-                                <label for="exampleDataList" class="form-label">Datalist example</label>
-                                <input class="form-control" list="datalistOptions" id="exampleDataList"
-                                    placeholder="Type to search..." name="title">
-                                <datalist id="datalistOptions">
-                                    @foreach ($nilai as $item)
-                                        <option value={{ $item->title }}>
-                                    @endforeach
-                                </datalist>
-                                <label for="exampleDataList" class="form-label">Datalist example</label>
-                                <input class="form-control" list="datalistOptions" id="exampleDataList"
-                                    placeholder="Type to search..." name="title">
-                                <datalist id="datalistOptions">
-                                    @foreach ($nilai as $item)
-                                        <option value={{ $item->title }}>
-                                    @endforeach
-                                </datalist>
-                                <label for="exampleDataList" class="form-label">Datalist example</label>
-                                <input class="form-control" list="datalistOptions" id="exampleDataList"
-                                    placeholder="Type to search..." name="title">
-                                <datalist id="datalistOptions">
-                                    @foreach ($nilai as $item)
-                                        <option value={{ $item->title }}>
-                                    @endforeach
-                                </datalist>
-                                <div class="form-group row mb-0 justify-content-center">
-                                    <div class="col-md-6 offset-md-4 mt-2">
-                                        <button type="submit" class="btn btn-primary">
-                                            {{ __('Submit') }}
-                                        </button>
-                                    </div>
-                                </div>
-                            </form> --}}
-                    {{-- 
-                        </div>
-                    </div> --}}
-                    <!-- Langkah 1: 3 Pilihan dengan Checkbox -->
-                    {{-- @php
-                        $nilai = App\Models\Nilai::all();
-                    @endphp
-                    <script>
-                        $(document).ready(function() {
-                            const data = [
-                                @foreach ($nilai as $n)
-                                    "{{ $n->value }}",
-                                @endforeach
-                            ];
-
-                            $('#myInput').autocomplete({
-                                source: data,
-                                select: function(event, ui) {
-                                    $('#myUL').text(ui.item.value);
-                                },
-                            });
-                        });
-                    </script> --}}
-
-                    <div class="card" id="step1">
-                        <div class="card-header">
-                            Form Identifikasi
-                        </div>
-                        <div class="card-body">
-                            <form>
+                    <form action="" id="formDiagnosenilai">
+                        @csrf
+                        <div class="card" id="step1">
+                            <div class="card-header">
+                                Form Identifikasi
+                            </div>
+                            <div class="card-body">
                                 <div class="mb-3">
                                     <label for="nama_sistem" class="form-label">Nama Sistem elektronik</label>
                                     <input type="text" class="form-control" id="nama_sistem" name="nama_sistem"
@@ -104,18 +24,15 @@
                                         placeholder="Another input placeholder">
                                 </div>
                                 <button type="button" class="btn btn-primary mt-3" onclick="nextStep(2)">Lanjut</button>
-                            </form>
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- Langkah 2: Form untuk Input Text Panjang -->
-                    <div class="card mt-3" id="step2" style="display: none;">
-                        <div class="card-header">
-                            Identitas Sistem Elektronik lain yang terhubung
-                        </div>
-                        <div class="card-body">
-                            <form id="myForm">
-                                @csrf
+                        <!-- Langkah 2: Form untuk Input Text Panjang -->
+                        <div class="card mt-3" id="step2" style="display: none;">
+                            <div class="card-header">
+                                Identitas Sistem Elektronik lain yang terhubung
+                            </div>
+                            <div class="card-body">
                                 <label for="myInput1" class="form-label">Sistem Elektronik lain yang terhubung
                                     langsung
                                     dalam satu jaringan elektronik (LAN)</label>
@@ -159,103 +76,14 @@
                                     <br>
                                 </div>
                                 <button type="button" class="btn btn-primary mt-3" onclick="nextStep(3)">Lanjut</button>
-                            </form>
-                            {{-- <form>
-                                <div class="form-group">
-                                    <label>Pilih Jenis Input untuk Isian 1:</label>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="inputType1" id="text1"
-                                            value="text" checked>
-                                        <label class="form-check-label" for="text1">Input Teks</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="inputType1" id="select1"
-                                            value="select">
-                                        <label class="form-check-label" for="select1">Input Pilihan</label>
-                                    </div>
-                                </div>
-
-                                <div id="textInput1" class="form-group">
-                                    <label for="textValue1">Nilai Input Teks:</label>
-                                    <input type="text" class="form-control" id="textValue1" name="textValue1">
-                                </div>
-
-                                <div id="selectInput1" class="form-group" style="display:none;">
-                                    <label for="selectValue1">Pilih Nilai:</label>
-                                    <select class="form-control" id="selectValue1" name="selectValue1">
-                                        @foreach ($nilai as $n)
-                                            <option value="option1">{{ $n->title }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-
-                                <div class="form-group mt-3">
-                                    <label>Pilih Jenis Input untuk Isian 2:</label>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="inputType2" id="text2"
-                                            value="text" checked>
-                                        <label class="form-check-label" for="text2">Input Teks</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="inputType2" id="select2"
-                                            value="select">
-                                        <label class="form-check-label" for="select2">Input Pilihan</label>
-                                    </div>
-                                </div>
-
-                                <div id="textInput2" class="form-group">
-                                    <label for="textValue2">Nilai Input Teks:</label>
-                                    <input type="text" class="form-control" id="textValue2" name="textValue2">
-                                </div>
-
-                                <div id="selectInput2" class="form-group" style="display:none;">
-                                    <label for="selectValue2">Pilih Nilai:</label>
-                                    <select class="form-control" id="selectValue2" name="selectValue2">
-                                        @foreach ($nilai as $n)
-                                            <option value="option1">{{ $n->title }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-
-                                <div class="form-group mt-3">
-                                    <label>Pilih Jenis Input untuk Isian 3:</label>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="inputType3" id="text3"
-                                            value="text" checked>
-                                        <label class="form-check-label" for="text3">Input Teks</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="inputType3" id="select3"
-                                            value="select">
-                                        <label class="form-check-label" for="select3">Input Pilihan</label>
-                                    </div>
-                                </div>
-
-                                <div id="textInput3" class="form-group">
-                                    <label for="textValue3">Nilai Input Teks:</label>
-                                    <input type="text" class="form-control" id="textValue3" name="textValue3">
-                                </div>
-
-                                <div id="selectInput3" class="form-group" style="display:none;">
-                                    <label for="selectValue3">Pilih Nilai:</label>
-                                    <select class="form-control" id="selectValue3" name="selectValue3">
-                                        @foreach ($nilai as $n)
-                                            <option value="option1">{{ $n->title }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-
-                                <button type="button" class="btn btn-primary" onclick="nextStep(3)">Lanjut</button>
-                            </form> --}}
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="card mt-3" id="step3" style="display: none;">
-                        <div class="card-header">
-                            Langkah 3: Hasil
-                        </div>
-                        <div class="card-body pb-2">
-                            <form>
+                        <div class="card mt-3" id="step3" style="display: none;">
+                            <div class="card-header">
+                                Langkah 3: Hasil
+                            </div>
+                            <div class="card-body pb-2">
                                 <div class="form-group">
                                     <label for="deskripsiRisiko" class="form-label">1. Deskripsi Risiko:</label>
                                     <textarea type="text" class="form-control" id="deskripsiRisiko" name="deskripsiRisiko" required></textarea>
@@ -265,17 +93,17 @@
 
                                     <label for="nilaiKemungkinan" class="form-label">3. Nilai Kemungkinan (1-5):</label>
                                     <input type="range" class="form-range" min="1" max="5"
-                                        id="nilaiKemungkinan">
+                                        name="nilaiKemungkinan" id="nilaiKemungkinan">
 
                                     <label for="deskripsiDampakOrg" class="form-label">4. Deskripsi Dampak
                                         Organisasi:</label>
                                     <input type="text" class="form-control" id="deskripsiDampakOrg"
-                                        name="deskripsiDampakOrg" required>
+                                        name="deskripsiDampakOrg" name="deskripsiDampakOrg" required>
 
                                     <label for="nilaiDampakOrg" class="form-label">5. Nilai Dampak Organisasi
                                         (1-5):</label>
                                     <input type="range" class="form-range" min="1" max="5"
-                                        id="nilaiDampakOrg">
+                                        name="nilaiDampakOrg" id="nilaiDampakOrg">
 
                                     <label for="deskripsiDampakNasional" class="form-label">6. Deskripsi Dampak
                                         Nasional:</label>
@@ -285,24 +113,24 @@
                                     <label for="nilaiDampakNasional" class="form-label">7. Nilai Dampak Nasional
                                         (1-5):</label>
                                     <input type="range" class="form-range" min="1" max="5"
-                                        id="nilaiDampakNasional">
+                                        name="nilaiDampakNasional" id="nilaiDampakNasional">
 
                                     {{-- Dilakukan pada backend untuk nilai kalkulasi dari semua masukan nilai yang ada --}}
                                     {{-- <label for="nilaiRisiko" class="form-label">8. Nilai Risiko (Auto-calculated):</label>
                                     <input type="range" class="form-range" min="1" max="5"
                                         id="nilaiRisiko"> --}}
 
-                                    <button type="button" class="btn btn-primary mt-3"
-                                        onclick="nextStep(4)">Lanjut</button>
+                                    <button type="submit" id="formDiagnosenilai"
+                                        class="btn btn-primary mt-3">Lanjut</button>
                                 </div>
-                            </form>
+                            </div>
                         </div>
-                    </div>
+                    </form>
 
                     <!-- Langkah 4: Card Menampilkan Hasil dan Tombol Simpan ke Database -->
                     <div class="card mt-3" id="step4" style="display: none;">
                         <div class="card-header">
-                            Langkah 3: Hasil
+                            Langkah 4: Hasil
                         </div>
                         <div class="card-body pb-2">
                             <p id="result">Hasil akan ditampilkan di sini</p>
@@ -340,42 +168,13 @@
                                     </table>
                                 </div>
                             </div>
-                            <button type="button" class="btn btn-success" id="saveToDbButton" style="display: none;"
-                                onclick="saveToDatabase()">Simpan ke Database</button>
+                            {{-- <button type="button" class="btn btn-success" id="saveToDbButton" style="display: none;"
+                                onclick="saveToDatabase()">Simpan ke Database</button> --}}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        {{-- <script>
-            $(document).ready(function() {
-
-                $('#myInput').keyup(function() {
-                    var query = $(this).val();
-                    if (query != '') {
-                        var _token = $('input[name="_token"]').val();
-                        $.ajax({
-                            url: "{{ route('nilai.fetch') }}",
-                            method: "POST",
-                            data: {
-                                query: query,
-                                _token: _token
-                            },
-                            success: function(data) {
-                                $('#myUL').fadeIn();
-                                $('#myUL').html(data);
-                            }
-                        });
-                    }
-                });
-
-                $(document).on('click', 'li', function() {
-                    $('#myInput').val($(this).text());
-                    $('#myUL').fadeOut();
-                });
-
-            });
-        </script> --}}
         <script>
             $(document).ready(function() {
                 // Function to handle autocomplete for each input field

@@ -4,31 +4,71 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
     function nextStep(step) {
+
         // Sembunyikan langkah sebelumnya
         document.getElementById('step' + (step - 1)).style.display = 'none';
 
         // Tampilkan langkah berikutnya
         document.getElementById('step' + step).style.display = 'block';
 
-        var formData = {};
 
-        // Iterate over form elements and collect values
-        $('input.myInput').each(function() {
-            var inputId = $(this).attr('id');
-            var inputValue = $(this).val();
-            var inputName = $(this).attr('name');
+    }
+    // var formData = {};
 
-            // Skip buttons and other non-input elements
-            if (inputId && inputValue !== undefined) {
-                // Initialize the array if it doesn't exist
-                formData[inputName] = formData[inputName] || [];
-                formData[inputName].push(inputValue);
+    // // Iterate over form elements and collect values
+    // $('input.myInput').each(function() {
+    //     var inputId = $(this).attr('id');
+    //     var inputValue = $(this).val();
+    //     var inputName = $(this).attr('name');
+
+    //     // Skip buttons and other non-input elements
+    //     if (inputId && inputValue !== undefined) {
+    //         // Initialize the array if it doesn't exist
+    //         formData[inputName] = formData[inputName] || [];
+    //         formData[inputName].push(inputValue);
+    //     }
+    // });
+
+    // // You now have all the form values in the 'formData' object
+    // console.log(formData);
+
+    $('#formDiagnosenilai').submit(function(e) {
+        nextStep(4)
+        e.preventDefault();
+        console.log('ok')
+        console.log(this)
+
+        var formData = new FormData(e.target);
+
+        console.log(formData);
+
+        $.ajax({
+            type: "POST",
+            url: "{{ route('nilai.store') }}",
+            data: formData,
+            processData: false, // Prevent jQuery from processing the data
+            contentType: false, // Prevent jQuery from setting the content type
+            success: function(data) {
+                console.log("Server response:", data);
+                // You can handle the server response here
+            },
+            error: function(error) {
+                console.error("Error:", error);
+                // Handle errors here
             }
         });
 
-        // You now have all the form values in the 'formData' object
-        console.log(formData);
-    }
+        // let data = {};
+
+        // // Iterate over formData entries
+        // for (var entry of formData.entries()) {
+        //     var fieldName = entry[0];
+        //     var fieldValue = entry[1];
+        //     data[fieldName] = fieldValue;
+        // }
+
+        // console.log(data);
+    })
 </script>
 {{-- <script>
     // <<untuk Form pakai radio button>> 
