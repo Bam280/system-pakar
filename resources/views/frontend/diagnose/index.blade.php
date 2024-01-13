@@ -93,41 +93,15 @@
                         <div class="card-body">
                             <form>
                                 <div class="mb-3">
-                                    <label for="formGroupExampleInput" class="form-label">Nama Sistem elektronik</label>
-                                    <input type="text" class="form-control" id="formGroupExampleInput"
+                                    <label for="nama_sistem" class="form-label">Nama Sistem elektronik</label>
+                                    <input type="text" class="form-control" id="nama_sistem" name="nama_sistem"
                                         placeholder="Example input placeholder">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="formGroupExampleInput2" class="form-label">Deskripsi
+                                    <label for="deskripsi_sistem" class="form-label">Deskripsi
                                         SistemElektronik</label>
-                                    <input type="text" class="form-control" id="formGroupExampleInput2"
+                                    <input type="text" class="form-control" id="deskripsi_sistem" name="deskripsi_sistem"
                                         placeholder="Another input placeholder">
-                                </div>
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Sistem yang terhubung</h5>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="1"
-                                                id="flexCheckDefault">
-                                            <label class="form-check-label" for="flexCheckDefault">
-                                                Sistem 1
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="2"
-                                                id="flexCheckDefault">
-                                            <label class="form-check-label" for="flexCheckDefault">
-                                                Sistem 2
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="3"
-                                                id="flexCheckDefault">
-                                            <label class="form-check-label" for="flexCheckDefault">
-                                                Sistem 3
-                                            </label>
-                                        </div>
-                                    </div>
                                 </div>
                                 <button type="button" class="btn btn-primary mt-3" onclick="nextStep(2)">Lanjut</button>
                             </form>
@@ -140,17 +114,17 @@
                             Identitas Sistem Elektronik lain yang terhubung
                         </div>
                         <div class="card-body">
-                            <form>
+                            <form id="myForm">
                                 @csrf
                                 <label for="myInput1" class="form-label">Sistem Elektronik lain yang terhubung
                                     langsung
                                     dalam satu jaringan elektronik (LAN)</label>
                                 <button type="button" class="btn btn-outline-success add-input" data-input-id="myInput1"
-                                    data-results-id="myUL1"
+                                    data-results-id="myUL1" data-group-id="1"
                                     style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem; border-radius: 100px;">Add+</button>
                                 <div class="form-group" id="inputGroupContainer1">
                                     <div class="input-group" id="inputGroup1">
-                                        <input type="text" class="form-control" id="myInput1"
+                                        <input type="text" class="form-control myInput" id="myInput1" name="sistem1[]"
                                             placeholder="Type something">
                                         <div class="myUL" id="myUL1"></div>
                                     </div>
@@ -160,12 +134,12 @@
                                     dalam
                                     database</label>
                                 <button type="button" class="btn btn-outline-success add-input" data-input-id="myInput2"
-                                    data-results-id="myUL2"
+                                    data-results-id="myUL2" data-group-id="2"
                                     style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem; border-radius: 100px;">Add+</button>
                                 <div class="form-group" id="inputGroupContainer2">
                                     <div class="input-group" id="inputGroup2">
-                                        <input type="text" class="form-control" id="myInput2"
-                                            placeholder="Type something">
+                                        <input type="text" class="form-control myInput" id="myInput2" name="sistem2[]"
+                                            placeholder="Type something ">
                                         <div id="myUL2"></div>
                                     </div>
                                     <br>
@@ -174,11 +148,11 @@
                                     hardware
                                     yang sama</label>
                                 <button type="button" class="btn btn-outline-success add-input" data-input-id="myInput3"
-                                    data-results-id="myUL3"
+                                    data-results-id="myUL3" data-group-id="3"
                                     style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem; border-radius: 100px;">Add+</button>
                                 <div class="form-group" id="inputGroupContainer3">
                                     <div class="input-group" id="inputGroup3">
-                                        <input type="text" class="form-control" id="myInput3"
+                                        <input type="text" class="form-control myInput" id="myInput3" name="sistem3[]"
                                             placeholder="Type something">
                                         <div id="myUL3"></div>
                                     </div>
@@ -313,9 +287,10 @@
                                     <input type="range" class="form-range" min="1" max="5"
                                         id="nilaiDampakNasional">
 
-                                    <label for="nilaiRisiko" class="form-label">8. Nilai Risiko (Auto-calculated):</label>
+                                    {{-- Dilakukan pada backend untuk nilai kalkulasi dari semua masukan nilai yang ada --}}
+                                    {{-- <label for="nilaiRisiko" class="form-label">8. Nilai Risiko (Auto-calculated):</label>
                                     <input type="range" class="form-range" min="1" max="5"
-                                        id="nilaiRisiko">
+                                        id="nilaiRisiko"> --}}
 
                                     <button type="button" class="btn btn-primary mt-3"
                                         onclick="nextStep(4)">Lanjut</button>
@@ -459,30 +434,37 @@
                 // Add input dynamically on button click
                 // Add input dynamically on button click for myInput1
                 $('.add-input[data-input-id="myInput1"]').on('click', function() {
-                    addDynamicInput('myInput1', 'myUL1', 'inputGroupContainer1');
+                    addDynamicInput('myInput1', 'myUL1', 'inputGroupContainer1', 1);
                 });
 
                 // Add input dynamically on button click for myInput2
                 $('.add-input[data-input-id="myInput2"]').on('click', function() {
-                    addDynamicInput('myInput2', 'myUL2', 'inputGroupContainer2');
+                    addDynamicInput('myInput2', 'myUL2', 'inputGroupContainer2', 2);
                 });
 
                 // Add input dynamically on button click for myInput3
                 $('.add-input[data-input-id="myInput3"]').on('click', function() {
-                    addDynamicInput('myInput3', 'myUL3', 'inputGroupContainer3');
+                    addDynamicInput('myInput3', 'myUL3', 'inputGroupContainer3', 3);
                 });
 
-                function addDynamicInput(inputId, resultsId, containerId) {
-                    var inputCount = $('.dynamic-input').length;
-                    inputCount++;
-                    var newInputId = inputId + inputCount;
-                    var newResultsId = resultsId + inputCount;
+                var inputCount = 0;
+                var maxInputCount = 3;
 
-                    var newInputGroup = $('<div class="input-group" id="inputGroup' + inputCount + '">' +
-                        '<input type="text" class="form-control myInput" id="' + newInputId +
-                        '" placeholder="Type something">' +
-                        '<div class="myUL" id="' + newResultsId + '"></div>' +
-                        '</div>' + '<br>');
+                function addDynamicInput(inputId, resultsId, containerId, groupId) {
+                    var inputCount = $('#' + containerId + ' .input-group').length;
+                    if (inputCount != maxInputCount) {
+                        inputCount++;
+                        var newInputId = inputId + '_' + inputCount;
+                        var newResultsId = resultsId + '_' + inputCount;
+
+                        var newInputGroup = $('<div class="input-group" id="inputGroup' + groupId + '">' +
+                            '<input type="text" class="form-control myInput" id="' + newInputId + '" name="sistem' +
+                            groupId + '[]" placeholder="Type something">' +
+                            '<div class="myUL" id="' + newResultsId + '"></div>' +
+                            '</div>' + '<br>');
+                    } else {
+                        alert('Maximum input reached!');
+                    }
 
                     $('#' + containerId).append(newInputGroup);
                     setupAutocomplete(newInputId, newResultsId);

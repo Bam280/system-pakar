@@ -9,6 +9,25 @@
 
         // Tampilkan langkah berikutnya
         document.getElementById('step' + step).style.display = 'block';
+
+        var formData = {};
+
+        // Iterate over form elements and collect values
+        $('input.myInput').each(function() {
+            var inputId = $(this).attr('id');
+            var inputValue = $(this).val();
+            var inputName = $(this).attr('name');
+
+            // Skip buttons and other non-input elements
+            if (inputId && inputValue !== undefined) {
+                // Initialize the array if it doesn't exist
+                formData[inputName] = formData[inputName] || [];
+                formData[inputName].push(inputValue);
+            }
+        });
+
+        // You now have all the form values in the 'formData' object
+        console.log(formData);
     }
 </script>
 {{-- <script>
