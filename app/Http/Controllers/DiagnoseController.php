@@ -96,20 +96,51 @@ class DiagnoseController extends Controller
         // echo "Value terbesar: " . $maxValue . "<br>";
 
         // $Store1 = tb_iiv::create('Nama_IIV', $maxKey);
-        if (tb_iiv::where('Nama_IIV', $maxKey)->exists()) {
-            $id_iiv = tb_iiv::where('Nama_IIV', $maxKey)->first()->Id_IIV;
-        } else {
-            $id_iiv = tb_iiv::max('Id_IIV') + 1;
+        // if (tb_iiv::where('Nama_IIV', $maxKey)->exists()) {
+        //     $id_iiv = tb_iiv::where('Nama_IIV', $maxKey)->first()->Id_IIV;
+        // } else {
+        //     $id_iiv = tb_iiv::max('Id_IIV') + 1;
+        // }
+
+        $p = "Risk-";
+        for ($i = 0; $i < 5; $i++) {
+            $p .= rand(0, 9);
         }
+        
 
         $store1 = tb_iiv::create([
-            'Id_IIV' => $id_iiv,
             'Nama_IIV' => $maxKey
         ]);
 
-        dd($data);
-        
+        $store2 = Diagnose::create([
+            'Id_Tujuan' => $p,
+            'Deskripsi_Risk' => $request->deskripsiRisiko,
+            'Deskripsi_Dampak' => $request->deskripsiDampakOrg,
+            'Nilai_Dampak' => $request->nilaiDampakOrg,
+            'Deskripsi_Kecenderungan' => $request->deskripsiKemungkinan,
+            'Ref_Kecenderungan' => $request->refkecenderungan,
+            'Nilai_Kecenderungan' => $request->nilaiKemungkinan,
+            'Id_IIV' => $store1->Id_IIV
+        ]); 
+
         return response()->json(['message' => 'Data berhasil disimpan di database']);
+
+        // $store1 = tb_iiv::create([
+        //     'Nama_IIV' => $maxKey
+        // ]);
+
+        // $store2 = Diagnose::create([
+        //     'Id_Tujuan' => $id_tujuan,
+        //     'Deskripsi_Risk' => $request->deskripsiRisiko,
+        //     'Deskripsi_Dampak' => $request->deskripsiDampakOrg,
+        //     'Nilai_Dampak' => $request->nilaiDampakOrg,
+        //     'Deskripsi_Kecenderungan' => $request->deskripsiKemungkinan,
+        //     'Ref_Kecenderungan' => $request->refkecenderungan,
+        //     'Nilai_Kecenderungan' => $request->nilaiKemungkinan,
+        //     'Id_IIV' => $store1->Id_IIV
+        // ]); 
+        
+        // return response()->json(['message' => 'Data berhasil disimpan di database']);
     }
 
     /**
