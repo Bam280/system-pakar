@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Nilai;
+use App\Models\Diagnose;
+use App\Models\tb_iiv;
 use Illuminate\Http\Request;
 use DB;
 
@@ -90,12 +92,22 @@ class DiagnoseController extends Controller
         }
         
         // Sekarang $maxKey dan $maxValue berisi key dan value yang memiliki nilai terbesar
-        echo "Key terbesar: " . $maxKey . "<br>";
-        echo "Value terbesar: " . $maxValue . "<br>";
+        // echo "Key terbesar: " . $maxKey . "<br>";
+        // echo "Value terbesar: " . $maxValue . "<br>";
 
-        $maxKey = tb_iiv::create(
-            $maxKey->all(), ['']
-        )
+        // $Store1 = tb_iiv::create('Nama_IIV', $maxKey);
+        if (tb_iiv::where('Nama_IIV', $maxKey)->exists()) {
+            $id_iiv = tb_iiv::where('Nama_IIV', $maxKey)->first()->Id_IIV;
+        } else {
+            $id_iiv = tb_iiv::max('Id_IIV') + 1;
+        }
+
+        $store1 = tb_iiv::create([
+            'Id_IIV' => $id_iiv,
+            'Nama_IIV' => $maxKey
+        ]);
+
+        dd($data);
         
         return response()->json(['message' => 'Data berhasil disimpan di database']);
     }

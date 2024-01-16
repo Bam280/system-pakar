@@ -9,5 +9,6 @@ class tb_iiv extends Model
 {
     protected $table = 'tb_iiv';
     protected $primaryKey = 'Id_IIV';
+    public $timestamps = false;
     protected $fillable = ['Nama_IIV', 'Ref_Instansi'];
 }

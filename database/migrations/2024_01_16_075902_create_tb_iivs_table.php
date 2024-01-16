@@ -15,7 +15,6 @@ return new class extends Migration
             $table->bigIncrements('Id_IIV');
             $table->Text('Nama_IIV');
             $table->tinyInteger('Ref_Instansi')->nullable();
-            $table->timestamps();
         });
     }
 
