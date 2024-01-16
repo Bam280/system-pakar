@@ -7,8 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Diagnose extends Model
 {
+    protected $table = 'tb_risikio';
+    protected $primarykey = 'Id_Risiko';
     protected $fillable = [
-        'title',
+        'Id_Tujuan', 'Deskripsi_Risk', 'Deskripsi_Dampak', 'Ref_Dampak', 'Nilai_Dampak', 'Deskripsi_Kecenderungan', 'Ref_Kecenderungan', 'Nilai-Kecenderungan'
         // add other fields as needed
     ];
 

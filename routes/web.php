@@ -26,7 +26,7 @@ Route::get('/diagnose', function () {
 
 Route::post('/diagnose/fetch', [DiagnoseController::class, 'fetch'])->name('nilai.fetch');
 
-Route::post('/diagnose', [DiagnoseController::class, 'store']);
+Route::post('/diagnose', [DiagnoseController::class, 'store'])->name('nilai.store');
 
 Route::get('/dashboard', function () {
     return view('admin.index');

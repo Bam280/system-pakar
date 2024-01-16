@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Nilai;
+use App\Models\Diagnose;
+use App\Models\tb_iiv;
 use Illuminate\Http\Request;
 use DB;
 
@@ -51,15 +53,62 @@ class DiagnoseController extends Controller
      */
     public function store(Request $request)
     {
-        $options = $request->input('options');
-        $longText = $request->input('longText');
+        // Diagnose::create([
+        //     $request->'sistem1',
+        //     $request->'sistem2',
+        //     $request->'sistem3'])
 
-        // Simpan data ke database (gunakan Eloquent)
-        $formData = new FormData();
-        $formData->form_1_data = json_encode($options);
-        $formData->form_2_data = $longText;
-        $formData->save();
+        
+        $data = [];
+        foreach ($request->sistem1 as $k => $v) {
+            if(empty($data[$v])){
+                $data[$v] = 2;
+            } else {
+                $data[$v] += 2;
+            }
+        }
+        foreach ($request->sistem2 as $k => $v) {
+            if(empty($data[$v])){
+                $data[$v] = 1;
+            } else {
+                $data[$v] += 1;
+            }
+        }
+        foreach ($request->sistem3 as $k => $v) {
+            if(empty($data[$v])){
+                $data[$v] = 2;
+            } else {
+                $data[$v] += 2;
+            }
+        }
+        $maxKey = null;
+        $maxValue = null;
+        
+        foreach ($data as $key => $value) {
+            if ($maxValue === null || $value > $maxValue) {
+                $maxKey = $key;
+                $maxValue = $value;
+            }
+        }
+        
+        // Sekarang $maxKey dan $maxValue berisi key dan value yang memiliki nilai terbesar
+        // echo "Key terbesar: " . $maxKey . "<br>";
+        // echo "Value terbesar: " . $maxValue . "<br>";
 
+        // $Store1 = tb_iiv::create('Nama_IIV', $maxKey);
+        if (tb_iiv::where('Nama_IIV', $maxKey)->exists()) {
+            $id_iiv = tb_iiv::where('Nama_IIV', $maxKey)->first()->Id_IIV;
+        } else {
+            $id_iiv = tb_iiv::max('Id_IIV') + 1;
+        }
+
+        $store1 = tb_iiv::create([
+            'Id_IIV' => $id_iiv,
+            'Nama_IIV' => $maxKey
+        ]);
+
+        dd($data);
+        
         return response()->json(['message' => 'Data berhasil disimpan di database']);
     }
 
