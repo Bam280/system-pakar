@@ -51,7 +51,52 @@ class DiagnoseController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        // Diagnose::create([
+        //     $request->'sistem1',
+        //     $request->'sistem2',
+        //     $request->'sistem3'])
+
+        
+        $data = [];
+        foreach ($request->sistem1 as $k => $v) {
+            if(empty($data[$v])){
+                $data[$v] = 2;
+            } else {
+                $data[$v] += 2;
+            }
+        }
+        foreach ($request->sistem2 as $k => $v) {
+            if(empty($data[$v])){
+                $data[$v] = 1;
+            } else {
+                $data[$v] += 1;
+            }
+        }
+        foreach ($request->sistem3 as $k => $v) {
+            if(empty($data[$v])){
+                $data[$v] = 2;
+            } else {
+                $data[$v] += 2;
+            }
+        }
+        $maxKey = null;
+        $maxValue = null;
+        
+        foreach ($data as $key => $value) {
+            if ($maxValue === null || $value > $maxValue) {
+                $maxKey = $key;
+                $maxValue = $value;
+            }
+        }
+        
+        // Sekarang $maxKey dan $maxValue berisi key dan value yang memiliki nilai terbesar
+        echo "Key terbesar: " . $maxKey . "<br>";
+        echo "Value terbesar: " . $maxValue . "<br>";
+
+        $maxKey = tb_iiv::create(
+            $maxKey->all(), ['']
+        )
+        
         return response()->json(['message' => 'Data berhasil disimpan di database']);
     }
 

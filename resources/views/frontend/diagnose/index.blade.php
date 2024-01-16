@@ -247,7 +247,7 @@
                 });
 
                 var inputCount = 0;
-                var maxInputCount = 3;
+                var maxInputCount = 5;
 
                 function addDynamicInput(inputId, resultsId, containerId, groupId) {
                     var inputCount = $('#' + containerId + ' .input-group').length;
