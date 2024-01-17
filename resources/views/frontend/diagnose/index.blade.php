@@ -89,7 +89,7 @@
                                     <textarea type="text" class="form-control" id="deskripsiRisiko" name="deskripsiRisiko" required></textarea>
 
                                     <label for="deskripsiKemungkinan" class="form-label">2. Deskripsi Kemungkinan:</label>
-                                    <textarea type="text" class="form-control" id="deskripsiKemungkinan" name="deskripsiKemungkinan" required></textarea>
+                                    <textarea type="text" class="form-control" id="deskripsiKemungkinan" name="deskripsiKemungkinan"></textarea>
 
                                     <label for="nilaiKemungkinan" class="form-label">3. Nilai Kemungkinan (1-5):</label>
                                     <input type="range" class="form-range" min="1" max="5"
@@ -98,7 +98,7 @@
                                     <label for="deskripsiDampakOrg" class="form-label">4. Deskripsi Dampak
                                         Organisasi:</label>
                                     <input type="text" class="form-control" id="deskripsiDampakOrg"
-                                        name="deskripsiDampakOrg" name="deskripsiDampakOrg" required>
+                                        name="deskripsiDampakOrg" name="deskripsiDampakOrg">
 
                                     <label for="nilaiDampakOrg" class="form-label">5. Nilai Dampak Organisasi
                                         (1-5):</label>
@@ -108,7 +108,7 @@
                                     <label for="deskripsiDampakNasional" class="form-label">6. Deskripsi Dampak
                                         Nasional:</label>
                                     <input type="text" class="form-control" id="deskripsiDampakNasional"
-                                        name="deskripsiDampakNasional" required>
+                                        name="deskripsiDampakNasional">
 
                                     <label for="nilaiDampakNasional" class="form-label">7. Nilai Dampak Nasional
                                         (1-5):</label>
@@ -145,11 +145,12 @@
                                                 <th scope="col">Regulasi Nasional</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody id="table_hasil">
+
                                             <tr>
                                                 <th scope="row"></th>
-                                                <td>isian Form 1</td>
-                                                <td>isian Form 2</td>
+                                                <td>Sistem terpilih</td>
+                                                <td>{{ $maxKey }}</td>
                                                 <td>berisi daftar semua peraturan nasional yang mendasari proses dalam
                                                     sistem elektronik</td>
                                             </tr>

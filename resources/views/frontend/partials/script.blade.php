@@ -58,17 +58,19 @@
             }
         });
 
-        // let data = {};
+    });
 
-        // // Iterate over formData entries
-        // for (var entry of formData.entries()) {
-        //     var fieldName = entry[0];
-        //     var fieldValue = entry[1];
-        //     data[fieldName] = fieldValue;
-        // }
 
-        // console.log(data);
-    })
+    // let data = {};
+
+    // // Iterate over formData entries
+    // for (var entry of formData.entries()) {
+    //     var fieldName = entry[0];
+    //     var fieldValue = entry[1];
+    //     data[fieldName] = fieldValue;
+    // }
+
+    // console.log(data);
 </script>
 {{-- <script>
     // <<untuk Form pakai radio button>> 
