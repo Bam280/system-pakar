@@ -150,7 +150,7 @@ class DiagnoseController extends Controller
             ]); 
         }
 
-        return response($maxKey);
+        return response()->json(['maxKey' => $maxKey]);
 
         // dd($request);
         return response()->json(['message' => 'Data berhasil disimpan di database']);

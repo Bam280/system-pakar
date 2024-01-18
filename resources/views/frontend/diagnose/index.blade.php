@@ -150,7 +150,10 @@
                                             <tr>
                                                 <th scope="row"></th>
                                                 <td>Sistem terpilih</td>
-                                                <td>{{ $maxKey }}</td>
+                                                <td>
+                                                    {{-- {{ $maxKey }} --}}
+                                                    <span id="brisik"></span>
+                                                </td>
                                                 <td>berisi daftar semua peraturan nasional yang mendasari proses dalam
                                                     sistem elektronik</td>
                                             </tr>
