@@ -51,7 +51,7 @@
             success: function(data) {
                 console.log("Server response:", data);
                 // You can handle the server response here
-                $('#brisik').html(data['maxKey'])
+                $('#hasilrumus').html(data['maxKey'])
 
             },
             error: function(error) {

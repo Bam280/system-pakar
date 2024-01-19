@@ -23,6 +23,14 @@
                                     <input type="text" class="form-control" id="deskripsi_sistem" name="deskripsi_sistem"
                                         placeholder="Another input placeholder">
                                 </div>
+
+                                <div class="form-check form-switch">
+                                    <label class="form-check-label" for="flexSwitchCheckDefault">Apakah sistem memiliki
+                                        Kesamaan dengan sistem lain ?</label>
+                                    <input class="form-check-input" type="checkbox" role="switch"
+                                        id="flexSwitchCheckDefault" name="triggerform">
+                                </div>
+
                                 <button type="button" class="btn btn-primary mt-3" onclick="nextStep(2)">Lanjut</button>
                             </div>
                         </div>
@@ -152,7 +160,7 @@
                                                 <td>Sistem terpilih</td>
                                                 <td>
                                                     {{-- {{ $maxKey }} --}}
-                                                    <span id="brisik"></span>
+                                                    <span id="hasilrumus"></span>
                                                 </td>
                                                 <td>berisi daftar semua peraturan nasional yang mendasari proses dalam
                                                     sistem elektronik</td>
