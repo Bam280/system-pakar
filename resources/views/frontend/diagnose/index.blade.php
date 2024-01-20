@@ -25,10 +25,10 @@
                                 </div>
 
                                 <div class="form-check form-switch">
-                                    <label class="form-check-label" for="flexSwitchCheckDefault">Apakah sistem memiliki
+                                    <label class="form-check-label" for="triggerForm">Apakah sistem memiliki
                                         Kesamaan dengan sistem lain ?</label>
-                                    <input class="form-check-input" type="checkbox" role="switch"
-                                        id="flexSwitchCheckDefault" name="triggerform">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="triggerForm"
+                                        name="triggerform">
                                 </div>
 
                                 <button type="button" class="btn btn-primary mt-3" onclick="nextStep(2)">Lanjut</button>
@@ -123,10 +123,6 @@
                                     <input type="range" class="form-range" min="1" max="5"
                                         name="nilaiDampakNasional" id="nilaiDampakNasional">
 
-                                    {{-- Dilakukan pada backend untuk nilai kalkulasi dari semua masukan nilai yang ada --}}
-                                    {{-- <label for="nilaiRisiko" class="form-label">8. Nilai Risiko (Auto-calculated):</label>
-                                    <input type="range" class="form-range" min="1" max="5"
-                                        id="nilaiRisiko"> --}}
 
                                     <button type="submit" id="formDiagnosenilai"
                                         class="btn btn-primary mt-3">Lanjut</button>
@@ -134,6 +130,10 @@
                             </div>
                         </div>
                     </form>
+                    {{-- Dilakukan pada backend untuk nilai kalkulasi dari semua masukan nilai yang ada --}}
+                    {{-- <label for="nilaiRisiko" class="form-label">8. Nilai Risiko (Auto-calculated):</label>
+                        <input type="range" class="form-range" min="1" max="5"
+                            id="nilaiRisiko"> --}}
 
                     <!-- Langkah 4: Card Menampilkan Hasil dan Tombol Simpan ke Database -->
                     <div class="card mt-3" id="step4" style="display: none;">

@@ -101,9 +101,6 @@ class DiagnoseController extends Controller
             }
         }
 
-        
-        
-
         $p = "Risk-";
         for ($i = 0; $i < 5; $i++) {
             $p .= rand(0, 9);

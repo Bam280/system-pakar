@@ -22,7 +22,7 @@ Route::get('/', function () {
 });
 Route::get('/diagnose', function () {
     return view('frontend.diagnose.index');
-});
+})->name('diagnose.index');
 
 Route::post('/diagnose/fetch', [DiagnoseController::class, 'fetch'])->name('nilai.fetch');
 
