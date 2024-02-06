@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('content')
 
@@ -28,7 +28,7 @@
             </div>
 
             <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="kesamaan_sistem" name="kesamaan_sistem">
+                <input type="checkbox" class="form-check-input" id="kesamaan_sistem" name="kesamaan_sistem" value="1">
                 <label class="form-check-label" for="kesamaan_sistem">Kesamaan Sistem</label>
             </div>
 

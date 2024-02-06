@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('content')
 
@@ -39,7 +39,7 @@
                 <tr>
                     <th scope="row">{{ $k + 1 }}</th>
                     <td>{{ $item->nama }}</td>
-                    <td>{{ $item->ref_instansi }}</td>
+                    <td>{{ $item->refInstansi->nama_instansi }}</td>
                 </tr>
                 @endforeach
             </tbody>
