@@ -23,7 +23,7 @@ class DiagnoseFormController extends Controller
             'nama_sistem' => 'required',
             'deskripsi_sistem' => 'required',
 
-            'kesamaan_sistem' => 'nullable|boolean',
+            'kesamaan_sistem' => 'nullable',
         ]);
 
         session()->put('diagnose_data', [
@@ -31,6 +31,7 @@ class DiagnoseFormController extends Controller
         ]);
 
         if (isset($data['kesamaan_sistem']) && $data['kesamaan_sistem']) {
+            return 'not yet implemented';
             return to_route('diagnose.form.form4');
         }
 
@@ -46,37 +47,43 @@ class DiagnoseFormController extends Controller
     public function form2Store(Request $request)
     {
         $data = $request->validate([
-            'sistem_terhubung_lan' => 'required|array',
-            'sistem_terhubung_lan.*' => 'required|string',
+            'sistem_terhubung_lan' => 'nullable|array',
+            'sistem_terhubung_lan.*' => 'nullable|string',
 
-            'sistem_berbagi_database' => 'required|array',
-            'sistem_berbagi_database.*' => 'required|string',
+            'sistem_berbagi_database' => 'nullable|array',
+            'sistem_berbagi_database.*' => 'nullable|string',
 
-            'sistem_memiliki_hardware_sama' => 'required|array',
-            'sistem_memiliki_hardware_sama.*' => 'required|string',
+            'sistem_memiliki_hardware_sama' => 'nullable|array',
+            'sistem_memiliki_hardware_sama.*' => 'nullable|string',
         ]);
 
         $data['poin_sistem'] = [];
 
-        foreach ($data['sistem_terhubung_lan'] as $value) {
-            if (empty($data['poin_sistem'][$value])) {
-                $data['poin_sistem'][$value] = 0;
+        if(!empty($data['sistem_terhubung_lan'])) {
+            foreach ($data['sistem_terhubung_lan'] as $value) {
+                if (empty($data['poin_sistem'][$value])) {
+                    $data['poin_sistem'][$value] = 0;
+                }
+                $data['poin_sistem'][$value] += 2;
             }
-            $data['poin_sistem'][$value] += 2;
         }
 
-        foreach ($data['sistem_berbagi_database'] as $value) {
-            if (empty($data['poin_sistem'][$value])) {
-                $data['poin_sistem'][$value] = 0;
+        if(!empty($data['sistem_berbagi_database'])) {
+            foreach ($data['sistem_berbagi_database'] as $value) {
+                if (empty($data['poin_sistem'][$value])) {
+                    $data['poin_sistem'][$value] = 0;
+                }
+                $data['poin_sistem'][$value] += 1;
             }
-            $data['poin_sistem'][$value] += 1;
         }
 
-        foreach ($data['sistem_memiliki_hardware_sama'] as $value) {
-            if (empty($data['poin_sistem'][$value])) {
-                $data['poin_sistem'][$value] = 0;
+        if(!empty($data['sistem_memiliki_hardware_sama'])) {
+            foreach ($data['sistem_memiliki_hardware_sama'] as $value) {
+                if (empty($data['poin_sistem'][$value])) {
+                    $data['poin_sistem'][$value] = 0;
+                }
+                $data['poin_sistem'][$value] += 2;
             }
-            $data['poin_sistem'][$value] += 2;
         }
 
         // get max poin key value
@@ -160,7 +167,7 @@ class DiagnoseFormController extends Controller
 
     public function result()
     {
-        $iiv = IIV::whereIn('nama', session('diagnose_data')['sistem_terpilih'])->get();
+        $iiv = IIV::with('refInstansi')->whereIn('nama', session('diagnose_data')['sistem_terpilih'])->get();
         return view('diagnose.form.result', [
             'iiv' => $iiv,
             'diagnose_data' => session('diagnose_data')
