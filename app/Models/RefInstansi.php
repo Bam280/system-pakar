@@ -14,4 +14,9 @@ class RefInstansi extends Model
     protected $fillable = [
         'nama_instansi'
     ];
+
+    public function iiv()
+    {
+        return $this->hasMany(IIV::class);
+    }
 }

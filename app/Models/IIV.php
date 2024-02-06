@@ -13,7 +13,12 @@ class IIV extends Model
 
     protected $fillable = [
         'nama',
-        'ref_instansi',
+        'ref_instansi_id',
         'nilai_risiko',
     ];
+
+    public function refInstansi()
+    {
+        return $this->belongsTo(RefInstansi::class);
+    }
 }

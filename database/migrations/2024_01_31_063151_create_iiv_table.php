@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('iiv', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->string('ref_instansi');
+            $table->unsignedBigInteger('ref_instansi_id')->nullable();
+            $table->foreign('ref_instansi_id')->references('id')->on('ref_instansi');
             $table->float('nilai_risiko');
             $table->timestamps();
         });
