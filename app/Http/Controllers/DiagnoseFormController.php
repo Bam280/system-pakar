@@ -31,11 +31,11 @@ class DiagnoseFormController extends Controller
         ]);
 
         if (isset($data['kesamaan_sistem']) && $data['kesamaan_sistem']) {
-            return 'not yet implemented';
-            return to_route('diagnose.form.form4');
+            return to_route('diagnose.form.form2');
         }
 
-        return to_route('diagnose.form.form2');
+        return 'not yet implemented';
+        return to_route('diagnose.form.form4');
     }
 
     public function form2()
