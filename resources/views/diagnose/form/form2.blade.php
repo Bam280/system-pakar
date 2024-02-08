@@ -20,7 +20,9 @@
                     <label for="sistem_terhubung_lan" class="form-label">Sistem Terhubung LAN</label>
                     <select class="js-example-basic-multiple form-control" name="sistem_terhubung_lan[]" multiple="multiple">
                        @foreach ($all_iiv as $iiv)
-                           <option>{{ $iiv->nama }}</option>
+                           <option @selected(in_array($iiv->nama, old('sistem_terhubung_lan') ?? @$data_form2['sistem_terhubung_lan'] ?? []))>
+                            {{ $iiv->nama }}
+                        </option>
                        @endforeach
                       </select>
                 </div>
@@ -29,7 +31,9 @@
                     <label for="sistem_berbagi_database" class="form-label">Sistem Berbagi Database</label>
                     <select class="js-example-basic-multiple form-control" name="sistem_berbagi_database[]" multiple="multiple">
                         @foreach ($all_iiv as $iiv)
-                            <option>{{ $iiv->nama }}</option>
+                            <option @selected(in_array($iiv->nama, old('sistem_berbagi_database') ?? @$data_form2['sistem_berbagi_database'] ?? []))>
+                                {{ $iiv->nama }}
+                            </option>
                         @endforeach
                     </select>
 
@@ -39,7 +43,9 @@
                     <label for="sistem_memiliki_hardware_sama" class="form-label">Sistem Memiliki Hardware Sama</label>
                     <select class="js-example-basic-multiple form-control" name="sistem_memiliki_hardware_sama[]" multiple="multiple">
                         @foreach ($all_iiv as $iiv)
-                            <option>{{ $iiv->nama }}</option>
+                            <option @selected(in_array($iiv->nama, old('sistem_memiliki_hardware_sama') ?? @$data_form2['sistem_memiliki_hardware_sama'] ?? []))>
+                                {{ $iiv->nama }}
+                            </option>
                         @endforeach
                     </select>
                 </div>

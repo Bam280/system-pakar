@@ -14,7 +14,9 @@ class DiagnoseFormController extends Controller
 
     public function form1()
     {
-        return view('diagnose.form.form1');
+        $data_form1 = session('diagnose_data')['form1'] ?? [];
+
+        return view('diagnose.form.form1', compact('data_form1'));
     }
 
     public function form1Store(Request $request)
@@ -41,7 +43,8 @@ class DiagnoseFormController extends Controller
     public function form2()
     {
         $all_iiv = IIV::all();
-        return view('diagnose.form.form2', compact('all_iiv'));
+        $data_form2 = session('diagnose_data')['form2'] ?? [];
+        return view('diagnose.form.form2', compact('all_iiv', 'data_form2'));
     }
 
     public function form2Store(Request $request)
@@ -123,7 +126,8 @@ class DiagnoseFormController extends Controller
 
     public function form3()
     {
-        return view('diagnose.form.form3');
+        $data_form3 = session('diagnose_data')['form3'] ?? [];
+        return view('diagnose.form.form3', compact('data_form3'));
     }
 
     public function form3Store(Request $request)
