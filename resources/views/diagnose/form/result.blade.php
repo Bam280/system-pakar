@@ -26,7 +26,7 @@
         </div>
 
         <h4>Sistem</h4>
-        <table class="table table-bordered">
+        {{-- <table class="table table-bordered">
             <thead>
               <tr>
                 <th scope="col">#</th>
@@ -45,8 +45,24 @@
                 </tr>
                 @endforeach
             </tbody>
-          </table>
+          </table> --}}
         
+          <p>[nama_sistem] - [nama_instansi] - [nilai_risiko] - [? deskripsi_interdepen] </p>
+
+          <ul>
+           @foreach ($iiv as $item)
+                <li>
+                    {{ $item->nama }} - {{ $item->refInstansi->nama_instansi }} - {{ $item->refInstansi->nilai_risiko ?? 0 }}
+                </li>
+                @foreach ($item->interdepenSistemIIV as $item)
+                    <li>
+                        {{ $item->sistemElektronik->nama }} - {{ $item->sistemElektronik->refInstansi->nama_instansi }} - 
+                        {{ $item->sistemElektronik->refInstansi->nilai_risiko ?? 0 }} - {{ $item->deskripsi_interdepen }}
+                    </li>
+                @endforeach
+            @endforeach
+          </ul>
+
     </div>
 </div>
 @endsection

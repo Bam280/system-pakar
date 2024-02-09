@@ -171,11 +171,34 @@ class DiagnoseFormController extends Controller
 
     public function result()
     {
-        $iiv = IIV::with('refInstansi')->whereIn('nama', session('diagnose_data')['sistem_terpilih'])->get();
+        $iiv = IIV::with('refInstansi', 'interdepenSistemIIV', 'interdepenSistemIIV.sistemElektronik')->whereIn('id', session('diagnose_data')['sistem_terpilih'])->get();
         
         return view('diagnose.form.result', [
             'iiv' => $iiv,
             'diagnose_data' => session('diagnose_data')
         ]);
+    }
+
+    public function result2()
+    {
+        $iiv = IIV::with('refInstansi', 'interdepenSistemIIV', 'interdepenSistemIIV.sistemElektronik')->whereIn('id', session('diagnose_data')['sistem_terpilih'])->get();
+
+        // flatten $iiv->interdepenSistemIIV->sistemElektronik n als0 $iiv data 
+
+        $sistem_terpilih = $iiv->pluck('id')->toArray();
+        $sistem_terpilih = array_merge($sistem_terpilih, $iiv->pluck('interdepenSistemIIV')->flatten()->pluck('sistemElektronik')->flatten()->pluck('id')->toArray());
+
+        $sistem_terpilih = IIV::with(['tujuan', 'tujuan.refTujuan', 'tujuan.risiko', 'tujuan.risiko.kendali', 'tujuan.risiko.kendali.refFungsi'])->whereIn('id', $sistem_terpilih)->get();        
+
+        return view('diagnose.form.result2',[
+            'sistem_terpilih' => $sistem_terpilih,
+            'diagnose_data' => session('diagnose_data')
+        ]);
+    }
+
+    public function reset()
+    {
+        session()->forget('diagnose_data');
+        return to_route('diagnose.form.form1');
     }
 }

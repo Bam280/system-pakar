@@ -49,6 +49,9 @@ Route::group(
         Route::post('/form3', [DiagnoseFormController::class, 'form3Store'])->name('form3.store');
 
         Route::get('/result', [DiagnoseFormController::class, 'result'])->name('result');
+        Route::get('/result2', [DiagnoseFormController::class, 'result2'])->name('result2');
+
+        Route::post('/reset', [DiagnoseFormController::class, 'reset'])->name('reset');
     }
 );
 

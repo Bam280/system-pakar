@@ -39,6 +39,6 @@ class IIV extends Model
 
     public function tujuan()
     {
-        return $this->hasMany(Tujuan::class);
+        return $this->hasMany(Tujuan::class, 'iiv_id');
     }
 }
