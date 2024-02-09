@@ -17,6 +17,11 @@ class IIV extends Model
         'nilai_risiko',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function refInstansi()
     {
         return $this->belongsTo(RefInstansi::class);

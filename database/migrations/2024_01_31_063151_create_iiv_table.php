@@ -14,6 +14,10 @@ return new class extends Migration
         Schema::create('iiv', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
+
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
+
             $table->unsignedBigInteger('ref_instansi_id')->nullable();
             $table->foreign('ref_instansi_id')->references('id')->on('ref_instansi');
             $table->float('nilai_risiko');
