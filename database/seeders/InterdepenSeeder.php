@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use app\Models\Interdepen;
+use App\Models\Interdepen;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,11 +13,22 @@ class InterdepenSeeder extends Seeder
      */
     public function run(): void
     {
-        Interdepen::create([
-            "ref_interdepen_id" => 1,
-            "iiv_id" => 2,
-            "sistem_terhubung" => 1,
-            "deskripsi_interdepen" => "Interdepen 1"
-        ]);
+        $data = [
+            [
+                'ref_interdepen_id' => 1,
+                'sistem_elektronik_id' => 1,
+                'sistem_iiv_id' => 2,
+                'deskripsi_interdepen' => 'Interdepen 1'
+            ]
+        ];
+
+        foreach ($data as $interdepen) {
+            Interdepen::create([
+                'ref_interdepen_id' => $interdepen['ref_interdepen_id'],
+                'sistem_elektronik_id' => $interdepen['sistem_elektronik_id'],
+                'sistem_iiv_id' => $interdepen['sistem_iiv_id'],
+                'deskripsi_interdepen' => $interdepen['deskripsi_interdepen']
+            ]);
+        }
     }
 }

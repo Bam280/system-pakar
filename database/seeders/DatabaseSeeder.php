@@ -21,12 +21,18 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             UserSeeder::class,
+
             RefInstansiSeeder::class,
+            RefTujuanSeeder::class,
+            RefInterdepenSeeder::class,
+            RefDampakSeeder::class,
+            RefFungsiSeeder::class,
+
             IIVSeeder::class,
+            InterdepenSeeder::class,
             TujuanSeeder::class,
             RisikoSeeder::class,
             KendaliSeeder::class,
-            InterdepenSeeder::class,
         ]);
     }
 }

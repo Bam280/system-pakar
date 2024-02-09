@@ -13,16 +13,31 @@ class IIVSeeder extends Seeder
      */
     public function run(): void
     {
-        IIV::create([
-            'nama' => 'Sistem Informasi Akademik',
-            'ref_instansi_id' => 2,
-            'nilai_risiko' => 15,
-        ]);
 
-        IIV::create([
-            'nama' => 'Sistem Informasi Keuangan',
-            'ref_instansi_id' => 1,
-            'nilai_risiko' => 8,
-        ]);
+        $data = [
+            [
+                'nama' => 'SRIKANDI',
+                'ref_instansi_id' => 1,
+                'nilai_risiko' => 11.5,
+            ],
+            [
+                'nama' => 'SPSE',
+                'ref_instansi_id' => 2,
+                'nilai_risiko' => 9.5,
+            ],
+            [
+                'nama' => 'S4N Lapor',
+                'ref_instansi_id' => 3,
+                'nilai_risiko' => 7.5,
+            ],
+        ];
+
+        foreach ($data as $iiv) {
+            IIV::create([
+                'nama' => $iiv['nama'],
+                'ref_instansi_id' => $iiv['ref_instansi_id'],
+                'nilai_risiko' => $iiv['nilai_risiko'],
+            ]);
+        }
     }
 }

@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\RefInstansi;
+use App\Models\RefDampak;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class RefInstansiSeeder extends Seeder
+class RefDampakSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,14 +14,13 @@ class RefInstansiSeeder extends Seeder
     public function run(): void
     {
         $data = [
-            'ANRI',
-            'LKPP',
-            'KSP',
+            'Organisasi',
+            'Nasional',
         ];
 
-        foreach ($data as $instansi) {
-            RefInstansi::create([
-                'nama_instansi' => $instansi,
+        foreach ($data as $dampak) {
+            RefDampak::create([
+                'indikator_dampak' => $dampak,
             ]);
         }
     }

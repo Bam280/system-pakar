@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\RefInstansi;
+use App\Models\RefTujuan;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class RefInstansiSeeder extends Seeder
+class RefTujuanSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,14 +14,12 @@ class RefInstansiSeeder extends Seeder
     public function run(): void
     {
         $data = [
-            'ANRI',
-            'LKPP',
-            'KSP',
+            'Memastikan aset fisik dan logis hanya dapat dilihat oleh pihak yang berwenang',
         ];
 
-        foreach ($data as $instansi) {
-            RefInstansi::create([
-                'nama_instansi' => $instansi,
+        foreach ($data as $tujuan) {
+            RefTujuan::create([
+                'tujuan_keamanan' => $tujuan,
             ]);
         }
     }

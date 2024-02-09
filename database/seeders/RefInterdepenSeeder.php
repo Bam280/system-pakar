@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\RefInstansi;
+use App\Models\RefInterdepen;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class RefInstansiSeeder extends Seeder
+class RefInterdepenSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,14 +14,12 @@ class RefInstansiSeeder extends Seeder
     public function run(): void
     {
         $data = [
-            'ANRI',
-            'LKPP',
-            'KSP',
+            'Kesamaan Aset Fisik',
         ];
 
-        foreach ($data as $instansi) {
-            RefInstansi::create([
-                'nama_instansi' => $instansi,
+        foreach ($data as $interdepen) {
+            RefInterdepen::create([
+                'indikator_interdepen' => $interdepen,
             ]);
         }
     }

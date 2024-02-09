@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use app\Models\Tujuan;
+use App\Models\Tujuan;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,10 +13,20 @@ class TujuanSeeder extends Seeder
      */
     public function run(): void
     {
-        Tujuan::create([
-            "id_iiv" => 1,
-            "ref_tujuan_id" => 1,
-            "deskripsi_tujuan" => "Tujuan 1"
-        ]);
+        $data = [
+            [
+                'iiv_id' => 1,
+                'ref_tujuan_id' => 1,
+                'deskripsi_tujuan' => 'Tujuan 1'
+            ]
+        ];
+
+        foreach ($data as $tujuan) {
+            Tujuan::create([
+                'iiv_id' => $tujuan['iiv_id'],
+                'ref_tujuan_id' => $tujuan['ref_tujuan_id'],
+                'deskripsi_tujuan' => $tujuan['deskripsi_tujuan']
+            ]);
+        }
     }
 }
