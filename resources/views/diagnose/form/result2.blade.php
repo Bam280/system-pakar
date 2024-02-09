@@ -39,6 +39,7 @@
                 <tbody>
                     @foreach ($sistem_terpilih as $iiv)
                         <tr>
+                            <th scope="row">{{ $k = +1 }}</th>
                             <td>{{ $iiv->nama }}</td>
                             <td>{{ $iiv->refInstansi->nama_instansi }}</td>
                             <td>{{ $iiv->nilai_risiko ?? 0 }}</td>
