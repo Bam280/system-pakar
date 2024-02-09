@@ -16,5 +16,8 @@ class RefInstansiSeeder extends Seeder
         RefInstansi::create([
             'nama_instansi' => 'Kementerian Pendidikan dan Kebudayaan',
         ]);
+        RefInstansi::create([
+            'nama_instansi' => 'Polri',
+        ]);
     }
 }

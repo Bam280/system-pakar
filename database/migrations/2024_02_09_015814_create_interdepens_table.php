@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('interdepens', function (Blueprint $table) {
+        Schema::create('interdepen', function (Blueprint $table) {
             $table->id();
-            $table->int('ref_interdepen_id');
-            $table->int('id_iiv');
-            $table->int('sistem_terhubung')->refrense('id')->on('iiv');
-            $table->text('deskripsi_interdepen');
+            $table->integer('ref_interdepen_id');
+            $table->unsignedBigInteger('iiv_id')->nullable();
+            $table->foreign('iiv_id')->refrense('id')->on('iiv');
+            $table->unsignedBigInteger('sistem_iiv')->nullable();
+            $table->foreign('sistem_iiv')->refrense('id')->on('iiv');
+            $table->longtext('deskripsi_interdepen');
             $table->timestamps();
         });
     }

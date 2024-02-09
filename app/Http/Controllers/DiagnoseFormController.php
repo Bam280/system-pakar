@@ -172,6 +172,7 @@ class DiagnoseFormController extends Controller
     public function result()
     {
         $iiv = IIV::with('refInstansi')->whereIn('nama', session('diagnose_data')['sistem_terpilih'])->get();
+        
         return view('diagnose.form.result', [
             'iiv' => $iiv,
             'diagnose_data' => session('diagnose_data')

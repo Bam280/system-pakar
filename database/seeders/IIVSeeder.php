@@ -15,14 +15,14 @@ class IIVSeeder extends Seeder
     {
         IIV::create([
             'nama' => 'Sistem Informasi Akademik',
-            'ref_instansi_id' => 1,
+            'ref_instansi_id' => 2,
             'nilai_risiko' => 15,
         ]);
 
         IIV::create([
             'nama' => 'Sistem Informasi Keuangan',
             'ref_instansi_id' => 1,
-            'nilai_risiko' => 20,
+            'nilai_risiko' => 8,
         ]);
     }
 }

@@ -23,6 +23,10 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             RefInstansiSeeder::class,
             IIVSeeder::class,
+            TujuanSeeder::class,
+            RisikoSeeder::class,
+            KendaliSeeder::class,
+            InterdepenSeeder::class,
         ]);
     }
 }

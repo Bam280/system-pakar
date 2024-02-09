@@ -15,7 +15,7 @@ class InterdepenSeeder extends Seeder
     {
         Interdepen::create([
             "ref_interdepen_id" => 1,
-            "id_iiv" => 1,
+            "iiv_id" => 2,
             "sistem_terhubung" => 1,
             "deskripsi_interdepen" => "Interdepen 1"
         ]);

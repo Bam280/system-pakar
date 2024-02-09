@@ -11,17 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('risikos', function (Blueprint $table) {
+        Schema::create('risiko', function (Blueprint $table) {
             $table->id();
-            $table->int('id_tujuan')->refrence('id')->on('tujuans');
-            $table->text('deskripsi_risiko')->nullable();
-            $table->text('deskripsi_dampak')->nullable();
-            $table->text('deskripsi_kemungkinan')->nullable();
-            $table->int('ref_dampak_id')->nullable();
-            $table->int('ref_kemungkinan_id')->nullable();
-            $table->int('nilai_dampak_regional');
-            $table->int('nilai_dampak_nasional');
-            $table->int('nilai_kemungkinan');
+            $table->unsignedBigInteger('tujuan_id')->nullable();
+            $table->foreign('tujuan_id')->refrence('id')->on('tujuan');
+            $table->longtext('deskripsi_risiko')->nullable();
+            $table->longtext('deskripsi_dampak')->nullable();
+            $table->longtext('deskripsi_kemungkinan')->nullable();
+            $table->integer('ref_dampak_id')->nullable();
+            $table->integer('ref_kemungkinan_id')->nullable();
+            $table->integer('nilai_dampak_regional');
+            $table->integer('nilai_dampak_nasional');
+            $table->integer('nilai_kemungkinan');
             $table->timestamps();
         });
     }
