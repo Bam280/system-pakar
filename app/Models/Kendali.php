@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class kendali extends Model
+class Kendali extends Model
 {
     use HasFactory;
 
     protected $table = 'kendali';
 
     protected $fillable = [
-        'id_risiko',
+        'risiko_id',
         'nama_kendali',
         'deskripsi_kendali',
         'ref_fungsi_id',

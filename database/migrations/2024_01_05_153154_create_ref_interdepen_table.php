@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tujuan', function (Blueprint $table) {
+        Schema::create('ref_interdepen', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('iiv_id')->nullable();
-            $table->foreign('iiv_id')->refrense('sistem_iiv')->on('interdepen');
-            $table->integer('ref_tujuan_id')->nullable();
-            $table->longtext('deskripsi_tujuan')->nullable();
+            $table->string('indikator_interdepen');
             $table->timestamps();
         });
     }
@@ -26,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tujuans');
+        Schema::dropIfExists('ref_interdepen');
     }
 };

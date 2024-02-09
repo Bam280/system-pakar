@@ -13,11 +13,15 @@ return new class extends Migration
     {
         Schema::create('interdepen', function (Blueprint $table) {
             $table->id();
-            $table->integer('ref_interdepen_id');
-            $table->unsignedBigInteger('iiv_id')->nullable();
-            $table->foreign('iiv_id')->refrense('id')->on('iiv');
-            $table->unsignedBigInteger('sistem_iiv')->nullable();
-            $table->foreign('sistem_iiv')->refrense('id')->on('iiv');
+            $table->unsignedBigInteger('ref_interdepen_id')->nullable();
+            $table->foreign('ref_interdepen_id')->references('id')->on('ref_interdepen');
+
+            $table->unsignedBigInteger('sistem_elektronik_id')->nullable();
+            $table->foreign('sistem_elektronik_id')->references('id')->on('iiv');
+
+            $table->unsignedBigInteger('sistem_iiv_id')->nullable();
+            $table->foreign('sistem_iiv_id')->references('id')->on('iiv');
+
             $table->longtext('deskripsi_interdepen');
             $table->timestamps();
         });

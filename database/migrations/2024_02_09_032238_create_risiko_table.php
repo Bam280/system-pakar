@@ -14,12 +14,15 @@ return new class extends Migration
         Schema::create('risiko', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('tujuan_id')->nullable();
-            $table->foreign('tujuan_id')->refrence('id')->on('tujuan');
+            $table->foreign('tujuan_id')->references('id')->on('tujuan');
+
             $table->longtext('deskripsi_risiko')->nullable();
             $table->longtext('deskripsi_dampak')->nullable();
             $table->longtext('deskripsi_kemungkinan')->nullable();
-            $table->integer('ref_dampak_id')->nullable();
-            $table->integer('ref_kemungkinan_id')->nullable();
+
+            $table->unsignedBigInteger('ref_dampak_id')->nullable();
+            $table->foreign('ref_dampak_id')->references('id')->on('ref_dampak');
+
             $table->integer('nilai_dampak_regional');
             $table->integer('nilai_dampak_nasional');
             $table->integer('nilai_kemungkinan');
