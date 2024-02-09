@@ -1,16 +1,16 @@
 @extends('layouts.main')
 
 @section('content')
-    @if($errors->any())
-    <div class="alert alert-danger mt-5">
-        <ul>
-            @foreach($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
+    @if ($errors->any())
+        <div class="alert alert-danger mt-5">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
     @endif
-    
+
     <div class="card mt-5">
         <h5 class="card-header">Featured</h5>
         <div class="card-body">
@@ -19,19 +19,20 @@
                 <div class="mb-3">
                     <label for="sistem_terhubung_lan" class="form-label">Sistem Terhubung LAN</label>
                     <select class="js-example-basic-multiple form-control" name="sistem_terhubung_lan[]" multiple="multiple">
-                       @foreach ($all_iiv as $iiv)
-                           <option value="{{ $iiv->id }}" @selected(in_array($iiv->id, old('sistem_terhubung_lan') ?? @$data_form2['sistem_terhubung_lan'] ?? []))>
-                            {{ $iiv->nama }}
-                        </option>
-                       @endforeach
-                      </select>
+                        @foreach ($all_iiv as $iiv)
+                            <option value="{{ $iiv->id }}" @selected(in_array($iiv->id, old('sistem_terhubung_lan') ?? (@$data_form2['sistem_terhubung_lan'] ?? [])))>
+                                {{ $iiv->nama }}
+                            </option>
+                        @endforeach
+                    </select>
                 </div>
 
                 <div class="mb-3">
                     <label for="sistem_berbagi_database" class="form-label">Sistem Berbagi Database</label>
-                    <select class="js-example-basic-multiple form-control" name="sistem_berbagi_database[]" multiple="multiple">
+                    <select class="js-example-basic-multiple form-control" name="sistem_berbagi_database[]"
+                        multiple="multiple">
                         @foreach ($all_iiv as $iiv)
-                            <option value="{{ $iiv->id }}" @selected(in_array($iiv->id, old('sistem_berbagi_database') ?? @$data_form2['sistem_berbagi_database'] ?? []))>
+                            <option value="{{ $iiv->id }}" @selected(in_array($iiv->id, old('sistem_berbagi_database') ?? (@$data_form2['sistem_berbagi_database'] ?? [])))>
                                 {{ $iiv->nama }}
                             </option>
                         @endforeach
@@ -41,15 +42,16 @@
 
                 <div class="mb-3">
                     <label for="sistem_memiliki_hardware_sama" class="form-label">Sistem Memiliki Hardware Sama</label>
-                    <select class="js-example-basic-multiple form-control" name="sistem_memiliki_hardware_sama[]" multiple="multiple">
+                    <select class="js-example-basic-multiple form-control" name="sistem_memiliki_hardware_sama[]"
+                        multiple="multiple">
                         @foreach ($all_iiv as $iiv)
-                            <option value="{{ $iiv->id }}" @selected(in_array($iiv->id, old('sistem_memiliki_hardware_sama') ?? @$data_form2['sistem_memiliki_hardware_sama'] ?? []))>
+                            <option value="{{ $iiv->id }}" @selected(in_array($iiv->id, old('sistem_memiliki_hardware_sama') ?? (@$data_form2['sistem_memiliki_hardware_sama'] ?? [])))>
                                 {{ $iiv->nama }}
                             </option>
                         @endforeach
                     </select>
                 </div>
-    
+
                 <button type="submit" class="btn btn-primary">Berikutnya</button>
             </form>
 

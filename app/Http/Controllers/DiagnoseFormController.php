@@ -112,14 +112,15 @@ class DiagnoseFormController extends Controller
             ...session('diagnose_data'),
             'form2' => $data,
         ];
-
+        
         if (count($max['sistem']) == 1) {
             $data['sistem_terpilih'] = [$max['sistem'][0]];
-
+            
             session()->put('diagnose_data', $data);
             return to_route('diagnose.form.result');
         }
-
+        
+        
         session()->put('diagnose_data', $data);
         return to_route('diagnose.form.form3');
     }
@@ -171,11 +172,12 @@ class DiagnoseFormController extends Controller
 
     public function result()
     {
+        // dd ($data = session('diagnose_data'));
         $iiv = IIV::with('refInstansi', 'interdepenSistemIIV', 'interdepenSistemIIV.sistemElektronik')->whereIn('id', session('diagnose_data')['sistem_terpilih'])->get();
         
         return view('diagnose.form.result', [
             'iiv' => $iiv,
-            'diagnose_data' => session('diagnose_data')
+            'diagnose_data' => session('diagnose_data'),
         ]);
     }
 
