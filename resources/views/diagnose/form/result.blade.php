@@ -32,6 +32,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Nama</th>
                 <th scope="col">Instansi</th>
+                <th scope="col">Tingkat risiko</th>
               </tr>
             </thead>
             <tbody>
@@ -40,6 +41,7 @@
                     <th scope="row">{{ $k + 1 }}</th>
                     <td>{{ $item->nama }}</td>
                     <td>{{ $item->refInstansi->nama_instansi }}</td>
+                    <td>{{ $item->refInstansi->nilai_risiko }}</td>
                 </tr>
                 @endforeach
             </tbody>
