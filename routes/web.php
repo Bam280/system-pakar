@@ -21,18 +21,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::group(
     [
-        'prefix' => 'admin',
-        'as' => 'admin.',
         'middleware' => 'auth',
     ],
     function () {
-        Route::view('dashboard', 'admin.dashboard')->name('dashboard');
+        Route::view('dashboard', 'pages.dashboard')->name('dashboard');
         Route::resource('ref-instansi', RefInstansiController::class)->except('show');
     }
 );

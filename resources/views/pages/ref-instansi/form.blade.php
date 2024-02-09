@@ -1,12 +1,13 @@
 @php
 $title = $refInstansi->exists ? 'Edit' : 'Tambah';
-$route = $refInstansi->exists ? route('admin.ref-instansi.update', $refInstansi->id) :
-route('admin.ref-instansi.store');
+$route = $refInstansi->exists ? 
+route('ref-instansi.update', $refInstansi->id) :
+route('ref-instansi.store');
 $method = $refInstansi->exists ? 'PUT' : 'POST';
 @endphp
 
 
-@extends('layouts.admin.main')
+@extends('layouts.dashboard.main')
 
 @section('content')
 <div class="pb-3">

@@ -23,8 +23,8 @@ class RefInstansiDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', static fn (RefInstansi $refInstansi) => view('components.datatable-action', [
-                'editLink' => route('admin.ref-instansi.edit', $refInstansi),
-                'deleteLink' => route('admin.ref-instansi.destroy', $refInstansi),
+                'editLink' => route('ref-instansi.edit', $refInstansi),
+                'deleteLink' => route('ref-instansi.destroy', $refInstansi),
             ]))
             ->addColumn('created_at', static fn (RefInstansi $refInstansi) => $refInstansi->created_at->format('d/m/Y H:i:s'))
             ->addColumn('updated_at', static fn (RefInstansi $refInstansi) => $refInstansi->updated_at->format('d/m/Y H:i:s'))
@@ -62,7 +62,7 @@ class RefInstansiDataTable extends DataTable
                   ->exportable(false)
                   ->printable(false)
                   ->addClass('text-center'),
-            Column::make('id'),
+            Column::make('id')->hidden(),
             Column::make('nama_instansi'),
             Column::make('created_at'),
             Column::make('updated_at'),

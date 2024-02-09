@@ -13,7 +13,7 @@ class RefInstansiController extends Controller
      */
     public function index(RefInstansiDataTable $dataTable)
     {
-        return $dataTable->render('admin.ref-instansi.index');
+        return $dataTable->render('pages.ref-instansi.index');
     }
 
     /**
@@ -21,7 +21,7 @@ class RefInstansiController extends Controller
      */
     public function create(RefInstansi $refInstansi)
     {
-        return view('admin.ref-instansi.form', compact('refInstansi'));
+        return view('pages.ref-instansi.form', compact('refInstansi'));
     }
 
     /**
@@ -35,31 +35,41 @@ class RefInstansiController extends Controller
 
         RefInstansi::create($data);
 
-        return to_route('admin.ref-instansi.index')
+        return to_route('ref-instansi.index')
             ->with('success', 'Data berhasil disimpan');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(RefInstansi $refInstansi)
     {
-        //
+        return view('pages.ref-instansi.form', compact('refInstansi'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, RefInstansi $refInstansi)
     {
-        //
+        $data = $request->validate([
+            'nama_instansi' => ['required', 'string', 'max:255']
+        ]);
+
+        $refInstansi->update($data);
+
+        return to_route('ref-instansi.index')
+            ->with('success', 'Data berhasil diubah');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(RefInstansi $refInstansi)
     {
-        //
+        $refInstansi->delete();
+
+        return to_route('ref-instansi.index')
+            ->with('success', 'Data berhasil dihapus');
     }
 }

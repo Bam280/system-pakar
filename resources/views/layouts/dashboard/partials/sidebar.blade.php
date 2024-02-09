@@ -1,7 +1,7 @@
 <div class="adminx-sidebar expand-hover push">
     <ul class="sidebar-nav">
         <li class="sidebar-nav-item">
-            <a href="{{ route('admin.dashboard') }}" class="sidebar-nav-link active">
+            <a href="{{ route('dashboard') }}" class="sidebar-nav-link active">
                 <span class="sidebar-nav-icon">
                     <i data-feather="home"></i>
                 </span>
@@ -30,7 +30,7 @@
 
             <ul class="sidebar-sub-nav collapse" id="example">
                 <li class="sidebar-nav-item">
-                    <a href="{{ route('admin.ref-instansi.index') }}" class="sidebar-nav-link">
+                    <a href="{{ route('ref-instansi.index') }}" class="sidebar-nav-link">
                         <span class="sidebar-nav-abbr">
                             In
                         </span>

@@ -1,4 +1,4 @@
-@extends('layouts.admin.main')
+@extends('layouts.dashboard.main')
 
 @section('content')
 <div class="pb-3">
@@ -7,7 +7,7 @@
 
 <div class="row">
     <div class="col">
-        <a href="{{ route('admin.ref-instansi.create') }}" class="btn btn-primary mb-3">Tambah</a>
+        <a href="{{ route('ref-instansi.create') }}" class="btn btn-primary mb-3">Tambah</a>
         <div class="card mb-grid">
             <div class="table-responsive-md">
                 {{ $dataTable->table() }}

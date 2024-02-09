@@ -19,11 +19,11 @@
 <body>
   <div class="adminx-container">
 
-    @include('layouts.admin.partials.navbar')
+    @include('layouts.dashboard.partials.navbar')
 
     <!-- expand-hover push -->
     <!-- Sidebar -->
-    @include('layouts.admin.partials.sidebar')
+    @include('layouts.dashboard.partials.sidebar')
     <!-- Sidebar End -->
 
     <!-- adminx-content-aside -->
