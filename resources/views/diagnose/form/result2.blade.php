@@ -56,11 +56,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($iiv->tujuan as $tujuan)
-                        <tr>
-                            <td>{{ $tujuan->refTujuan->tujuan_keamanan }}</td>
-                            <td>{{ $tujuan->deskripsi_tujuan }}</td>
-                        </tr>
+                    @foreach ($sistem_terpilih as $iiv)
+                        @foreach ($iiv->tujuan as $tujuan)
+                            <tr>
+                                <td>{{ $tujuan->refTujuan->tujuan_keamanan }}</td>
+                                <td>{{ $tujuan->deskripsi_tujuan }}</td>
+                            </tr>
+                        @endforeach
                     @endforeach
                 </tbody>
             </table>
@@ -75,13 +77,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($tujuan->risiko as $risiko)
-                        <tr>
-                            <td>{{ $risiko->deskripsi_risiko }}</td>
-                            <td>{{ $risiko->deskripsi_dampak }}</td>
-                            <td>{{ $risiko->deskripsi_kemungkinan }}</td>
-                            <td>{{ $risiko->deskripsi_kemungkinan }}</td>
-                        </tr>
+                    @foreach ($sistem_terpilih as $iiv)
+                        @foreach ($iiv->tujuan as $tujuan)
+                            @foreach ($tujuan->risiko as $risiko)
+                                <tr>
+                                    <td>{{ $risiko->deskripsi_risiko }}</td>
+                                    <td>{{ $risiko->deskripsi_dampak }}</td>
+                                    <td>{{ $risiko->deskripsi_kemungkinan }}</td>
+                                    <td>{{ $risiko->deskripsi_kemungkinan }}</td>
+                                </tr>
+                            @endforeach
+                        @endforeach
                     @endforeach
                 </tbody>
             </table>
@@ -94,11 +100,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($risiko->kendali as $kendali)
-                        <tr>
-                            <td>{{ $kendali->nama_kendali }}</td>
-                            <td>{{ $kendali->deskripsi_kendali }}</td>
-                        </tr>
+                    @foreach ($sistem_terpilih as $iiv)
+                        @foreach ($iiv->tujuan as $tujuan)
+                            @foreach ($tujuan->risiko as $risiko)
+                                @foreach ($risiko->kendali as $kendali)
+                                    <tr>
+                                        <td>{{ $kendali->nama_kendali }}</td>
+                                        <td>{{ $kendali->deskripsi_kendali }}</td>
+                                    </tr>
+                                @endforeach
+                            @endforeach
+                        @endforeach
                     @endforeach
                 </tbody>
             </table>
