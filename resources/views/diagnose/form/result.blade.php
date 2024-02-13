@@ -34,6 +34,9 @@
                         <th scope="col">Instansi</th>
                         <th scope="col">Nilai interdepenSistem</th>
                         <th scope="col">Berbanding</th>
+                        @if ($diagnose_data['form2']['poin_order'] > 2)
+                            <th scope="col">Berbanding</th>
+                        @endif
                     </tr>
                 </thead>
                 <tbody>
@@ -42,9 +45,11 @@
                             <th scope="row">{{ $k + 1 }}</th>
                             <td>{{ $item->nama }}</td>
                             <td>{{ $item->refInstansi->nama_instansi }}</td>
+
                             @foreach ($diagnose_data['form2']['poin_order'] as $poin_order)
                                 <td>{{ $poin_order['poin'] }}</td>
                             @endforeach
+
                         </tr>
                     @endforeach
                 </tbody>

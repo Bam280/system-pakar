@@ -12,7 +12,7 @@
     @endif
 
     <div class="card mt-5">
-        <h5 class="card-header">Result</h5>
+        <h5 class="card-header">Result sistem</h5>
         <div class="card-body">
             <div class="mb-3">
                 <label for="nama_sistem" class="form-label">Nama Sistem</label>
@@ -25,7 +25,9 @@
                 <textarea class="form-control" name="deskripsi_sistem" id="deskripsi_sistem" rows="3" readonly>{{ $diagnose_data['form1']['deskripsi_sistem'] }}</textarea>
             </div>
 
-            <h4>Hasil</h4>
+            <h3>Dengan rincian sebagai berikut :</h3>
+            <br>
+            <h5>Untuk mencegah keamanan data dan informasi</h5>
 
             <table class="table table-bordered">
                 <thead>
@@ -48,6 +50,7 @@
                 </tbody>
             </table>
 
+            <h5>Untuk mengurangi keinginan pelaku kejahatan :</h5>
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -67,6 +70,7 @@
                 </tbody>
             </table>
 
+            <h5>Untuk mendeteksi masalah keamanan</h5>
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -92,6 +96,7 @@
                 </tbody>
             </table>
 
+            <h5>Untuk menindaklanjuti permasalahan keamanan</h5>
             <table class="table table-bordered">
                 <thead>
                     <tr>

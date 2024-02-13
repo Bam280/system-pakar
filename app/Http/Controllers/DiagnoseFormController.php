@@ -172,7 +172,7 @@ class DiagnoseFormController extends Controller
 
     public function result()
     {
-        // dd ($data = session('diagnose_data'));
+        //dd ($data = session('diagnose_data'));
         $iiv = IIV::with('refInstansi', 'interdepenSistemIIV', 'interdepenSistemIIV.sistemElektronik')->whereIn('id', session('diagnose_data')['sistem_terpilih'])->get();
         
         return view('diagnose.form.result', [
