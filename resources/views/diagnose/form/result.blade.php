@@ -33,8 +33,10 @@
                         <th scope="col">Nama</th>
                         <th scope="col">Instansi</th>
                         <th scope="col">Nilai interdepenSistem</th>
-                        <th scope="col">Berbanding</th>
-                        @if ($diagnose_data['form2']['poin_order'] > 2)
+                        @if (count($diagnose_data['form2']['poin_sistem']) > 1)
+                            <th scope="col">Berbanding</th>
+                        @elseif (count($diagnose_data['form2']['poin_sistem']) > 2)
+                            <th scope="col">Berbanding</th>
                             <th scope="col">Berbanding</th>
                         @endif
                     </tr>

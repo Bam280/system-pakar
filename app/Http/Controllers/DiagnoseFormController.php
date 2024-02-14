@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\IIV;
+use App\Models\Interdepen;
 use Illuminate\Http\Request;
 
 class DiagnoseFormController extends Controller
@@ -172,7 +173,7 @@ class DiagnoseFormController extends Controller
 
     public function result()
     {
-        //dd ($data = session('diagnose_data'));
+        // dd ($data = session('diagnose_data')); 
         $iiv = IIV::with('refInstansi', 'interdepenSistemIIV', 'interdepenSistemIIV.sistemElektronik')->whereIn('id', session('diagnose_data')['sistem_terpilih'])->get();
         
         return view('diagnose.form.result', [
@@ -185,12 +186,18 @@ class DiagnoseFormController extends Controller
     {
         $iiv = IIV::with('refInstansi', 'interdepenSistemIIV', 'interdepenSistemIIV.sistemElektronik')->whereIn('id', session('diagnose_data')['sistem_terpilih'])->get();
 
+
         // flatten $iiv->interdepenSistemIIV->sistemElektronik n als0 $iiv data 
 
         $sistem_terpilih = $iiv->pluck('id')->toArray();
         $sistem_terpilih = array_merge($sistem_terpilih, $iiv->pluck('interdepenSistemIIV')->flatten()->pluck('sistemElektronik')->flatten()->pluck('id')->toArray());
+       
+        $sistem_terpilih = IIV::with(['tujuan', 'tujuan.refTujuan', 'tujuan.risiko', 'tujuan.risiko.kendali', 'tujuan.risiko.kendali.refFungsi'])->whereIn('id', $sistem_terpilih)->get();  
 
-        $sistem_terpilih = IIV::with(['tujuan', 'tujuan.refTujuan', 'tujuan.risiko', 'tujuan.risiko.kendali', 'tujuan.risiko.kendali.refFungsi'])->whereIn('id', $sistem_terpilih)->get();        
+        // $interp = Interdepen::with('sistemElektronik', 'sistemIIV', 'sistemElektronik.interdepenSistemIIV')->whereIn('id', session('diagnose_data')['sistem_terpilih'])->get();
+        // $detail_interp = $interp->pluck('sistemElektronik')->toArray();
+        // $detail_interp = array_merge($detail_interp, $interp->pluck('sistemElektronik')->toArray());
+        // dd ($detail_interp);
 
         return view('diagnose.form.result2',[
             'sistem_terpilih' => $sistem_terpilih,

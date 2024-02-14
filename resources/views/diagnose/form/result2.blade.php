@@ -27,7 +27,8 @@
 
             <h3>Dengan rincian sebagai berikut :</h3>
             <br>
-            <h5>Untuk mencegah keamanan data dan informasi</h5>
+
+            <h5>Sistem Terpilih</h5>
 
             <table class="table table-bordered">
                 <thead>
@@ -50,7 +51,9 @@
                 </tbody>
             </table>
 
-            <h5>Untuk mengurangi keinginan pelaku kejahatan :</h5>
+            {{-- <h5>Deskripsi interdependasi Sistem</h5> --}}
+
+            <h5>1. Untuk mencegah keamanan data dan informasi :</h5>
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -61,47 +64,28 @@
                 <tbody>
                     @foreach ($sistem_terpilih as $iiv)
                         @foreach ($iiv->tujuan as $tujuan)
-                            <tr>
-                                <td>{{ $tujuan->refTujuan->tujuan_keamanan }}</td>
-                                <td>{{ $tujuan->deskripsi_tujuan }}</td>
-                            </tr>
-                        @endforeach
-                    @endforeach
-                </tbody>
-            </table>
-
-            <h5>Untuk mendeteksi masalah keamanan</h5>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th scope="col">Deskripsi resiko</th>
-                        <th scope="col">Deskripsi dampak</th>
-                        <th scope="col">Deskripsi kemungkinan</th>
-                        <th scope="col">Nilai kemungkinan</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($sistem_terpilih as $iiv)
-                        @foreach ($iiv->tujuan as $tujuan)
                             @foreach ($tujuan->risiko as $risiko)
-                                <tr>
-                                    <td>{{ $risiko->deskripsi_risiko }}</td>
-                                    <td>{{ $risiko->deskripsi_dampak }}</td>
-                                    <td>{{ $risiko->deskripsi_kemungkinan }}</td>
-                                    <td>{{ $risiko->deskripsi_kemungkinan }}</td>
-                                </tr>
+                                @foreach ($risiko->kendali as $kendali)
+                                    @if ($kendali->ref_fungsi_id == 1 || $kendali->ref_fungsi_id == 2)
+                                        <tr>
+                                            <td>{{ $kendali->nama_kendali }}</td>
+                                            <td>{{ $kendali->deskripsi_kendali }}</td>
+                                        </tr>
+                                    @endif
+                                @endforeach
                             @endforeach
                         @endforeach
                     @endforeach
                 </tbody>
             </table>
 
-            <h5>Untuk menindaklanjuti permasalahan keamanan</h5>
+
+            <h5>2. Untuk mengurangi keinginan pelaku kejahatan :</h5>
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th scope="col">Nama Kendali</th>
-                        <th scope="col">Deskripsi kendali</th>
+                        <th scope="col">Tujuan</th>
+                        <th scope="col">Deskripsi Tujuan</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -109,10 +93,90 @@
                         @foreach ($iiv->tujuan as $tujuan)
                             @foreach ($tujuan->risiko as $risiko)
                                 @foreach ($risiko->kendali as $kendali)
-                                    <tr>
-                                        <td>{{ $kendali->nama_kendali }}</td>
-                                        <td>{{ $kendali->deskripsi_kendali }}</td>
-                                    </tr>
+                                    @if ($kendali->ref_fungsi_id == 2)
+                                        <tr>
+                                            <td>{{ $kendali->nama_kendali }}</td>
+                                            <td>{{ $kendali->deskripsi_kendali }}</td>
+                                        </tr>
+                                    @endif
+                                @endforeach
+                            @endforeach
+                        @endforeach
+                    @endforeach
+                </tbody>
+            </table>
+
+            <h5>3. Untuk mendeteksi masalah keamanan.</h5>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Tujuan</th>
+                        <th scope="col">Deskripsi Tujuan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($sistem_terpilih as $iiv)
+                        @foreach ($iiv->tujuan as $tujuan)
+                            @foreach ($tujuan->risiko as $risiko)
+                                @foreach ($risiko->kendali as $kendali)
+                                    @if ($kendali->ref_fungsi_id == 3 || $kendali->ref_fungsi_id == 4 || $kendali->ref_fungsi_id == 5)
+                                        <tr>
+                                            <td>{{ $kendali->nama_kendali }}</td>
+                                            <td>{{ $kendali->deskripsi_kendali }}</td>
+                                        </tr>
+                                    @endif
+                                @endforeach
+                            @endforeach
+                        @endforeach
+                    @endforeach
+                </tbody>
+            </table>
+
+            <h5>4. Untuk menindaklanjuti permasalahan keamanan.</h5>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Tujuan</th>
+                        <th scope="col">Deskripsi Tujuan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($sistem_terpilih as $iiv)
+                        @foreach ($iiv->tujuan as $tujuan)
+                            @foreach ($tujuan->risiko as $risiko)
+                                @foreach ($risiko->kendali as $kendali)
+                                    @if ($kendali->ref_fungsi_id == 6)
+                                        <tr>
+                                            <td>{{ $kendali->nama_kendali }}</td>
+                                            <td>{{ $kendali->deskripsi_kendali }}</td>
+                                        </tr>
+                                    @endif
+                                @endforeach
+                            @endforeach
+                        @endforeach
+                    @endforeach
+                </tbody>
+            </table>
+
+            <h5>5. Untuk memulihkan pelayanan</h5>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Tujuan</th>
+                        <th scope="col">Deskripsi Tujuan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($sistem_terpilih as $iiv)
+                        @foreach ($iiv->tujuan as $tujuan)
+                            @foreach ($tujuan->risiko as $risiko)
+                                @foreach ($risiko->kendali as $kendali)
+                                    @if ($kendali->ref_fungsi_id == 7)
+                                        <tr>
+                                            <td>{{ $kendali->nama_kendali }}</td>
+                                            <td>{{ $kendali->deskripsi_kendali }}</td>
+                                        </tr>
+                                    @endif
                                 @endforeach
                             @endforeach
                         @endforeach
