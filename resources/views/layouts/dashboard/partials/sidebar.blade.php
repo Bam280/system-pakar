@@ -49,6 +49,16 @@
                         </span>
                     </a>
                 </li>
+                <li class="sidebar-nav-item">
+                    <a href="{{ route('ref-tujuan.index') }}" class="sidebar-nav-link">
+                        <span class="sidebar-nav-abbr">
+                            Tuj
+                        </span>
+                        <span class="sidebar-nav-name">
+                            Tujuan
+                        </span>
+                    </a>
+                </li>
             </ul>
         </li>
 
