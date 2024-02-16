@@ -174,7 +174,7 @@ class DiagnoseFormController extends Controller
     public function result()
     {
         // dd ($data = session('diagnose_data')); 
-        $iiv = IIV::with('refInstansi', 'interdepenSistemIIV', 'interdepenSistemIIV.sistemElektronik')->whereIn('id', session('diagnose_data')['sistem_terpilih'])->get();
+        $iiv = IIV::with('refInstansi', 'interdepenSistemIIV', 'interdepenSistemIIV.sistemElektronik')->whereIn('nama', session('diagnose_data')['sistem_terpilih'])->get();
         
         return view('diagnose.form.result', [
             'iiv' => $iiv,
@@ -184,7 +184,7 @@ class DiagnoseFormController extends Controller
 
     public function result2()
     {
-        $iiv = IIV::with('refInstansi', 'interdepenSistemIIV', 'interdepenSistemIIV.sistemElektronik')->whereIn('id', session('diagnose_data')['sistem_terpilih'])->get();
+        $iiv = IIV::with('refInstansi', 'interdepenSistemIIV', 'interdepenSistemIIV.sistemElektronik')->whereIn('nama', session('diagnose_data')['sistem_terpilih'])->get();
 
 
         // flatten $iiv->interdepenSistemIIV->sistemElektronik n als0 $iiv data 
@@ -194,7 +194,7 @@ class DiagnoseFormController extends Controller
        
         $sistem_terpilih = IIV::with(['tujuan', 'tujuan.refTujuan', 'tujuan.risiko', 'tujuan.risiko.kendali', 'tujuan.risiko.kendali.refFungsi'])->whereIn('id', $sistem_terpilih)->get();  
 
-        // $interp = Interdepen::with('sistemElektronik', 'sistemIIV', 'sistemElektronik.interdepenSistemIIV')->whereIn('id', session('diagnose_data')['sistem_terpilih'])->get();
+        // $interp = Interdepen::with('sistemElektronik', 'sistemIIV', 'sistemElektronik.interdepenSistemIIV')->whereIn('nama', session('diagnose_data')['sistem_terpilih'])->get();
         // $detail_interp = $interp->pluck('sistemElektronik')->toArray();
         // $detail_interp = array_merge($detail_interp, $interp->pluck('sistemElektronik')->toArray());
         // dd ($detail_interp);

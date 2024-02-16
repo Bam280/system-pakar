@@ -20,7 +20,7 @@
                     <label for="sistem_terhubung_lan" class="form-label">Sistem Terhubung LAN</label>
                     <select class="js-example-basic-multiple form-control" name="sistem_terhubung_lan[]" multiple="multiple">
                         @foreach ($all_iiv as $iiv)
-                            <option value="{{ $iiv->id }}" @selected(in_array($iiv->id, old('sistem_terhubung_lan') ?? (@$data_form2['sistem_terhubung_lan'] ?? [])))>
+                            <option @selected(in_array($iiv->nama, old('sistem_terhubung_lan') ?? (@$data_form2['sistem_terhubung_lan'] ?? [])))>
                                 {{ $iiv->nama }}
                             </option>
                         @endforeach
@@ -32,7 +32,7 @@
                     <select class="js-example-basic-multiple form-control" name="sistem_berbagi_database[]"
                         multiple="multiple">
                         @foreach ($all_iiv as $iiv)
-                            <option value="{{ $iiv->id }}" @selected(in_array($iiv->id, old('sistem_berbagi_database') ?? (@$data_form2['sistem_berbagi_database'] ?? [])))>
+                            <option @selected(in_array($iiv->nama, old('sistem_berbagi_database') ?? (@$data_form2['sistem_berbagi_database'] ?? [])))>
                                 {{ $iiv->nama }}
                             </option>
                         @endforeach
@@ -45,7 +45,7 @@
                     <select class="js-example-basic-multiple form-control" name="sistem_memiliki_hardware_sama[]"
                         multiple="multiple">
                         @foreach ($all_iiv as $iiv)
-                            <option value="{{ $iiv->id }}" @selected(in_array($iiv->id, old('sistem_memiliki_hardware_sama') ?? (@$data_form2['sistem_memiliki_hardware_sama'] ?? [])))>
+                            <option @selected(in_array($iiv->nama, old('sistem_memiliki_hardware_sama') ?? (@$data_form2['sistem_memiliki_hardware_sama'] ?? [])))>
                                 {{ $iiv->nama }}
                             </option>
                         @endforeach
@@ -69,7 +69,9 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
-            $('.js-example-basic-multiple').select2();
+            $('.js-example-basic-multiple').select2({
+                tags: true
+            });
         });
     </script>
 @endpush
