@@ -59,6 +59,16 @@
                         </span>
                     </a>
                 </li>
+                <li class="sidebar-nav-item">
+                    <a href="{{ route('ref-fungsi.index') }}" class="sidebar-nav-link">
+                        <span class="sidebar-nav-abbr">
+                            Fun
+                        </span>
+                        <span class="sidebar-nav-name">
+                            Fungsi
+                        </span>
+                    </a>
+                </li>
             </ul>
         </li>
 

@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RefInstansiController;
 use App\Http\Controllers\RefInterdepenController;
 use App\Http\Controllers\RefTujuanController;
+use App\Http\Controllers\RefFungsiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +32,7 @@ Route::group(
         Route::resource('ref-instansi', RefInstansiController::class)->except('show');
         Route::resource('ref-interdepen', RefInterdepenController::class)->except('show');
         Route::resource('ref-tujuan', RefTujuanController::class)->except('show');
+        Route::resource('ref-fungsi', RefFungsiController::class)->except('show');
     }
 );
 
