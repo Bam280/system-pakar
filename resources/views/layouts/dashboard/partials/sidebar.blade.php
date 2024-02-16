@@ -1,15 +1,22 @@
 <div class="adminx-sidebar expand-hover push">
     <ul class="sidebar-nav">
         <li class="sidebar-nav-item">
-            <a href="{{ route('dashboard') }}" class="sidebar-nav-link active">
+            <a href="{{ route('dashboard') }}" class="sidebar-nav-link">
                 <span class="sidebar-nav-icon">
                     <i data-feather="home"></i>
                 </span>
                 <span class="sidebar-nav-name">
                     Dashboard
                 </span>
-                <span class="sidebar-nav-end">
-
+            </a>
+        </li>
+        <li class="sidebar-nav-item">
+            <a href="{{ route('iiv.index') }}" class="sidebar-nav-link">
+                <span class="sidebar-nav-abbr">
+                    IIV
+                </span>
+                <span class="sidebar-nav-name">
+                    IIV
                 </span>
             </a>
         </li>
