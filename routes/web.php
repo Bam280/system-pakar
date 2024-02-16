@@ -3,7 +3,7 @@
 use App\Http\Controllers\DiagnoseFormController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RefInstansiController;
-use App\Models\RefInstansi;
+use App\Http\Controllers\RefInterdepenController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,6 +28,7 @@ Route::group(
     function () {
         Route::view('dashboard', 'pages.dashboard')->name('dashboard');
         Route::resource('ref-instansi', RefInstansiController::class)->except('show');
+        Route::resource('ref-interdepen', RefInterdepenController::class)->except('show');
     }
 );
 

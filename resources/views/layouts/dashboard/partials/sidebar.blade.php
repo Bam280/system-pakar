@@ -32,10 +32,20 @@
                 <li class="sidebar-nav-item">
                     <a href="{{ route('ref-instansi.index') }}" class="sidebar-nav-link">
                         <span class="sidebar-nav-abbr">
-                            In
+                            Ins
                         </span>
                         <span class="sidebar-nav-name">
                             Instansi
+                        </span>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="{{ route('ref-interdepen.index') }}" class="sidebar-nav-link">
+                        <span class="sidebar-nav-abbr">
+                            Int
+                        </span>
+                        <span class="sidebar-nav-name">
+                            Interdepen
                         </span>
                     </a>
                 </li>
