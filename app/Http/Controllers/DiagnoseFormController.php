@@ -128,8 +128,9 @@ class DiagnoseFormController extends Controller
 
     public function form3()
     {
+        // dd ($data = session('diagnose_data'));
         $data_form3 = session('diagnose_data')['form3'] ?? [];
-        return view('diagnose.form.form3', compact('data_form3'));
+        return view('diagnose.form.form3', compact('data_form3'), ['diagnose_data' => session('diagnose_data')]);
     }
 
     public function form3Store(Request $request)

@@ -1,19 +1,39 @@
 @extends('layouts.main')
 
 @section('content')
-    @if($errors->any())
-    <div class="alert alert-danger mt-5">
-        <ul>
-            @foreach($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
+    @if ($errors->any())
+        <div class="alert alert-danger mt-5">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
     @endif
-    
+
     <div class="card mt-5">
         <h5 class="card-header">Featured</h5>
         <div class="card-body">
+            <h5>Melalui input yang dimasukkan oleh user pada form sebelumnya berikut adalah prolehan nilai yang didapat</h5>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Nama sistem terinput</th>
+                        <th scope="col">Nama sistem terinput</th>
+                        <th scope="col">Nilai interdepenSistem</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($diagnose_data['form2']['poin_order'] as $poin_order)
+                        <tr>
+                            <td>{{ $poin_order['sistem'][0] }}</td>
+                            <td>{{ $poin_order['sistem'][1] }}</td>
+                            <td>{{ $poin_order['poin'] }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+
             <form action="" method="post">
                 @csrf
                 <div class="mb-3">
@@ -28,7 +48,8 @@
 
                 <div class="mb-3">
                     <label for="nilai_kemungkinan" class="form-label">Nilai Kemungkinan (0-5)</label>
-                    <input type="range" class="form-range" id="nilai_kemungkinan" name="nilai_kemungkinan" min="0" max="5" value="{{ old('nilai_kemungkinan') ?? @$data_form3['nilai_kemungkinan'] }}">
+                    <input type="range" class="form-range" id="nilai_kemungkinan" name="nilai_kemungkinan" min="0"
+                        max="5" value="{{ old('nilai_kemungkinan') ?? @$data_form3['nilai_kemungkinan'] }}">
                 </div>
 
                 <div class="mb-3">
@@ -38,7 +59,9 @@
 
                 <div class="mb-3">
                     <label for="nilai_dampak_organisasi" class="form-label">Nilai Dampak Organisasi (0-5)</label>
-                    <input type="range" class="form-range" id="nilai_dampak_organisasi" name="nilai_dampak_organisasi" min="0" max="5" value="{{ old('nilai_dampak_organisasi') ?? @$data_form3['nilai_dampak_organisasi'] }}">
+                    <input type="range" class="form-range" id="nilai_dampak_organisasi" name="nilai_dampak_organisasi"
+                        min="0" max="5"
+                        value="{{ old('nilai_dampak_organisasi') ?? @$data_form3['nilai_dampak_organisasi'] }}">
                 </div>
 
                 <div class="mb-3">
@@ -48,9 +71,11 @@
 
                 <div class="mb-3">
                     <label for="nilai_dampak_nasional" class="form-label">Nilai Dampak Nasional (0-5)</label>
-                    <input type="range" class="form-range" id="nilai_dampak_nasional" name="nilai_dampak_nasional" min="0" max="5" value="{{ old('nilai_dampak_nasional') ?? @$data_form3['nilai_dampak_nasional'] }}">
+                    <input type="range" class="form-range" id="nilai_dampak_nasional" name="nilai_dampak_nasional"
+                        min="0" max="5"
+                        value="{{ old('nilai_dampak_nasional') ?? @$data_form3['nilai_dampak_nasional'] }}">
                 </div>
-    
+
                 <button type="submit" class="btn btn-primary">Berikutnya</button>
             </form>
         </div>
