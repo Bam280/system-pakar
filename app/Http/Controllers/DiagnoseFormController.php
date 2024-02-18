@@ -77,7 +77,7 @@ class DiagnoseFormController extends Controller
                 if (empty($data['poin_sistem'][$value])) {
                     $data['poin_sistem'][$value] = 0;
                 }
-                $data['poin_sistem'][$value] += 1;
+                $data['poin_sistem'][$value] += 2;
             }
         }
 
@@ -86,7 +86,7 @@ class DiagnoseFormController extends Controller
                 if (empty($data['poin_sistem'][$value])) {
                     $data['poin_sistem'][$value] = 0;
                 }
-                $data['poin_sistem'][$value] += 2;
+                $data['poin_sistem'][$value] += 1;
             }
         }
 
