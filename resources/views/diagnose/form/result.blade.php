@@ -48,7 +48,9 @@
                 <thead>
                     <tr>
                         <th scope="col">Nama</th>
-                        <th scope="col">Instansi</th>
+                        @if (count($iiv) > 0)
+                            <th scope="col">Instansi</th>
+                        @endif
                     </tr>
                 </thead>
                 <tbody>
@@ -65,7 +67,6 @@
                         @foreach ($diagnose_data['form2']['poin_order'] as $poin_order)
                             <tr>
                                 <td>{{ $poin_order['sistem'][0] }}</td>
-                                <td>{{ $poin_order['poin'] }}</td>
                             </tr>
                         @break
                     @endforeach
