@@ -175,7 +175,7 @@ class DiagnoseFormController extends Controller
     {
         // dd ($data = session('diagnose_data')); 
         $iiv = IIV::with('refInstansi', 'interdepenSistemIIV', 'interdepenSistemIIV.sistemElektronik')->whereIn('nama', session('diagnose_data')['sistem_terpilih'])->get();
-        
+        // dd ($iiv);
         return view('diagnose.form.result', [
             'iiv' => $iiv,
             'diagnose_data' => session('diagnose_data'),
@@ -191,7 +191,6 @@ class DiagnoseFormController extends Controller
 
         $sistem_terpilih = $iiv->pluck('id')->toArray();
         $sistem_terpilih = array_merge($sistem_terpilih, $iiv->pluck('interdepenSistemIIV')->flatten()->pluck('sistemElektronik')->flatten()->pluck('id')->toArray());
-       
         $sistem_terpilih = IIV::with(['tujuan', 'tujuan.refTujuan', 'tujuan.risiko', 'tujuan.risiko.kendali', 'tujuan.risiko.kendali.refFungsi'])->whereIn('id', $sistem_terpilih)->get();  
 
         // $interp = Interdepen::with('sistemElektronik', 'sistemIIV', 'sistemElektronik.interdepenSistemIIV')->whereIn('nama', session('diagnose_data')['sistem_terpilih'])->get();

@@ -25,7 +25,55 @@
                 <textarea class="form-control" name="deskripsi_sistem" id="deskripsi_sistem" rows="3" readonly>{{ $diagnose_data['form1']['deskripsi_sistem'] }}</textarea>
             </div>
 
-            <h4>Sistem</h4>
+            <h5>Melalui input yang dimasukkan oleh user pada form sebelumnya berikut adalah prolehan nilai yang didapat</h5>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Namas sistem terinput</th>
+                        <th scope="col">Nilai interdepenSistem</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($diagnose_data['form2']['poin_order'] as $poin_order)
+                        <tr>
+                            <td>{{ $poin_order['sistem'][0] }}</td>
+                            <td>{{ $poin_order['poin'] }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+
+            <h4>Sistem yang terpilih dari hasil diatas adalah</h4>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Nama</th>
+                        <th scope="col">Instansi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (count($iiv) > 0)
+                        @foreach ($iiv as $k => $item)
+                            <tr>
+                                <td>
+                                    {{ $item->nama }}
+                                </td>
+                                <td>{{ $item->refInstansi->nama_instansi }}</td>
+                            </tr>
+                        @endforeach
+                    @else
+                        @foreach ($diagnose_data['form2']['poin_order'] as $poin_order)
+                            <tr>
+                                <td>{{ $poin_order['sistem'][0] }}</td>
+                                <td>{{ $poin_order['poin'] }}</td>
+                            </tr>
+                        @break
+                    @endforeach
+                @endif
+            </tbody>
+        </table>
+
+        {{-- <h4>Sistem</h4>
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -55,9 +103,9 @@
                         </tr>
                     @endforeach
                 </tbody>
-            </table>
+            </table> --}}
 
-            {{-- <p>[nama_sistem] - [nama_instansi] - [nilai_risiko] - [? deskripsi_interdepen] </p>
+        {{-- <p>[nama_sistem] - [nama_instansi] - [nilai_risiko] - [? deskripsi_interdepen] </p>
 
             <ul>
                 @foreach ($iiv as $item)
@@ -76,8 +124,9 @@
                 @endforeach
             </ul> --}}
 
+        @if (count($iiv) > 0)
             <a href="{{ route('diagnose.form.result2') }}" class="btn btn-primary">Detail</a>
-
-        </div>
+        @endif
     </div>
+</div>
 @endsection
