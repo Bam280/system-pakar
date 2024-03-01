@@ -4,6 +4,14 @@ use App\Http\Controllers\DiagnoseFormController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RefInstansiController;
 use App\Models\RefInstansi;
+use App\Http\Controllers\RefInterdepenController;
+use App\Http\Controllers\RefTujuanController;
+use App\Http\Controllers\RefFungsiController;
+use App\Http\Controllers\IIVController;
+use App\Models\IIV;
+use App\Models\RefInterdepen;
+use App\Models\RefTujuan;
+use App\Models\RefFungsi;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +26,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home.index');
 });
 
 Route::group(
@@ -27,7 +35,11 @@ Route::group(
     ],
     function () {
         Route::view('dashboard', 'pages.dashboard')->name('dashboard');
+        Route::resource('iiv', IIVController::class)->except('show');
         Route::resource('ref-instansi', RefInstansiController::class)->except('show');
+        Route::resource('ref-interdepen', RefInterdepenController::class)->except('show');
+        Route::resource('ref-tujuan', RefTujuanController::class)->except('show');
+        Route::resource('ref-fungsi', RefFungsiController::class)->except('show');
     }
 );
 
@@ -50,6 +62,7 @@ Route::group(
 
         Route::get('/result', [DiagnoseFormController::class, 'result'])->name('result');
         Route::get('/result2', [DiagnoseFormController::class, 'result2'])->name('result2');
+        Route::post('/result', [DiagnoseFormController::class, 'resultStore'])->name('result.store');
 
         Route::post('/reset', [DiagnoseFormController::class, 'reset'])->name('reset');
     }

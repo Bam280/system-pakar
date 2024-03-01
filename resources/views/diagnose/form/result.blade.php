@@ -124,10 +124,13 @@
                     @endforeach
                 @endforeach
             </ul> --}}
-
-        @if (count($iiv) > 0)
-            <a href="{{ route('diagnose.form.result2') }}" class="btn btn-primary">Detail</a>
-        @endif
+        <div class="row text-center">
+            <div class="col">
+                @if (count($iiv) > 0)
+                    <a href="{{ route('diagnose.form.result2') }}" class="btn btn-primary">Detail</a>
+                @endif
+            </div>
+        </div>
     </div>
 </div>
 @endsection

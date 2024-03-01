@@ -1,15 +1,22 @@
 <div class="adminx-sidebar expand-hover push">
     <ul class="sidebar-nav">
         <li class="sidebar-nav-item">
-            <a href="{{ route('dashboard') }}" class="sidebar-nav-link active">
+            <a href="{{ route('dashboard') }}" class="sidebar-nav-link">
                 <span class="sidebar-nav-icon">
                     <i data-feather="home"></i>
                 </span>
                 <span class="sidebar-nav-name">
                     Dashboard
                 </span>
-                <span class="sidebar-nav-end">
-
+            </a>
+        </li>
+        <li class="sidebar-nav-item">
+            <a href="{{ route('iiv.index') }}" class="sidebar-nav-link">
+                <span class="sidebar-nav-abbr">
+                    IIV
+                </span>
+                <span class="sidebar-nav-name">
+                    IIV
                 </span>
             </a>
         </li>
@@ -32,10 +39,40 @@
                 <li class="sidebar-nav-item">
                     <a href="{{ route('ref-instansi.index') }}" class="sidebar-nav-link">
                         <span class="sidebar-nav-abbr">
-                            In
+                            Ins
                         </span>
                         <span class="sidebar-nav-name">
                             Instansi
+                        </span>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="{{ route('ref-interdepen.index') }}" class="sidebar-nav-link">
+                        <span class="sidebar-nav-abbr">
+                            Int
+                        </span>
+                        <span class="sidebar-nav-name">
+                            Interdepen
+                        </span>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="{{ route('ref-tujuan.index') }}" class="sidebar-nav-link">
+                        <span class="sidebar-nav-abbr">
+                            Tuj
+                        </span>
+                        <span class="sidebar-nav-name">
+                            Tujuan
+                        </span>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="{{ route('ref-fungsi.index') }}" class="sidebar-nav-link">
+                        <span class="sidebar-nav-abbr">
+                            Fun
+                        </span>
+                        <span class="sidebar-nav-name">
+                            Fungsi
                         </span>
                     </a>
                 </li>

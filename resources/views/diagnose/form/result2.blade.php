@@ -11,6 +11,33 @@
         </div>
     @endif
 
+    <!-- Modal -->
+    <div class="modal fade " id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel"></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h5 id="p1"></h5>
+                    <h5 id="p2"></h5>
+                    <h5 id="p3"></h5>
+                    <h5 id="p4"></h5>
+                    <h5 id="p5"></h5>
+                    <h5 id="p6"></h5>
+                    <h5 id="p7"></h5>
+                    <h5 id="p8"></h5>
+                    <h5 id="p9"></h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="card mt-5">
         <h5 class="card-header">Result sistem</h5>
         <div class="card-body">
@@ -25,6 +52,11 @@
                 <textarea class="form-control" name="deskripsi_sistem" id="deskripsi_sistem" rows="3" readonly>{{ $diagnose_data['form1']['deskripsi_sistem'] }}</textarea>
             </div>
 
+            <button type="button" class="btn btn-pill btn-outline-success" data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop" data-target-content="tataKelola">Rekomendasi Tata Kelola</button>
+            <button type="button" class="btn btn-pill btn-outline-success" data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop" data-target-content="sumberDaya">Rekomendasi Sumber Daya</button>
+
             <h3>Dengan rincian sebagai berikut :</h3>
             <br>
 
@@ -33,7 +65,6 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
                         <th scope="col">Nama</th>
                         <th scope="col">Instansi</th>
                         <th scope="col">Nilai resiko</th>
@@ -42,7 +73,6 @@
                 <tbody>
                     @foreach ($sistem_terpilih as $iiv)
                         <tr>
-                            <th scope="row">{{ $k = +1 }}</th>
                             <td>{{ $iiv->nama }}</td>
                             <td>{{ $iiv->refInstansi->nama_instansi }}</td>
                             <td>{{ $iiv->nilai_risiko ?? 0 }}</td>
@@ -52,6 +82,8 @@
             </table>
 
             {{-- <h5>Deskripsi interdependasi Sistem</h5> --}}
+
+
 
             <h5>1. Untuk mencegah keamanan data dan informasi :</h5>
             <table class="table table-bordered">

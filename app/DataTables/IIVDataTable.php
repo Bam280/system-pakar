@@ -2,17 +2,14 @@
 
 namespace App\DataTables;
 
-use App\Models\RefInstansi;
+use App\Models\IIV;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
-use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class RefInstansiDataTable extends DataTable
+class IIVDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -22,21 +19,22 @@ class RefInstansiDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', static fn (RefInstansi $refInstansi) => view('components.datatable-action', [
-                'editLink' => route('ref-instansi.edit', $refInstansi),
-                'deleteLink' => route('ref-instansi.destroy', $refInstansi),
+            ->addColumn('action', static fn (IIV $iiv) => view('components.datatable-action', [
+                'editLink' => route('iiv.edit', $iiv),
+                'deleteLink' => route('iiv.destroy', $iiv),
             ]))
-            ->addColumn('created_at', static fn (RefInstansi $refInstansi) => $refInstansi->created_at?->format('d/m/Y H:i:s'))
-            ->addColumn('updated_at', static fn (RefInstansi $refInstansi) => $refInstansi->updated_at?->format('d/m/Y H:i:s'))
+            ->addColumn('nama_instansi', static fn (IIV $iiv) => $iiv->refInstansi->nama_instansi)
+            ->addColumn('created_at', static fn (IIV $iiv) => $iiv->created_at->format('d/m/Y H:i:s'))
+            ->addColumn('updated_at', static fn (IIV $iiv) => $iiv->updated_at->format('d/m/Y H:i:s'))
             ->setRowId('id');
     }
 
     /**
      * Get the query source of dataTable.
      */
-    public function query(RefInstansi $model): QueryBuilder
+    public function query(IIV $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model->with('refInstansi')->newQuery();
     }
 
     /**
@@ -45,7 +43,7 @@ class RefInstansiDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('refinstansi-table')
+                    ->setTableId('iiv-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     //->dom('Bfrtip')
@@ -63,7 +61,9 @@ class RefInstansiDataTable extends DataTable
                   ->printable(false)
                   ->addClass('text-center'),
             Column::make('id')->hidden(),
+            Column::make('nama'),
             Column::make('nama_instansi'),
+            Column::make('nilai_risiko'),
             Column::make('created_at'),
             Column::make('updated_at'),
         ];
@@ -74,6 +74,6 @@ class RefInstansiDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'RefInstansi_' . date('YmdHis');
+        return 'IIV_' . date('YmdHis');
     }
 }

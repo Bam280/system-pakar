@@ -121,7 +121,7 @@ class DiagnoseFormController extends Controller
             return to_route('diagnose.form.result');
         }
         
-        
+
         session()->put('diagnose_data', $data);
         return to_route('diagnose.form.form3');
     }
@@ -136,12 +136,12 @@ class DiagnoseFormController extends Controller
     public function form3Store(Request $request)
     {
         $data = $request->validate([
-            'deskripsi_risiko' => 'required|string',
-            'deskripsi_kemungkinan' => 'required|string',
+            'deskripsi_risiko' => 'string',
+            'deskripsi_kemungkinan' => 'string',
             'nilai_kemungkinan' => 'required|numeric|min:0|max:5',
-            'deskripsi_dampak_organisasi' => 'required|string',
+            'deskripsi_dampak_organisasi' => 'string',
             'nilai_dampak_organisasi' => 'required|numeric|min:0|max:5',
-            'deskripsi_dampak_nasional' => 'required|string',
+            'deskripsi_dampak_nasional' => 'string',
             'nilai_dampak_nasional' => 'required|numeric|min:0|max:5',
         ]);
 
@@ -175,6 +175,7 @@ class DiagnoseFormController extends Controller
     public function result()
     {
         // dd ($data = session('diagnose_data')); 
+        
         $iiv = IIV::with('refInstansi', 'interdepenSistemIIV', 'interdepenSistemIIV.sistemElektronik')->whereIn('nama', session('diagnose_data')['sistem_terpilih'])->get();
         // dd ($iiv);
         return view('diagnose.form.result', [

@@ -14,7 +14,7 @@
     <div class="card mt-5">
         <h5 class="card-header">Featured</h5>
         <div class="card-body">
-            <form action="" method="post">
+            <form action="{{ route('diagnose.form.form2.store') }}" method="post">
                 @csrf
                 <div class="mb-3">
                     <label for="sistem_terhubung_lan" class="form-label">Sistem Terhubung LAN</label>
