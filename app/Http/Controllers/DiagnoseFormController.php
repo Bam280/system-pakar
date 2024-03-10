@@ -178,6 +178,43 @@ class DiagnoseFormController extends Controller
         
         $iiv = IIV::with('refInstansi', 'interdepenSistemIIV', 'interdepenSistemIIV.sistemElektronik')->whereIn('nama', session('diagnose_data')['sistem_terpilih'])->get();
         // dd ($iiv);
+
+        $session_data = session('diagnose_data');
+        
+        // dd($session_data);
+        // if(!IIV::where('nama', $session_data['form1']['nama_sistem'])->exists()) {
+        // IIV::created([
+        //     'nama' => $session_data['form1']['nama_sistem'],
+        //     'ref_instansi_id' => 0,
+        //     'nilai_risiko' => 0.0,
+        // ]);
+        // }
+
+        IIV::FirstOrCreate([
+            'nama' => $session_data['form1']['nama_sistem'],
+            'ref_instansi_id' => 0,
+            'nilai_risiko' => 0.0,
+        ]);
+
+        if (isset($session_data['form2']['poin_sistem'])) {
+            foreach ($session_data['form2']['poin_sistem'] as $key => $value) {
+                if(!IIV::where('nama', $key)->exists()) {
+                    IIV::FirstOrCreate([
+                        'nama' => $key,
+                        'ref_instansi_id' => 0,
+                        'nilai_risiko' => 0.0,
+                    ]);
+                }
+            }
+        }
+
+        Interdepen::FirstOrCreate([
+            'ref_interdepen_id' => 1,
+            'sistem_elektronik_id' => IIV::where('nama', $session_data['form1']['nama_sistem'])->first()->id,
+            'sistem_iiv_id' => IIV::where('nama', $session_data['form2']['poin_order'][array_key_first($session_data['form2']['poin_order'])]['sistem'][0])->first()->id,
+            'deskripsi_interdepen' => "",
+        ]);
+
         return view('diagnose.form.result', [
             'iiv' => $iiv,
             'diagnose_data' => session('diagnose_data'),
@@ -194,7 +231,7 @@ class DiagnoseFormController extends Controller
         $sistem_terpilih = $iiv->pluck('id')->toArray();
         $sistem_terpilih = array_merge($sistem_terpilih, $iiv->pluck('interdepenSistemIIV')->flatten()->pluck('sistemElektronik')->flatten()->pluck('id')->toArray());
         $sistem_terpilih = IIV::with(['tujuan', 'tujuan.refTujuan', 'tujuan.risiko', 'tujuan.risiko.kendali', 'tujuan.risiko.kendali.refFungsi'])->whereIn('id', $sistem_terpilih)->get();  
-
+        $session_data = session('diagnose_data');
         // $interp = Interdepen::with('sistemElektronik', 'sistemIIV', 'sistemElektronik.interdepenSistemIIV')->whereIn('nama', session('diagnose_data')['sistem_terpilih'])->get();
         // $detail_interp = $interp->pluck('sistemElektronik')->toArray();
         // $detail_interp = array_merge($detail_interp, $interp->pluck('sistemElektronik')->toArray());

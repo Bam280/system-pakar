@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // Ganti konten modal sesuai dengan tombol yang ditekan
             if (targetContent === 'tataKelola') {
                 staticBackdropLabel.innerHTML = 'Rekomendasi Tata Kelola';
-                p1.innerHTML = '<p>1. Regulasai Tujuan Pengamanan</p>' + '<br>' + $diagnose_data['form1']['nama_sistem'] ;
+                p1.innerHTML = '<p>1. Regulasai Tujuan Pengamanan</p>';
                 p2.innerHTML = '<p>2. Regulasi  Fungsi Pengamanan</p>';
                 p3.innerHTML = '<p>3. Regulasi  Manajemen Risiko</p>';
                 p4.innerHTML = '<p>4. Standar Fungsi Pengamanan</p>';

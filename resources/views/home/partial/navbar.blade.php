@@ -74,7 +74,7 @@
             @endcan
         @else
             <a class="navbar-brand logo" href="/">
-                <img src="#" alt="Sistem Pakar Perlindungan Infrastruktur Informasi Vital" />
+                <img src="#" alt="Sistem Pendukung Keputusan Perlindungan Infrastruktur Informasi Vital" />
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

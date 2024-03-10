@@ -6,7 +6,7 @@
     <meta name="keyword" content="coronavirus,covid,medical,treatment,virus">
     <meta name="author" content="Themescare">
     <!-- Title -->
-    <title>Sistem Pakar Perlindungan Infrastruktur Informasi Vital</title>
+    <title>Sistem Pendukung Keputusan Perlindungan Infrastruktur Informasi Vital</title>
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('dist/media/img/pakar-background.svg') }}">
     <!--Bootstrap css-->

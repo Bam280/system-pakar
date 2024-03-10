@@ -11,33 +11,6 @@
         </div>
     @endif
 
-    <!-- Modal -->
-    <div class="modal fade " id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel"></h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <h5 id="p1"></h5>
-                    <h5 id="p2"></h5>
-                    <h5 id="p3"></h5>
-                    <h5 id="p4"></h5>
-                    <h5 id="p5"></h5>
-                    <h5 id="p6"></h5>
-                    <h5 id="p7"></h5>
-                    <h5 id="p8"></h5>
-                    <h5 id="p9"></h5>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="card mt-5">
         <h5 class="card-header">Result sistem</h5>
         <div class="card-body">
@@ -52,16 +25,42 @@
                 <textarea class="form-control" name="deskripsi_sistem" id="deskripsi_sistem" rows="3" readonly>{{ $diagnose_data['form1']['deskripsi_sistem'] }}</textarea>
             </div>
 
-            <button type="button" class="btn btn-pill btn-outline-success" data-bs-toggle="modal"
-                data-bs-target="#staticBackdrop" data-target-content="tataKelola">Rekomendasi Tata Kelola</button>
-            <button type="button" class="btn btn-pill btn-outline-success" data-bs-toggle="modal"
-                data-bs-target="#staticBackdrop" data-target-content="sumberDaya">Rekomendasi Sumber Daya</button>
+            <button type="button" class="btn btn-pill btn-outline-success">Cetak Hasil</button>
 
             <h3>Dengan rincian sebagai berikut :</h3>
             <br>
 
             <h5>Sistem Terpilih</h5>
 
+            {{-- <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Nama</th>
+                        @if (count($iiv) > 0)
+                            <th scope="col">Instansi</th>
+                        @endif
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (count($iiv) > 0)
+                        @foreach ($iiv as $k => $item)
+                            <tr>
+                                <td>
+                                    {{ $item->nama }}
+                                </td>
+                                <td>{{ $item->refInstansi->nama_instansi }}</td>
+                            </tr>
+                        @endforeach
+                        @else
+                            @foreach ($diagnose_data['form2']['poin_order'] as $poin_order)
+                                <tr>
+                                    <td>{{ $poin_order['sistem'][0] }}</td>
+                                </tr>
+                            @break
+                        @endforeach
+                    @endif
+                </tbody>
+            </table> --}}
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -80,6 +79,7 @@
                     @endforeach
                 </tbody>
             </table>
+
 
             {{-- <h5>Deskripsi interdependasi Sistem</h5> --}}
 
@@ -216,7 +216,31 @@
                 </tbody>
             </table>
 
-            {{-- <ul>
+            <h5>Rekomendasi Sumber Daya</h5>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($sistem_terpilih as $iiv)
+                        @foreach ($iiv->tujuan as $tujuan)
+                            @foreach ($tujuan->risiko as $risiko)
+                                @foreach ($risiko->kendali as $kendali)
+                                    @if ($kendali->ref_fungsi_id == 8)
+                                        <tr>
+                                            <td>{{ $kendali->nama_kendali }}</td>
+                                            <td>{{ $kendali->deskripsi_kendali }}</td>
+                                        </tr>
+                                    @endif
+                                @endforeach
+                            @endforeach
+                        @endforeach
+                    @endforeach
+                </tbody>
+
+                {{-- <ul>
                 @foreach ($sistem_terpilih as $iiv)
                     <li>
                         {{ $iiv->nama }} - {{ $iiv->refInstansi->nama_instansi }} - {{ $iiv->nilai_risiko ?? 0 }}

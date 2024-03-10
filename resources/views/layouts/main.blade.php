@@ -32,7 +32,6 @@
     </script>
     <script src="{{ asset('/dist/js/vendor.js') }}"></script>
     <script src="{{ asset('/dist/js/adminx.js') }}"></script>
-    <script src="{{ asset('/dist/js/modal.js') }}"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 

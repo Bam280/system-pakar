@@ -29,16 +29,18 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th scope="col">Namas sistem terinput</th>
+                        <th scope="col">Nama sistem terinput</th>
                         <th scope="col">Nilai interdepenSistem</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($diagnose_data['form2']['poin_order'] as $poin_order)
-                        <tr>
-                            <td>{{ $poin_order['sistem'][0] }}</td>
-                            <td>{{ $poin_order['poin'] }}</td>
-                        </tr>
+                        @foreach ($poin_order['sistem'] as $nilai_sistem)
+                            <tr>
+                                <td>{{ $nilai_sistem }}</td>
+                                <td>{{ $poin_order['poin'] }}</td>
+                            </tr>
+                        @endforeach
                     @endforeach
                 </tbody>
             </table>

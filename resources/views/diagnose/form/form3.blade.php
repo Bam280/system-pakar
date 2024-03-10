@@ -11,6 +11,7 @@
         </div>
     @endif
 
+
     <div class="card mt-5">
         <h5 class="card-header">Featured</h5>
         <div class="card-body">
@@ -19,20 +20,23 @@
                 <thead>
                     <tr>
                         <th scope="col">Nama sistem terinput</th>
-                        <th scope="col">Nama sistem terinput</th>
                         <th scope="col">Nilai interdepenSistem</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($diagnose_data['form2']['poin_order'] as $poin_order)
-                        <tr>
-                            <td>{{ $poin_order['sistem'][0] }}</td>
-                            <td>{{ $poin_order['sistem'][1] }}</td>
-                            <td>{{ $poin_order['poin'] }}</td>
-                        </tr>
+                        @foreach ($poin_order['sistem'] as $nilai_sistem)
+                            <tr>
+                                <td>{{ $nilai_sistem }}</td>
+                                <td>{{ $poin_order['poin'] }}</td>
+                            </tr>
+                        @endforeach
                     @endforeach
                 </tbody>
             </table>
+
+            <h5>Dari hasil diatas ditemukan bahwa ada dua sistem yang memiliki nilai interdependasi yang sama, diperlukan
+                data tambahan untuk dilakukan penilaian lebih lanjut </h5>
 
             <form action="" method="post">
                 @csrf
@@ -78,6 +82,7 @@
 
                 <button type="submit" class="btn btn-primary">Berikutnya</button>
             </form>
+            <a class="btn btn-danger">Keluar</a>
         </div>
     </div>
 @endsection

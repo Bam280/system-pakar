@@ -8,10 +8,6 @@ use App\Http\Controllers\RefInterdepenController;
 use App\Http\Controllers\RefTujuanController;
 use App\Http\Controllers\RefFungsiController;
 use App\Http\Controllers\IIVController;
-use App\Models\IIV;
-use App\Models\RefInterdepen;
-use App\Models\RefTujuan;
-use App\Models\RefFungsi;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -65,6 +61,8 @@ Route::group(
         Route::post('/result', [DiagnoseFormController::class, 'resultStore'])->name('result.store');
 
         Route::post('/reset', [DiagnoseFormController::class, 'reset'])->name('reset');
+
+        Route::get('/print', [DiagnoseFormController::class, 'print'])->name('print');
     }
 );
 
