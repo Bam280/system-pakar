@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\IIV;
 use App\Models\Interdepen;
 use Illuminate\Http\Request;
+use PDF;
 
 class DiagnoseFormController extends Controller
 {
@@ -241,6 +242,23 @@ class DiagnoseFormController extends Controller
             'sistem_terpilih' => $sistem_terpilih,
             'diagnose_data' => session('diagnose_data')
         ]);
+    }
+
+    public function print()
+    {
+        $name = session('diagnose_data')['form1']['nama_sistem'];
+        $date = date('Y-m-d');
+        $iiv = IIV::with('refInstansi', 'interdepenSistemIIV', 'interdepenSistemIIV.sistemElektronik')->whereIn('nama', session('diagnose_data')['sistem_terpilih'])->get();
+
+        $sistem_terpilih = $iiv->pluck('id')->toArray();
+        $sistem_terpilih = array_merge($sistem_terpilih, $iiv->pluck('interdepenSistemIIV')->flatten()->pluck('sistemElektronik')->flatten()->pluck('id')->toArray());
+        $sistem_terpilih = IIV::with(['tujuan', 'tujuan.refTujuan', 'tujuan.risiko', 'tujuan.risiko.kendali', 'tujuan.risiko.kendali.refFungsi'])->whereIn('id', $sistem_terpilih)->get();  
+        $session_data = session('diagnose_data');
+        
+        $pdf = PDF::loadview('diagnose.cetak.index',[
+            'sistem_terpilih' => $sistem_terpilih,
+            'diagnose_data' => session('diagnose_data')]);
+        return $pdf->stream($name . $date . '.pdf');
     }
 
     public function reset()

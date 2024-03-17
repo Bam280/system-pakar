@@ -25,7 +25,7 @@
                 <textarea class="form-control" name="deskripsi_sistem" id="deskripsi_sistem" rows="3" readonly>{{ $diagnose_data['form1']['deskripsi_sistem'] }}</textarea>
             </div>
 
-            <button type="button" class="btn btn-pill btn-outline-success">Cetak Hasil</button>
+            <a href="{{ route('diagnose.form.print') }}" class="btn btn-pill btn-outline-success">Cetak Hasil</a>
 
             <h3>Dengan rincian sebagai berikut :</h3>
             <br>
