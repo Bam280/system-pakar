@@ -15,6 +15,7 @@ class IIV extends Model
         'nama',
         'ref_instansi_id',
         'nilai_risiko',
+        'user_id',
     ];
 
     public function user()

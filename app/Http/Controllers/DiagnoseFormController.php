@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\IIV;
 use App\Models\Interdepen;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use PDF;
 
 class DiagnoseFormController extends Controller
@@ -174,26 +176,14 @@ class DiagnoseFormController extends Controller
     }
 
     public function result()
-    {
-        // dd ($data = session('diagnose_data')); 
-        
+    {        
         $iiv = IIV::with('refInstansi', 'interdepenSistemIIV', 'interdepenSistemIIV.sistemElektronik')->whereIn('nama', session('diagnose_data')['sistem_terpilih'])->get();
-        // dd ($iiv);
 
         $session_data = session('diagnose_data');
-        
-        // dd($session_data);
-        // if(!IIV::where('nama', $session_data['form1']['nama_sistem'])->exists()) {
-        // IIV::created([
-        //     'nama' => $session_data['form1']['nama_sistem'],
-        //     'ref_instansi_id' => 0,
-        //     'nilai_risiko' => 0.0,
-        // ]);
-        // }
 
         IIV::FirstOrCreate([
             'nama' => $session_data['form1']['nama_sistem'],
-            'ref_instansi_id' => 0,
+            'user_id' => Auth::user()->id,
             'nilai_risiko' => 0.0,
         ]);
 
@@ -202,7 +192,7 @@ class DiagnoseFormController extends Controller
                 if(!IIV::where('nama', $key)->exists()) {
                     IIV::FirstOrCreate([
                         'nama' => $key,
-                        'ref_instansi_id' => 0,
+                        'user_id' => Auth::user()->id,
                         'nilai_risiko' => 0.0,
                     ]);
                 }
@@ -255,7 +245,7 @@ class DiagnoseFormController extends Controller
         $sistem_terpilih = IIV::with(['tujuan', 'tujuan.refTujuan', 'tujuan.risiko', 'tujuan.risiko.kendali', 'tujuan.risiko.kendali.refFungsi'])->whereIn('id', $sistem_terpilih)->get();  
         $session_data = session('diagnose_data');
         
-        $pdf = PDF::loadview('diagnose.cetak.index',[
+        $pdf = FacadePdf::loadview('diagnose.cetak.index',[
             'sistem_terpilih' => $sistem_terpilih,
             'diagnose_data' => session('diagnose_data')]);
         return $pdf->stream($name . $date . '.pdf');

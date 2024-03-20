@@ -2,8 +2,10 @@
 
 namespace App\DataTables;
 
+use App\Enums\UserRole;
 use App\Models\IIV;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Column;
@@ -23,7 +25,7 @@ class IIVDataTable extends DataTable
                 'editLink' => route('iiv.edit', $iiv),
                 'deleteLink' => route('iiv.destroy', $iiv),
             ]))
-            ->addColumn('nama_instansi', static fn (IIV $iiv) => $iiv->refInstansi->nama_instansi)
+            ->addColumn('nama_instansi', static fn (IIV $iiv) => $iiv->refInstansi?->nama_instansi)
             ->addColumn('created_at', static fn (IIV $iiv) => $iiv->created_at->format('d/m/Y H:i:s'))
             ->addColumn('updated_at', static fn (IIV $iiv) => $iiv->updated_at->format('d/m/Y H:i:s'))
             ->setRowId('id');
@@ -34,7 +36,10 @@ class IIVDataTable extends DataTable
      */
     public function query(IIV $model): QueryBuilder
     {
-        return $model->with('refInstansi')->newQuery();
+        return $model
+        ->when(Auth::user()->role !== UserRole::ADMIN, static fn ($query) => $query->where('user_id', Auth::user()->id))
+        ->with('refInstansi')
+        ->newQuery();
     }
 
     /**

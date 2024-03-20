@@ -32,15 +32,19 @@ Route::group(
     function () {
         Route::view('dashboard', 'pages.dashboard')->name('dashboard');
         Route::resource('iiv', IIVController::class)->except('show');
-        Route::resource('ref-instansi', RefInstansiController::class)->except('show');
-        Route::resource('ref-interdepen', RefInterdepenController::class)->except('show');
-        Route::resource('ref-tujuan', RefTujuanController::class)->except('show');
-        Route::resource('ref-fungsi', RefFungsiController::class)->except('show');
+
+        Route::group(['middleware' => 'can:admin-access'], function () {
+            Route::resource('ref-instansi', RefInstansiController::class)->except('show');
+            Route::resource('ref-interdepen', RefInterdepenController::class)->except('show');
+            Route::resource('ref-tujuan', RefTujuanController::class)->except('show');
+            Route::resource('ref-fungsi', RefFungsiController::class)->except('show');        
+        });
     }
 );
 
 Route::group(
     [
+        'middleware' => 'auth',
         'prefix' => 'diagnose/form',
         'as' => 'diagnose.form.',
     ],

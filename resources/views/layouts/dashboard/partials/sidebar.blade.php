@@ -11,6 +11,16 @@
             </a>
         </li>
         <li class="sidebar-nav-item">
+            <a href="{{ route('diagnose.form.form1') }}" class="sidebar-nav-link">
+                <span class="sidebar-nav-abbr">
+                    D
+                </span>
+                <span class="sidebar-nav-name">
+                    Diagnose
+                </span>
+            </a>
+        </li>
+        <li class="sidebar-nav-item">
             <a href="{{ route('iiv.index') }}" class="sidebar-nav-link">
                 <span class="sidebar-nav-abbr">
                     IIV
@@ -21,6 +31,7 @@
             </a>
         </li>
 
+        @can('admin-access')
         <li class="sidebar-nav-item">
             <a class="sidebar-nav-link collapsed" data-toggle="collapse" href="#example" aria-expanded="false"
                 aria-controls="example">
@@ -78,6 +89,7 @@
                 </li>
             </ul>
         </li>
+        @endcan
 
     </ul>
 </div>

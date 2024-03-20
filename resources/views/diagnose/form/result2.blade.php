@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.dashboard.main')
 
 @section('content')
     @if ($errors->any())
@@ -25,7 +25,7 @@
                 <textarea class="form-control" name="deskripsi_sistem" id="deskripsi_sistem" rows="3" readonly>{{ $diagnose_data['form1']['deskripsi_sistem'] }}</textarea>
             </div>
 
-            <a href="{{ route('diagnose.form.print') }}" class="btn btn-pill btn-outline-success">Cetak Hasil</a>
+            <a href="{{ route('diagnose.form.print') }}" target="_blank" class="btn btn-pill btn-outline-success">Cetak Hasil</a>
 
             <h3>Dengan rincian sebagai berikut :</h3>
             <br>
@@ -73,7 +73,7 @@
                     @foreach ($sistem_terpilih as $iiv)
                         <tr>
                             <td>{{ $iiv->nama }}</td>
-                            <td>{{ $iiv->refInstansi->nama_instansi }}</td>
+                            <td>{{ $iiv->refInstansi?->nama_instansi }}</td>
                             <td>{{ $iiv->nilai_risiko ?? 0 }}</td>
                         </tr>
                     @endforeach

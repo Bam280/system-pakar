@@ -103,7 +103,7 @@
         @foreach ($sistem_terpilih as $iiv)
             <tr class="items">
                 <td>{{ $iiv->nama }}</td>
-                <td>{{ $iiv->refInstansi->nama_instansi }}</td>
+                <td>{{ $iiv->refInstansi?->nama_instansi }}</td>
                 <td>{{ $iiv->nilai_risiko ?? 0 }}</td>
             </tr>
         @endforeach

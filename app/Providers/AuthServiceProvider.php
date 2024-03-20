@@ -2,8 +2,9 @@
 
 namespace App\Providers;
 
-// use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use App\Enums\UserRole;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -21,6 +22,17 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        $this->registerPolicies();
+
+        /**
+         * Define permissions
+         * 
+         * Please add permission at app/Enums/UserRole.php permissions() method
+         */
+        foreach (UserRole::permissions() as $permission => $roles) {
+            Gate::define($permission, function ($user) use ($roles) {
+                return in_array($user->role, $roles);
+            });
+        }
     }
 }
