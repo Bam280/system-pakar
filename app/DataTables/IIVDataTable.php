@@ -25,6 +25,7 @@ class IIVDataTable extends DataTable
                 'editLink' => route('iiv.edit', $iiv),
                 'deleteLink' => route('iiv.destroy', $iiv),
             ]))
+            ->addColumn('deskripsi_sistem', static fn (IIV $iiv) => $iiv->deskripsi_sistem)
             ->addColumn('nama_instansi', static fn (IIV $iiv) => $iiv->refInstansi?->nama_instansi)
             ->addColumn('created_at', static fn (IIV $iiv) => $iiv->created_at->format('d/m/Y H:i:s'))
             ->addColumn('updated_at', static fn (IIV $iiv) => $iiv->updated_at->format('d/m/Y H:i:s'))
@@ -67,6 +68,7 @@ class IIVDataTable extends DataTable
                   ->addClass('text-center'),
             Column::make('id')->hidden(),
             Column::make('nama'),
+            Column::make('deskripsi_sistem'),
             Column::make('nama_instansi'),
             Column::make('nilai_risiko'),
             Column::make('created_at'),

@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand justify-content-between fixed-top">
     <a class="navbar-brand mb-0 h1 d-none d-md-block" href="index.html">
         {{-- <img src="./demo/img/logo.png" class="navbar-brand-image d-inline-block align-top mr-2" alt=""> --}}
-        AdminX
+        Dashboard Sistem Pendukung Keputusan Perlindungan Infrastruktur Informasi Vital
     </a>
 
     <div class="d-flex flex-1 d-block d-md-none">
@@ -22,7 +22,7 @@
                 <a class="dropdown-item" href="#">My Tasks</a>
                 <a class="dropdown-item" href="#">Settings</a>
                 <div class="dropdown-divider"></div>
-                
+
 
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf

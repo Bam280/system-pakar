@@ -12,7 +12,7 @@
     @endif
 
     <div class="card mt-5">
-        <h5 class="card-header">Featured</h5>
+        <h5 class="card-header">Identitas Sistem Elektronik yang akan dianalisis</h5>
         <div class="card-body">
             <form action="" method="post">
                 @csrf
@@ -29,7 +29,7 @@
 
                 <div class="mb-3 form-check">
                     <label class="form-check-label" for="kesamaan_sistem">Apakah Sistem yang di input memiliki
-                        interdependensi dengan sistem lain ?</label>
+                        keterhubungan dengan sistem lain ?</label>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="kesamaan_sistem" id="kesamaan_sistem"
                             value="1" checked>

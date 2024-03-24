@@ -28,7 +28,6 @@ class DiagnoseFormController extends Controller
         $data = $request->validate([
             'nama_sistem' => 'required',
             'deskripsi_sistem' => 'required',
-
             'kesamaan_sistem' => 'nullable',
         ]);
 
@@ -139,12 +138,8 @@ class DiagnoseFormController extends Controller
     public function form3Store(Request $request)
     {
         $data = $request->validate([
-            'deskripsi_risiko' => 'string',
-            'deskripsi_kemungkinan' => 'string',
             'nilai_kemungkinan' => 'required|numeric|min:0|max:5',
-            'deskripsi_dampak_organisasi' => 'string',
             'nilai_dampak_organisasi' => 'required|numeric|min:0|max:5',
-            'deskripsi_dampak_nasional' => 'string',
             'nilai_dampak_nasional' => 'required|numeric|min:0|max:5',
         ]);
 
@@ -183,6 +178,7 @@ class DiagnoseFormController extends Controller
 
         IIV::FirstOrCreate([
             'nama' => $session_data['form1']['nama_sistem'],
+            'deskripsi_sistem' => $session_data['form1']['deskripsi_sistem'],
             'user_id' => Auth::user()->id,
             'nilai_risiko' => 0.0,
         ]);

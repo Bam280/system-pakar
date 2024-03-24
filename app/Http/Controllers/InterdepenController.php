@@ -61,6 +61,6 @@ class InterdepenController extends Controller
      */
     public function destroy(interdepen $interdepen)
     {
-        //
+        $interdepen -> delete();
     }
 }

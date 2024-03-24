@@ -37,7 +37,9 @@
 
             <h5>Dari hasil diatas ditemukan bahwa ada dua sistem yang memiliki nilai interdependasi yang sama, diperlukan
                 data tambahan untuk dilakukan penilaian lebih lanjut </h5>
-
+            <br>
+            <h4><strong>Penilaian Resiko</strong></h4>
+            <br>
             <form action="" method="post">
                 @csrf
                 <div class="mb-3">
@@ -50,10 +52,11 @@
                     <textarea class="form-control" name="deskripsi_kemungkinan" id="deskripsi_kemungkinan" rows="3">{{ old('deskripsi_kemungkinan') ?? @$data_form3['deskripsi_kemungkinan'] }}</textarea>
                 </div>
 
-                <div class="mb-3">
+                <div class="mb-3 range-wrap">
                     <label for="nilai_kemungkinan" class="form-label">Nilai Kemungkinan (0-5)</label>
                     <input type="range" class="form-range" id="nilai_kemungkinan" name="nilai_kemungkinan" min="0"
                         max="5" value="{{ old('nilai_kemungkinan') ?? @$data_form3['nilai_kemungkinan'] }}">
+                    <output class="bubble"></output>
                 </div>
 
                 <div class="mb-3">
@@ -61,11 +64,12 @@
                     <textarea class="form-control" name="deskripsi_dampak_organisasi" id="deskripsi_dampak_organisasi" rows="3">{{ old('deskripsi_dampak_organisasi') ?? @$data_form3['deskripsi_dampak_organisasi'] }}</textarea>
                 </div>
 
-                <div class="mb-3">
+                <div class="mb-3 range-wrap">
                     <label for="nilai_dampak_organisasi" class="form-label">Nilai Dampak Organisasi (0-5)</label>
                     <input type="range" class="form-range" id="nilai_dampak_organisasi" name="nilai_dampak_organisasi"
                         min="0" max="5"
                         value="{{ old('nilai_dampak_organisasi') ?? @$data_form3['nilai_dampak_organisasi'] }}">
+                    <output class="bubble"></output>
                 </div>
 
                 <div class="mb-3">
@@ -73,17 +77,23 @@
                     <textarea class="form-control" name="deskripsi_dampak_nasional" id="deskripsi_dampak_nasional" rows="3">{{ old('deskripsi_dampak_nasional') ?? @$data_form3['deskripsi_dampak_nasional'] }}</textarea>
                 </div>
 
-                <div class="mb-3">
+                <div class="mb-3 range-wrap">
                     <label for="nilai_dampak_nasional" class="form-label">Nilai Dampak Nasional (0-5)</label>
                     <input type="range" class="form-range" id="nilai_dampak_nasional" name="nilai_dampak_nasional"
                         min="0" max="5"
                         value="{{ old('nilai_dampak_nasional') ?? @$data_form3['nilai_dampak_nasional'] }}">
+                    <output class="bubble"></output>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Berikutnya</button>
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <button type="submit" class="btn btn-primary">Berikutnya</button>
             </form>
-            <a class="btn btn-danger">Keluar</a>
+            <form action="{{ route('diagnose.form.reset') }}" method="POST">
+                @csrf
+                <button type="submit" class="btn btn-danger">Reset</button>
+            </form>
         </div>
+    </div>
     </div>
 @endsection
 

@@ -12,7 +12,7 @@
     @endif
 
     <div class="card mt-5">
-        <h5 class="card-header">Featured</h5>
+        <h5 class="card-header">Detail Keterhubungan</h5>
         <div class="card-body">
             <form action="{{ route('diagnose.form.form2.store') }}" method="post">
                 @csrf
@@ -52,18 +52,20 @@
                     </select>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Berikutnya</button>
+                <div class="mt-3 d-grid gap-2 mx-auto">
+                    <button type="submit" class="btn btn-primary">Berikutnya</button>
 
             </form>
 
-            <div class="mt-3 d-flex gap-2">
-                <a href="{{ route('diagnose.form.form1') }}" class="btn btn-warning">Sebelumnya</a>
-                <form action="{{ route('diagnose.form.reset') }}" method="POST">
-                    @csrf
-                    <button type="submit" class="btn btn-danger">Reset</button>
-                </form>
-            </div>
+            <a href="{{ route('diagnose.form.form1') }}" class="btn btn-warning">Sebelumnya</a>
+            <form action="{{ route('diagnose.form.reset') }}" method="POST">
+                @csrf
+                <button type="submit" class="btn btn-danger">Reset</button>
+            </form>
         </div>
+    </div>
+    </div>
+    </div>
     </div>
 
 

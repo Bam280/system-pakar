@@ -26,6 +26,7 @@ class RefInterdepenDataTable extends DataTable
                 'editLink' => route('ref-interdepen.edit', $refInterdepen),
                 'deleteLink' => route('ref-interdepen.destroy', $refInterdepen),
             ]))
+            
             ->addColumn('created_at', static fn (RefInterdepen $refInterdepen) => $refInterdepen->created_at->format('d/m/Y H:i:s'))
             ->addColumn('updated_at', static fn (RefInterdepen $refInterdepen) => $refInterdepen->updated_at->format('d/m/Y H:i:s'))
             ->setRowId('id');

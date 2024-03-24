@@ -13,6 +13,7 @@ class IIV extends Model
 
     protected $fillable = [
         'nama',
+        'deskripsi_sistem',
         'ref_instansi_id',
         'nilai_risiko',
         'user_id',
