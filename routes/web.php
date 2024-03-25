@@ -8,6 +8,7 @@ use App\Http\Controllers\RefInterdepenController;
 use App\Http\Controllers\RefTujuanController;
 use App\Http\Controllers\RefFungsiController;
 use App\Http\Controllers\IIVController;
+use App\Http\Controllers\InterdepenController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,6 +33,7 @@ Route::group(
     function () {
         Route::view('dashboard', 'pages.dashboard')->name('dashboard');
         Route::resource('iiv', IIVController::class)->except('show');
+        Route::resource('interdepen', InterdepenController::class)->except('show');
 
         Route::group(['middleware' => 'can:admin-access'], function () {
             Route::resource('ref-instansi', RefInstansiController::class)->except('show');

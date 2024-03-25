@@ -43,4 +43,16 @@ class IIV extends Model
     {
         return $this->hasMany(Tujuan::class, 'iiv_id');
     }
+
+
+    public function sumberdaya()
+    {
+        return $this->hasMany(Sumberdaya::class);
+    }
+
+    public function tataKelola()
+    {
+        return $this->hasMany(TataKelola::class);
+    }
+
 }

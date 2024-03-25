@@ -1,7 +1,7 @@
 @php
-    $title = $iiv->exists ? 'Edit' : 'Tambah';
-    $route = $iiv->exists ? route('iiv.update', $iiv->id) : route('iiv.store');
-    $method = $iiv->exists ? 'PUT' : 'POST';
+    $title = $interdepen->exists ? 'Edit' : 'Tambah';
+    $route = $interdepen->exists ? route('interdepen.update', $iiv->id) : route('interdepen.store');
+    $method = $interdepen->exists ? 'PUT' : 'POST';
 @endphp
 
 
@@ -30,14 +30,15 @@
                         @csrf
                         @method($method)
                         <div class="form-group">
-                            <label class="form-label" for="nama">Nama IIV</label>
-                            <input type="text" class="form-control" id="nama" name="nama"
-                                value="{{ old('nama') ?? $iiv->nama }}" placeholder="Nama IIV">
+                            <label class="form-label" for="ref_interdepen_id">Ref Interdepen</label>
+                            <input type="text" class="form-control" id="ref_interdepen_id" name="ref_interdepen_id"
+                                value="{{ old('ref_interdepen_id') ?? $interdepen->ref_interdepen_id }}"
+                                placeholder="Nama IIV">
                         </div>
                         <div class="form-group">
-                            <label class="form-label" for="nama">Deskripsi</label>
-                            <input type="text" class="form-control" id="deskripsi_sistem" name="deskripsi_sistem"
-                                value="{{ old('deskripsi_sistem') ?? $iiv->deskripsi_sistem }}"
+                            <label class="form-label" for="sistem_elektronik_id">Deskripsi</label>
+                            <input type="text" class="form-control" id="sistem_elektronik_id" name="sistem_elektronik_id"
+                                value="{{ old('sistem_elektronik_id') ?? $iiv->sistem_elektronik_id }}"
                                 placeholder="Deskripsi Sistem">
                         </div>
                         <div class="form-group">

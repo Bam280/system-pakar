@@ -70,17 +70,19 @@
                     <tr>
                         <th scope="col">Nama</th>
                         <th scope="col">Instansi</th>
-                        <th scope="col">Nilai resiko</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($sistem_terpilih as $iiv)
+
+                    @foreach ($iiv as $k => $item)
                         <tr>
-                            <td>{{ $iiv->nama }}</td>
-                            <td>{{ $iiv->refInstansi?->nama_instansi }}</td>
-                            <td>{{ $iiv->nilai_risiko ?? 0 }}</td>
+                            <td>
+                                {{ $item->nama }}
+                            </td>
+                            <td>{{ $item->refInstansi->nama_instansi }}</td>
                         </tr>
                     @endforeach
+
                 </tbody>
             </table>
 

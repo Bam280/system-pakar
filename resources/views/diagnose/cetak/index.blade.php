@@ -93,21 +93,22 @@
     <br>
 
     <h5>Dengan rincian sebagai berikut :</h5>
-    <h5>Sistem Terpilih</h5>
+
+    {{-- <h5>Sistem Terpilih</h5>
     <table class="products">
         <tr>
             <th>Nama</th>
             <th>Instansi</th>
             <th>Nilai resiko</th>
         </tr>
-        @foreach ($sistem_terpilih as $iiv)
+        @foreach ($iiv as $k => $item)
             <tr class="items">
-                <td>{{ $iiv->nama }}</td>
-                <td>{{ $iiv->refInstansi?->nama_instansi }}</td>
-                <td>{{ $iiv->nilai_risiko ?? 0 }}</td>
+                <td>{{ $item->nama }}</td>
+                <td>{{ $item->refInstansi?->nama_instansi }}</td>
+                <td>{{ $item->nilai_risiko ?? 0 }}</td>
             </tr>
         @endforeach
-    </table>
+    </table> --}}
 
     <br>
 

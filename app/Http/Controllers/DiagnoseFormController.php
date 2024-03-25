@@ -225,6 +225,7 @@ class DiagnoseFormController extends Controller
         // dd ($detail_interp);
 
         return view('diagnose.form.result2',[
+            'iiv' => $iiv,
             'sistem_terpilih' => $sistem_terpilih,
             'diagnose_data' => session('diagnose_data')
         ]);
@@ -239,9 +240,12 @@ class DiagnoseFormController extends Controller
         $sistem_terpilih = $iiv->pluck('id')->toArray();
         $sistem_terpilih = array_merge($sistem_terpilih, $iiv->pluck('interdepenSistemIIV')->flatten()->pluck('sistemElektronik')->flatten()->pluck('id')->toArray());
         $sistem_terpilih = IIV::with(['tujuan', 'tujuan.refTujuan', 'tujuan.risiko', 'tujuan.risiko.kendali', 'tujuan.risiko.kendali.refFungsi'])->whereIn('id', $sistem_terpilih)->get();  
+        // $sumberdaya = IIV::with('sumberdaya')->whereIn('id', $sistem_terpilih->pluck('id')->toArray())->get();
+        // $tataKelola = IIV::with('tataKelola')->whereIn('id', $sistem_terpilih->pluck('id')->toArray())->get();
         $session_data = session('diagnose_data');
         
         $pdf = FacadePdf::loadview('diagnose.cetak.index',[
+            'iiv' => $iiv,
             'sistem_terpilih' => $sistem_terpilih,
             'diagnose_data' => session('diagnose_data')]);
         return $pdf->stream($name . $date . '.pdf');

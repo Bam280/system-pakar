@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\IIVDataTable;
-use App\Models\interdepen;
 use App\Models\IIV;
 use Illuminate\Http\Request;
 
