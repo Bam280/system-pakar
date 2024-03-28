@@ -23,7 +23,7 @@ class InterdepenDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->addColumn('action', static fn (Interdepen $interdepen) => view('components.datatable-action', [
                 'editLink' => route('interdepen.edit', $interdepen),
-                'deleteLink' => route('interdepen.destroy', $interdepen),
+                'deleteLink' => Auth::user()->role === UserRole::ADMIN ? route('interdepen.destroy', $interdepen) : '#',
             ]))
             ->addColumn('ref_interdepen_id', static fn (Interdepen $interdepen) => $interdepen->refInterdepen->indikator_interdepen)
             ->addColumn('sistem_elektronik_id', static fn (Interdepen $interdepen) => $interdepen->sistemElektronik->nama)
@@ -70,9 +70,9 @@ class InterdepenDataTable extends DataTable
                   ->addClass('text-center'),
             Column::make('id')->hidden(),
             Column::make('ref_interdepen_id'),
-            Column::make('sistem_elektronik_id'),
-            Column::make('sistem_iiv_id'),
-            Column::make('deskripsi_interdepen'),
+            Column::make('sistem_elektronik_id')->title('Sistem Elektronik'),
+            Column::make('sistem_iiv_id')->title('Sistem IIV'),
+            Column::make('deskripsi_interdepen')->title('Deskripsi Interdepen'),
             Column::make('created_at'),
             Column::make('updated_at'),
         ];

@@ -175,6 +175,7 @@ class DiagnoseFormController extends Controller
         $iiv = IIV::with('refInstansi', 'interdepenSistemIIV', 'interdepenSistemIIV.sistemElektronik')->whereIn('nama', session('diagnose_data')['sistem_terpilih'])->get();
 
         $session_data = session('diagnose_data');
+        dd($session_data);
 
         IIV::FirstOrCreate([
             'nama' => $session_data['form1']['nama_sistem'],
