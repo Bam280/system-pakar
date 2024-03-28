@@ -39,7 +39,7 @@ class DiagnoseFormController extends Controller
             return to_route('diagnose.form.form2');
         }
 
-        return 'not yet implemented';
+        // return 'not yet implemented';
         return to_route('diagnose.form.form4');
     }
 
