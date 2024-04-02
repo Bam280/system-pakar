@@ -36,6 +36,7 @@ Route::group(
         Route::resource('iiv', IIVController::class)->except('show');
         
         Route::group(['middleware' => 'can:admin-access'], function () {
+            Route::resource('interdepen', InterdepenController::class)->except('show');
             Route::resource('user', UserController::class)->except('show');
             Route::resource('ref-instansi', RefInstansiController::class)->except('show');
             Route::resource('ref-interdepen', RefInterdepenController::class)->except('show');
