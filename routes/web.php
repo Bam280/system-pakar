@@ -9,6 +9,7 @@ use App\Http\Controllers\RefTujuanController;
 use App\Http\Controllers\RefFungsiController;
 use App\Http\Controllers\IIVController;
 use App\Http\Controllers\InterdepenController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,6 +37,7 @@ Route::group(
         Route::resource('interdepen', InterdepenController::class)->except('show');
 
         Route::group(['middleware' => 'can:admin-access'], function () {
+            Route::resource('user', UserController::class)->except('show');
             Route::resource('ref-instansi', RefInstansiController::class)->except('show');
             Route::resource('ref-interdepen', RefInterdepenController::class)->except('show');
             Route::resource('ref-tujuan', RefTujuanController::class)->except('show');
