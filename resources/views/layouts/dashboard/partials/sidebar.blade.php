@@ -100,6 +100,16 @@
                     </li>
                 </ul>
             </li>
+            <li class="sidebar-nav-item">
+                <a href="{{ route('user.index') }}" class="sidebar-nav-link">
+                    <span class="sidebar-nav-abbr">
+                        U
+                    </span>
+                    <span class="sidebar-nav-name">
+                        User
+                    </span>
+                </a>
+            </li>    
         @endcan
 
     </ul>

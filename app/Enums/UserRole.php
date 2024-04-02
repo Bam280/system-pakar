@@ -12,6 +12,14 @@ enum UserRole: string
 
     case USER = 'user';
 
+    public function description(): string
+    {
+        return match ($this) {
+            self::ADMIN => 'Admin',
+            self::USER => 'User',
+        };
+    }
+
     /**
      * Get all permissions
      * Permissions are defined by role and action
