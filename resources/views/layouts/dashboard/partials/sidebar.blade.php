@@ -30,18 +30,19 @@
                 </span>
             </a>
         </li>
-        <li class="sidebar-nav-item">
-            <a href="{{ route('interdepen.index') }}" class="sidebar-nav-link">
-                <span class="sidebar-nav-abbr">
-                    IDP
-                </span>
-                <span class="sidebar-nav-name">
-                    IDP
-                </span>
-            </a>
-        </li>
+
 
         @can('admin-access')
+            <li class="sidebar-nav-item">
+                <a href="{{ route('interdepen.index') }}" class="sidebar-nav-link">
+                    <span class="sidebar-nav-abbr">
+                        IDP
+                    </span>
+                    <span class="sidebar-nav-name">
+                        IDP
+                    </span>
+                </a>
+            </li>
             <li class="sidebar-nav-item">
                 <a class="sidebar-nav-link collapsed" data-toggle="collapse" href="#example" aria-expanded="false"
                     aria-controls="example">

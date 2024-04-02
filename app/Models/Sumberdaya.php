@@ -13,16 +13,23 @@ class Sumberdaya extends Model
 
     // Define the fillable columns
     protected $fillable = [
-        'ref_sumber_daya_id',
         'iiv_id',
-        'deskripsi_sumber_daya',
+        'deskripsi_sumberdaya',
+        'pendanaan_fungsi',
+        'pendanaan_pendukung',
+        'pendanaan_risiko',
+        'keterampilan',
+        'pengetahuan',
+        'kesadaran_interdependensi',
+        'kesadaran_risiko',
+        'kendali_id'
         // Add more columns here
     ];
 
-    public function refSumberDaya()
-    {
-        return $this->belongsTo(RefSumberDaya::class);
-    }
+    // public function refSumberDaya()
+    // {
+    //     return $this->belongsTo(RefSumberDaya::class);
+    // }
 
     public function iiv()
     {

@@ -19,6 +19,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'instansi_ref',
         'email',
         'password',
         'role',
@@ -48,5 +49,10 @@ class User extends Authenticatable
     public function iiv()
     {
         return $this->hasMany(IIV::class);
+    }
+
+    public function ref_instansi()
+    {
+        return $this->belongsTo(RefInstansi::class, 'instansi_ref');
     }
 }

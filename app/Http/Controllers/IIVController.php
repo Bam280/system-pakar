@@ -55,9 +55,10 @@ class IIVController extends Controller
     public function update(Request $request, IIV $iiv)
     {
         $data = $request->validate([
-            'nama' => ['required', 'string', 'max:255'],
-            'ref_instansi_id' => ['required', 'exists:ref_instansi,id'],
-            'nilai_risiko' => ['required', 'string', 'max:255'],
+            'nama' => [ 'string', 'max:255'],
+            'deskripsi_sistem' => [ 'string', 'max:255'],
+            'ref_instansi_id' => [ 'exists:ref_instansi,id'],
+            'nilai_risiko' => [ 'string', 'max:255'],
         ]);
 
         $iiv->update($data);

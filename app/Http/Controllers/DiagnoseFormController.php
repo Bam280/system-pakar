@@ -147,6 +147,20 @@ class DiagnoseFormController extends Controller
         $data['nilai_risiko'] = $data['nilai_kemungkinan'] * $nilai_dampak;
 
         // get closest nilai_risiko at iiv
+        
+        // Mencari nilai risiko terdekat
+        // $nilai_risiko_terdekat = INF;
+        // $sistem_terdekat = null;
+        // $nilai_risiko_target = $data['nilai_risiko'];
+
+        // foreach (session('diagnose_data')['form2']['poin_sistem'] as $sistem => $nilai_risiko) {
+        //     $selisih_risiko = abs($nilai_risiko_target - $nilai_risiko);
+        //     if ($selisih_risiko < $nilai_risiko_terdekat) {
+        //         $nilai_risiko_terdekat = $selisih_risiko;
+        //         $sistem_terdekat = $sistem;
+        //     }
+        // }
+
         $iiv1 = IIV::where('nilai_risiko', '>=', $data['nilai_risiko'])->orderBy('nilai_risiko', 'asc')->limit(1)->get();
         $iiv2 = IIV::where('nilai_risiko', '<', $data['nilai_risiko'])->orderBy('nilai_risiko', 'desc')->limit(1)->get();
 
@@ -160,9 +174,11 @@ class DiagnoseFormController extends Controller
             'form3' => $data,
             'sistem_terpilih' => $sistem_terpilih,
         ];
-
+        // dd ($data);
+        
         session()->put('diagnose_data', $data);
         return to_route('diagnose.form.result');
+
     }
 
     public function form4()
@@ -180,6 +196,7 @@ class DiagnoseFormController extends Controller
         IIV::FirstOrCreate([
             'nama' => $session_data['form1']['nama_sistem'],
             'deskripsi_sistem' => $session_data['form1']['deskripsi_sistem'],
+            'ref_instansi_id' => Auth::user()->instansi_ref,
             'user_id' => Auth::user()->id,
             'nilai_risiko' => 0.0,
         ]);
@@ -219,6 +236,7 @@ class DiagnoseFormController extends Controller
         $sistem_terpilih = $iiv->pluck('id')->toArray();
         $sistem_terpilih = array_merge($sistem_terpilih, $iiv->pluck('interdepenSistemIIV')->flatten()->pluck('sistemElektronik')->flatten()->pluck('id')->toArray());
         $sistem_terpilih = IIV::with(['tujuan', 'tujuan.refTujuan', 'tujuan.risiko', 'tujuan.risiko.kendali', 'tujuan.risiko.kendali.refFungsi'])->whereIn('id', $sistem_terpilih)->get();  
+        // $sistem_terpilih = IIV::with(['sumberdaya'])->whereIn('id', $sistem_terpilih->pluck('id')->toArray())->get();
         $session_data = session('diagnose_data');
         // $interp = Interdepen::with('sistemElektronik', 'sistemIIV', 'sistemElektronik.interdepenSistemIIV')->whereIn('nama', session('diagnose_data')['sistem_terpilih'])->get();
         // $detail_interp = $interp->pluck('sistemElektronik')->toArray();
@@ -240,7 +258,8 @@ class DiagnoseFormController extends Controller
 
         $sistem_terpilih = $iiv->pluck('id')->toArray();
         $sistem_terpilih = array_merge($sistem_terpilih, $iiv->pluck('interdepenSistemIIV')->flatten()->pluck('sistemElektronik')->flatten()->pluck('id')->toArray());
-        $sistem_terpilih = IIV::with(['tujuan', 'tujuan.refTujuan', 'tujuan.risiko', 'tujuan.risiko.kendali', 'tujuan.risiko.kendali.refFungsi'])->whereIn('id', $sistem_terpilih)->get();  
+        $sistem_terpilih = IIV::with(['tujuan', 'tujuan.refTujuan', 'tujuan.risiko', 'tujuan.risiko.kendali', 'tujuan.risiko.kendali.refFungsi'])->whereIn('id', $sistem_terpilih)->get(); 
+        
         // $sumberdaya = IIV::with('sumberdaya')->whereIn('id', $sistem_terpilih->pluck('id')->toArray())->get();
         // $tataKelola = IIV::with('tataKelola')->whereIn('id', $sistem_terpilih->pluck('id')->toArray())->get();
         $session_data = session('diagnose_data');

@@ -47,12 +47,12 @@ class IIV extends Model
 
     public function sumberdaya()
     {
-        return $this->hasMany(Sumberdaya::class);
+        return $this->hasMany(Sumberdaya::class, 'iiv_id');
     }
 
     public function tataKelola()
     {
-        return $this->hasMany(TataKelola::class);
+        return $this->hasMany(TataKelola::class, 'iiv_id');
     }
 
 }

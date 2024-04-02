@@ -23,10 +23,10 @@ class IIVDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->addColumn('action', static fn (IIV $iiv) => view('components.datatable-action', [
                 'editLink' => route('iiv.edit', $iiv),
-                'deleteLink' => route('iiv.destroy', $iiv),
+                'deleteLink' => Auth::user()->role === UserRole::ADMIN ? route('interdepen.destroy', $interdepen) : null,
             ]))
             ->addColumn('deskripsi_sistem', static fn (IIV $iiv) => $iiv->deskripsi_sistem)
-            ->addColumn('nama_instansi', static fn (IIV $iiv) => $iiv->refInstansi?->nama_instansi)
+            ->addColumn('nama_instansi', static fn (IIV $iiv) => $iiv->refInstansi->nama_instansi)
             ->addColumn('created_at', static fn (IIV $iiv) => $iiv->created_at->format('d/m/Y H:i:s'))
             ->addColumn('updated_at', static fn (IIV $iiv) => $iiv->updated_at->format('d/m/Y H:i:s'))
             ->setRowId('id');

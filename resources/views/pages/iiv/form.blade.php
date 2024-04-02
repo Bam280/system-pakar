@@ -9,7 +9,7 @@
 
 @section('content')
     <div class="pb-3">
-        <h3>{{ $title }} Interdepen </h3>
+        <h3>{{ $title }} IIV </h3>
     </div>
 
     @if ($errors->any())
@@ -32,7 +32,7 @@
                         <div class="form-group">
                             <label class="form-label" for="nama">Nama IIV</label>
                             <input type="text" class="form-control" id="nama" name="nama"
-                                value="{{ old('nama') ?? $iiv->nama }}" placeholder="Nama IIV">
+                                value="{{ old('nama') ?? $iiv->nama }}" placeholder="Nama IIV" disabled>
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="nama">Deskripsi</label>
@@ -42,7 +42,7 @@
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="ref_instansi_id">Instansi</label>
-                            <select class="form-control js-example-basic-single" name="ref_instansi_id">
+                            <select class="form-control js-example-basic-single" name="ref_instansi_id" disabled>
                                 <option value="">Instansi</option>
                                 @foreach (App\Models\RefInstansi::all() as $instansi)
                                     <option value="{{ $instansi->id }}" @selected($instansi->id === (old('ref_instansi_id') ?? $iiv->ref_instansi_id))>
