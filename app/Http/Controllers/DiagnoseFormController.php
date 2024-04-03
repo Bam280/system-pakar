@@ -137,6 +137,7 @@ class DiagnoseFormController extends Controller
 
     public function form3Store(Request $request)
     {
+        
         $data = $request->validate([
             'nilai_kemungkinan' => 'required|numeric|min:0|max:5',
             'nilai_dampak_organisasi' => 'required|numeric|min:0|max:5',
@@ -161,8 +162,11 @@ class DiagnoseFormController extends Controller
         //     }
         // }
 
-        $iiv1 = IIV::where('nilai_risiko', '>=', $data['nilai_risiko'])->orderBy('nilai_risiko', 'asc')->limit(1)->get();
-        $iiv2 = IIV::where('nilai_risiko', '<', $data['nilai_risiko'])->orderBy('nilai_risiko', 'desc')->limit(1)->get();
+        $iiv1 = IIV::whereIn('nama', array_keys(session('diagnose_data')['form2']['poin_sistem']))->where('nilai_risiko', '>=', $data['nilai_risiko'])->orderBy('nilai_risiko', 'asc')->limit(1)->get();
+        $iiv2 = IIV::whereIn('nama', array_keys(session('diagnose_data')['form2']['poin_sistem']))->where('nilai_risiko', '<', $data['nilai_risiko'])->orderBy('nilai_risiko', 'desc')->limit(1)->get();
+
+      
+
 
         
         $iiv = $iiv1->merge($iiv2);
@@ -189,6 +193,7 @@ class DiagnoseFormController extends Controller
     public function result()
     {        
         $iiv = IIV::with('refInstansi', 'interdepenSistemIIV', 'interdepenSistemIIV.sistemElektronik')->whereIn('nama', session('diagnose_data')['sistem_terpilih'])->get();
+
 
         $session_data = session('diagnose_data');
         // dd($session_data);

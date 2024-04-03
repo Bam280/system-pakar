@@ -66,17 +66,27 @@
                             </tr>
                         @endforeach
                     @else
-                        @foreach ($diagnose_data['form2']['poin_order'] as $poin_order)
+                        {{-- @foreach ($diagnose_data['form2']['poin_order'] as $poin_order)
                             <tr>
                                 <td>{{ $poin_order['sistem'][0] }}</td>
                             </tr>
-                        @break
-                    @endforeach
-                @endif
-            </tbody>
-        </table>
+                        @break --}}
+                        @if ($diagnose_data['sistem_terpilih'] != null)
+                            @foreach ($diagnose_data['sistem_terpilih'] as $nama)
+                                <tr>
+                                    <td>{{ $nama }}</td>
+                                </tr>
+                            @endforeach
+                        @else
+                            <tr>
+                                <td>Belum bisa memberikan Rekomendasi</td>
+                            </tr>
+                        @endif
+                    @endif
+                </tbody>
+            </table>
 
-        {{-- <h4>Sistem</h4>
+            {{-- <h4>Sistem</h4>
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -108,7 +118,7 @@
                 </tbody>
             </table> --}}
 
-        {{-- <p>[nama_sistem] - [nama_instansi] - [nilai_risiko] - [? deskripsi_interdepen] </p>
+            {{-- <p>[nama_sistem] - [nama_instansi] - [nilai_risiko] - [? deskripsi_interdepen] </p>
 
             <ul>
                 @foreach ($iiv as $item)
@@ -126,13 +136,13 @@
                     @endforeach
                 @endforeach
             </ul> --}}
-        <div class="row text-center">
-            <div class="col">
-                @if (count($iiv) > 0)
-                    <a href="{{ route('diagnose.form.result2') }}" class="btn btn-primary">Detail</a>
-                @endif
+            <div class="row text-center">
+                <div class="col">
+                    @if (count($iiv) > 0)
+                        <a href="{{ route('diagnose.form.result2') }}" class="btn btn-primary">Detail</a>
+                    @endif
+                </div>
             </div>
         </div>
     </div>
-</div>
 @endsection
