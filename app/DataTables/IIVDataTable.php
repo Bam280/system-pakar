@@ -23,7 +23,7 @@ class IIVDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->addColumn('action', static fn (IIV $iiv) => view('components.datatable-action', [
                 'editLink' => route('iiv.edit', $iiv),
-                'deleteLink' => Auth::user()->role === UserRole::ADMIN ? route('interdepen.destroy', $interdepen) : null,
+                'deleteLink' => Auth::user()->role === UserRole::ADMIN ? route('iiv.destroy', $iiv) : null,
             ]))
             ->addColumn('deskripsi_sistem', static fn (IIV $iiv) => $iiv->deskripsi_sistem)
             ->addColumn('nama_instansi', static fn (IIV $iiv) => $iiv->refInstansi->nama_instansi)
@@ -65,6 +65,7 @@ class IIVDataTable extends DataTable
             Column::computed('action')
                   ->exportable(false)
                   ->printable(false)
+                  ->width(100)
                   ->addClass('text-center'),
             Column::make('id')->hidden(),
             Column::make('nama'),

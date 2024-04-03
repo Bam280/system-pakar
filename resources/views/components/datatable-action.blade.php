@@ -1,11 +1,11 @@
-@php
-    $editLink ??= '#';
-    $deleteLink ??= '#';
-@endphp
 
+@if($editLink)
 <a href="{{ $editLink }}" class="btn btn-sm btn-primary">
     <span class="oi oi-pencil"></span>
 </a>
+@endif
+
+@if($deleteLink)
 <form class="d-inline" action="{{ $deleteLink }}" method="post" onsubmit="return confirm('Apakah Serius Ingin Menghapus Data Ini?')">
     @csrf
     @method('delete')
@@ -13,3 +13,4 @@
         <span class="oi oi-trash"></span>
     </button>
 </form>
+@endif
