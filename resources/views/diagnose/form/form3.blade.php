@@ -13,7 +13,7 @@
 
 
     <div class="card mt-5">
-        <h5 class="card-header">Featured</h5>
+        <h5 class="card-header">Analisis lanjutan berdasarkan nilai risiko</h5>
         <div class="card-body">
             <h5>Melalui input yang dimasukkan oleh user pada form sebelumnya berikut adalah prolehan nilai yang didapat</h5>
             <table class="table table-bordered">
