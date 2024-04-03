@@ -211,6 +211,8 @@ class DiagnoseFormController extends Controller
                 if(!IIV::where('nama', $key)->exists()) {
                     IIV::FirstOrCreate([
                         'nama' => $key,
+                        'deskripsi_sistem' => $session_data['form1']['deskripsi_sistem'],
+                        'ref_instansi_id' => Auth::user()->instansi_ref,
                         'user_id' => Auth::user()->id,
                         'nilai_risiko' => 0.0,
                     ]);
