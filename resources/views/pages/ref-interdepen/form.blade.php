@@ -35,6 +35,14 @@ $method = $refInterdepen->exists ? 'PUT' : 'POST';
                         <label class="form-label" for="indikator_interdepen">Indikator Interdepen</label>
                         <input type="text" class="form-control" id="indikator_interdepen" name="indikator_interdepen" value="{{ old('indikator_interdepen') ?? $refInterdepen->indikator_interdepen }}" placeholder="Nama Interdepen">
                     </div>
+                    <div class="form-group">
+                        <label class="form-label" for="label">Label</label>
+                        <input type="text" class="form-control" id="label" name="label" value="{{ old('label') ?? $refInterdepen->label }}" placeholder="Label">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="poin">Poin</label>
+                        <input type="text" class="form-control" id="poin" name="poin" value="{{ old('poin') ?? $refInterdepen->poin }}" placeholder="Poin">
+                    </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>

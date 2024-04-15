@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\DataTables\RefInterdepenDataTable;
 use App\Models\RefInterdepen;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class RefInterdepenController extends Controller
 {
@@ -30,7 +31,9 @@ class RefInterdepenController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'indikator_interdepen' => ['required', 'string', 'max:255']
+            'indikator_interdepen' => ['required', 'string', 'max:255', Rule::unique('ref_interdepen', 'indikator_interdepen')],
+            'label' => ['required', 'string', 'max:255', Rule::unique('ref_interdepen', 'label')],
+            'poin' => ['required', 'numeric'],
         ]);
 
         RefInterdepen::create($data);
@@ -53,7 +56,9 @@ class RefInterdepenController extends Controller
     public function update(Request $request, RefInterdepen $refInterdepen)
     {
         $data = $request->validate([
-            'indikator_interdepen' => ['required', 'string', 'max:255']
+            'indikator_interdepen' => ['required', 'string', 'max:255', Rule::unique('ref_interdepen', 'indikator_interdepen')->ignoreModel($refInterdepen)],
+            'label' => ['required', 'string', 'max:255', Rule::unique('ref_interdepen', 'label')->ignoreModel($refInterdepen)],
+            'poin' => ['required', 'numeric'],
         ]);
 
         $refInterdepen->update($data);

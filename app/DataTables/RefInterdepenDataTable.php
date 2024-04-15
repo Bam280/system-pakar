@@ -65,6 +65,8 @@ class RefInterdepenDataTable extends DataTable
                   ->addClass('text-center'),
             Column::make('id')->hidden(),
             Column::make('indikator_interdepen'),
+            Column::make('label'),
+            Column::make('poin'),
             Column::make('created_at'),
             Column::make('updated_at'),
         ];

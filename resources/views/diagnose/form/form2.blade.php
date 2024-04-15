@@ -16,47 +16,23 @@
         <div class="card-body">
             <form action="{{ route('diagnose.form.form2.store') }}" method="post">
                 @csrf
-                <div class="mb-3">
-                    <label for="sistem_terhubung_lan" class="form-label">Sistem Terhubung LAN</label>
-                    <select class="js-example-basic-multiple form-control" name="sistem_terhubung_lan[]" multiple="multiple"
-                        aria-describedby="sisterLanHelp">
-                        @foreach ($all_iiv as $iiv)
-                            <option @selected(in_array($iiv->nama, old('sistem_terhubung_lan') ?? (@$data_form2['sistem_terhubung_lan'] ?? [])))>
-                                {{ $iiv->nama }}
-                            </option>
-                        @endforeach
-                    </select>
-                    <div id="sisterLanHelp" class="form-text">Pilih Sistem Terhubung LAN dari basis data, atau
-                        masukkan sistem baru</div>
-                </div>
 
+                @foreach ($allRefInterdepen as $refInterdepen)
+                @php
+                $slug = Str::slug($refInterdepen->label, '_');
+                @endphp
                 <div class="mb-3">
-                    <label for="sistem_berbagi_database" class="form-label">Sistem Berbagi Database</label>
-                    <select class="js-example-basic-multiple form-control" name="sistem_berbagi_database[]"
-                        multiple="multiple" aria-describedby="sisterDatabase">
+                    <label for="{{ $slug }}" class="form-label">{{ $refInterdepen->label }}</label>
+                    <select class="js-example-basic-multiple form-control" name="{{ $slug }}[]" multiple="multiple" aria-describedby="{{ $slug }}">
                         @foreach ($all_iiv as $iiv)
-                            <option @selected(in_array($iiv->nama, old('sistem_berbagi_database') ?? (@$data_form2['sistem_berbagi_database'] ?? [])))>
+                            <option @selected(in_array($iiv->nama, old($slug) ?? (@$data_form2[$slug] ?? [])))>
                                 {{ $iiv->nama }}
                             </option>
                         @endforeach
                     </select>
-                    <div id="sisterDatabase" class="form-text">Pilih Sistem Berbagi Database dari basis data, atau
-                        masukkan sistem baru</div>
+                    <div id="{{ $slug }}" class="form-text">{{ $refInterdepen->label }} atau masukkan sistem baru</div>
                 </div>
-
-                <div class="mb-3">
-                    <label for="sistem_memiliki_hardware_sama" class="form-label">Sistem Memiliki Hardware Sama</label>
-                    <select class="js-example-basic-multiple form-control" name="sistem_memiliki_hardware_sama[]"
-                        multiple="multiple" aria-describedby="sisterHardware">
-                        @foreach ($all_iiv as $iiv)
-                            <option @selected(in_array($iiv->nama, old('sistem_memiliki_hardware_sama') ?? (@$data_form2['sistem_memiliki_hardware_sama'] ?? [])))>
-                                {{ $iiv->nama }}
-                            </option>
-                        @endforeach
-                    </select>
-                    <div id="sisterHardware" class="form-text">Pilih Sistem Memiliki Hardware Sama dari basis data, atau
-                        masukkan sistem baru</div>
-                </div>
+                @endforeach
 
                 <div class="mt-3 d-grid gap-2 mx-auto">
                     <button type="submit" class="btn btn-primary">Berikutnya</button>

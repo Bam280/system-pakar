@@ -12,7 +12,9 @@ class RefInterdepen extends Model
     protected $table = 'ref_interdepen';
 
     protected $fillable = [
-        'indikator_interdepen'
+        'indikator_interdepen',
+        'label',
+        'poin',
     ];
 
     public function interdepen()
