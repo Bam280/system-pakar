@@ -9,7 +9,7 @@ class Sumberdaya extends Model
 {
     use HasFactory;
     // Define the table associated with the model
-    protected $table = 'sumber_daya';
+    protected $table = 'sumberdaya';
 
     // Define the fillable columns
     protected $fillable = [

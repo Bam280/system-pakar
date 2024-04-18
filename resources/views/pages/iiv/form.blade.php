@@ -42,14 +42,18 @@
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="ref_instansi_id">Instansi</label>
-                            <select class="form-control js-example-basic-single" name="ref_instansi_id" disabled>
-                                <option value="">Instansi</option>
-                                @foreach (App\Models\RefInstansi::all() as $instansi)
-                                    <option value="{{ $instansi->id }}" @selected($instansi->id === (old('ref_instansi_id') ?? $iiv->ref_instansi_id))>
-                                        {{ $instansi->nama_instansi }}
-                                    </option>
-                                @endforeach
-                            </select>
+                            @can('admin-access')
+                                <select class="form-control js-example-basic-single" name="ref_instansi_id">
+                                @else
+                                    <select class="form-control js-example-basic-single" name="ref_instansi_id" disabled>
+                                    @endcan
+                                    <option value="">Instansi</option>
+                                    @foreach (App\Models\RefInstansi::all() as $instansi)
+                                        <option value="{{ $instansi->id }}" @selected($instansi->id === (old('ref_instansi_id') ?? $iiv->ref_instansi_id))>
+                                            {{ $instansi->nama_instansi }}
+                                        </option>
+                                    @endforeach
+                                </select>
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="nilai_risiko">Nilai Risiko</label>

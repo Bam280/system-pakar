@@ -41,13 +41,12 @@
                     </p>
                     <br>
                     <p>
-                        SPK ini merupakan bagian dari penelitian Mahasiswa S3 Fakultas Ilmu Komputer
-                        Universitas Indonesia
+                        SPK ini merupakan bagian dari penelitian Mahasiswa S3 Fakultas Ilmu Komputer Universitas Indonesia
                     </p>
                 </div>
                 <div class="modal-footer justify-content-center">
-                    <button class="btn btn-success" data-bs-target="#exampleModalToggle2" data-bs-dismiss="modal">I
-                        Understood</button>
+                    <button class="btn btn-success" data-bs-target="#exampleModalToggle2"
+                        data-bs-dismiss="modal">Mengerti</button>
                 </div>
             </div>
         </div>

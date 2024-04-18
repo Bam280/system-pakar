@@ -37,7 +37,8 @@
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="sistem_elektronik_id">Deskripsi</label>
-                            <input type="text" class="form-control" id="sistem_elektronik_id" name="sistem_elektronik_id"
+                            <input type="longtext" class="form-control" id="sistem_elektronik_id"
+                                name="sistem_elektronik_id"
                                 value="{{ old('sistem_elektronik_id') ?? $iiv->sistem_elektronik_id }}"
                                 placeholder="Deskripsi Sistem">
                         </div>
