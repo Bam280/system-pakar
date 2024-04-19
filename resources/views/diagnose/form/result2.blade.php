@@ -74,7 +74,7 @@
                 </thead>
                 <tbody>
 
-                    @foreach ($iiv as $k => $item)
+                    @foreach ($iivs as $k => $item)
                         <tr>
                             <td>
                                 {{ $item->nama }}
@@ -100,7 +100,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($sistem_terpilih as $iiv)
+                    @foreach ($iivs as $iiv)
                         @foreach ($iiv->tujuan as $tujuan)
                             @foreach ($tujuan->risiko as $risiko)
                                 @foreach ($risiko->kendali as $kendali)
@@ -127,7 +127,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($sistem_terpilih as $iiv)
+                    @foreach ($iivs as $iiv)
                         @foreach ($iiv->tujuan as $tujuan)
                             @foreach ($tujuan->risiko as $risiko)
                                 @foreach ($risiko->kendali as $kendali)
@@ -153,7 +153,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($sistem_terpilih as $iiv)
+                    @foreach ($iivs as $iiv)
                         @foreach ($iiv->tujuan as $tujuan)
                             @foreach ($tujuan->risiko as $risiko)
                                 @foreach ($risiko->kendali as $kendali)
@@ -179,7 +179,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($sistem_terpilih as $iiv)
+                    @foreach ($iivs as $iiv)
                         @foreach ($iiv->tujuan as $tujuan)
                             @foreach ($tujuan->risiko as $risiko)
                                 @foreach ($risiko->kendali as $kendali)
@@ -205,7 +205,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($sistem_terpilih as $iiv)
+                    @foreach ($iivs as $iiv)
                         @foreach ($iiv->tujuan as $tujuan)
                             @foreach ($tujuan->risiko as $risiko)
                                 @foreach ($risiko->kendali as $kendali)
@@ -230,7 +230,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($sistem_terpilih as $iiv)
+                    @foreach ($iivs as $iiv)
                         @foreach ($iiv->sumberdaya as $sumberdaya)
                             <tr>
                                 <td>{{ $sumberdaya->deskripsi_sumberdaya }}</td>

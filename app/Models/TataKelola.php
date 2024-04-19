@@ -9,14 +9,31 @@ class TataKelola extends Model
 {
     use HasFactory;
     // Define the table associated with the model
-    protected $table = 'tata_kelola';
+    protected $table = 'tatakelola';
 
     // Define the fillable columns
     protected $fillable = [
-        'ref_tata_kelola_id',
-        'deslripsi_tata_kelola',
+        // new
         'iiv_id',
+        'deskripsi_tatakelola',
+        'regulasi_tujuan',
+        'regulasi_fungsi',
+        'regulasi_risiko',
+        'standar_fungsi',
+        'standar_aplikasi',
+        'alur_tujuan',
+        'alur_fungsi',
+        'alur_konteks',
+        'alur_interdependensi',
         'kendali_id',
+
+        // old
+        // 'ref_tata_kelola_id',
+        // 'deslripsi_tata_kelola',
+        // 'iiv_id',
+        // 'kendali_id',
+
+
         // Add more columns here
     ];
 

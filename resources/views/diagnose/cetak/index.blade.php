@@ -94,31 +94,13 @@
 
     <h5>Dengan rincian sebagai berikut :</h5>
 
-    {{-- <h5>Sistem Terpilih</h5>
-    <table class="products">
-        <tr>
-            <th>Nama</th>
-            <th>Instansi</th>
-            <th>Nilai resiko</th>
-        </tr>
-        @foreach ($iiv as $k => $item)
-            <tr class="items">
-                <td>{{ $item->nama }}</td>
-                <td>{{ $item->refInstansi?->nama_instansi }}</td>
-                <td>{{ $item->nilai_risiko ?? 0 }}</td>
-            </tr>
-        @endforeach
-    </table> --}}
-
-    <br>
-
     <h5>1. Untuk mencegah keamanan data dan informasi</h5>
     <table class="products">
         <tr>
             <th scope="col">Kendali</th>
             <th scope="col">Deskripsi Kendali</th>
         </tr>
-        @foreach ($sistem_terpilih as $iiv)
+        @foreach ($iivs as $iiv)
             @foreach ($iiv->tujuan as $tujuan)
                 @foreach ($tujuan->risiko as $risiko)
                     @foreach ($risiko->kendali as $kendali)
@@ -142,7 +124,7 @@
             <th scope="col">Kendali</th>
             <th scope="col">Deskripsi Kendali</th>
         </tr>
-        @foreach ($sistem_terpilih as $iiv)
+        @foreach ($iivs as $iiv)
             @foreach ($iiv->tujuan as $tujuan)
                 @foreach ($tujuan->risiko as $risiko)
                     @foreach ($risiko->kendali as $kendali)
@@ -166,7 +148,7 @@
             <th scope="col">Kendali</th>
             <th scope="col">Deskripsi Kendali</th>
         </tr>
-        @foreach ($sistem_terpilih as $iiv)
+        @foreach ($iivs as $iiv)
             @foreach ($iiv->tujuan as $tujuan)
                 @foreach ($tujuan->risiko as $risiko)
                     @foreach ($risiko->kendali as $kendali)
@@ -189,7 +171,7 @@
             <th scope="col">Kendali</th>
             <th scope="col">Deskripsi Kendali</th>
         </tr>
-        @foreach ($sistem_terpilih as $iiv)
+        @foreach ($iivs as $iiv)
             @foreach ($iiv->tujuan as $tujuan)
                 @foreach ($tujuan->risiko as $risiko)
                     @foreach ($risiko->kendali as $kendali)
@@ -212,7 +194,7 @@
             <th scope="col">Kendali</th>
             <th scope="col">Deskripsi Kendali</th>
         </tr>
-        @foreach ($sistem_terpilih as $iiv)
+        @foreach ($iivs as $iiv)
             @foreach ($iiv->tujuan as $tujuan)
                 @foreach ($tujuan->risiko as $risiko)
                     @foreach ($risiko->kendali as $kendali)
@@ -234,18 +216,11 @@
         <tr>
             <th scope="col">Rekomendasi</th>
         </tr>
-        @foreach ($sistem_terpilih as $iiv)
-            @foreach ($iiv->tujuan as $tujuan)
-                @foreach ($tujuan->risiko as $risiko)
-                    @foreach ($risiko->kendali as $kendali)
-                        @if ($kendali->ref_fungsi_id == 8)
-                            <tr class="items">
-                                <td>{{ $kendali->nama_kendali }}</td>
-                                <td>{{ $kendali->deskripsi_kendali }}</td>
-                            </tr>
-                        @endif
-                    @endforeach
-                @endforeach
+        @foreach ($iivs as $iiv)
+            @foreach ($iiv->sumberdaya as $sumberdaya)
+                <tr class="items">
+                    <td>{{ $sumberdaya->deskripsi_sumberdaya }}</td>
+                </tr>
             @endforeach
         @endforeach
     </table>
