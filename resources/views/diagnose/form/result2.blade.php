@@ -238,8 +238,27 @@
                         @endforeach
                     @endforeach
                 </tbody>
+            </table>
 
-                {{-- <ul>
+            <h5>Rekomendasi Tatakelola</h5>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($iivs as $iiv)
+                        @foreach ($iiv->tatakelola as $tatakelola)
+                            <tr>
+                                <td>{{ $tatakelola->deskripsi_tatakelola }}</td>
+                            </tr>
+                        @endforeach
+                    @endforeach
+                </tbody>
+            </table>
+
+            {{-- <ul>
                 @foreach ($sistem_terpilih as $iiv)
                     <li>
                         {{ $iiv->nama }} - {{ $iiv->refInstansi->nama_instansi }} - {{ $iiv->nilai_risiko ?? 0 }}

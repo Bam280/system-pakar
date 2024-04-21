@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\IIV;
 use App\Models\Interdepen;
 use App\Models\RefInterdepen;
-use App\Models\Sumberdaya;
-use App\Models\Tatakelola;
+use App\Models\RefJenisTatakelola;
+use App\Models\SumberDaya;
+use App\Models\TataKelola;
 use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -178,10 +179,9 @@ class DiagnoseFormController extends Controller
 
     public function form4()
     {
-        $allSumberdaya = Sumberdaya::all();
-        $allTatakelola = Tatakelola::all();
+        $allTatakelola = RefJenisTatakelola::all();
         $data_form4 = session('diagnose_data')['form4'] ?? [];
-        return view('diagnose.form.form4', compact('allSumberdaya', 'allTatakelola', 'data_form4'));
+        return view('diagnose.form.form4', compact('allTatakelola', 'data_form4'));
     }
 
     public function form4store(Request $request)
@@ -456,7 +456,7 @@ class DiagnoseFormController extends Controller
 
     public function result2()
     {
-        $iivs = IIV::with('tujuan','refInstansi', 'interdepenSistemIIV', 'interdepenSistemIIV.sistemElektronik')->whereIn('nama', session('diagnose_data')['sistem_terpilih'])->get();
+        $iivs = IIV::with('sumberdaya','tatakelola','tujuan','refInstansi', 'interdepenSistemIIV', 'interdepenSistemIIV.sistemElektronik')->whereIn('nama', session('diagnose_data')['sistem_terpilih'])->get();
 
         // flatten $iiv->interdepenSistemIIV->sistemElektronik n als0 $iiv data 
 

@@ -226,6 +226,20 @@
     </table>
     <br>
 
+    <h5>Rekomendasi Tatakelola</h5>
+    <table class="products">
+        <tr>
+            <th scope="col">Rekomendasi</th>
+        </tr>
+        @foreach ($iivs as $iiv)
+            @foreach ($iiv->tatakelola as $tatakelola)
+                <tr class="items">
+                    <td>{{ $tatakelola->deskripsi_sumberdaya }}</td>
+                </tr>
+            @endforeach
+        @endforeach
+    </table>
+
 
 </body>
 
