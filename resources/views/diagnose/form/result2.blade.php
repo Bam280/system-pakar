@@ -238,41 +238,57 @@
                         @endforeach
                     @endforeach
                 </tbody>
+            </table>
 
-                {{-- <ul>
-                @foreach ($sistem_terpilih as $iiv)
-                    <li>
-                        {{ $iiv->nama }} - {{ $iiv->refInstansi->nama_instansi }} - {{ $iiv->nilai_risiko ?? 0 }}
-                        <ul>
-                            @foreach ($iiv->tujuan as $tujuan)
-                                <li>
-                                    {{ $tujuan->refTujuan->tujuan_keamanan }} - {{ $tujuan->deskripsi_tujuan }}
-                                    <ul>
-                                        @foreach ($tujuan->risiko as $risiko)
-                                            <li>
-                                                {{ $risiko->deskripsi_risiko }} - {{ $risiko->deskripsi_dampak }} -
-                                                {{ $risiko->deskripsi_kemungkinan }} -
-                                                {{ $risiko->nilai_dampak_regional }} -
-                                                {{ $risiko->nilai_dampak_nasional }} - {{ $risiko->nilai_kemungkinan }}
-                                                <ul>
-                                                    @foreach ($risiko->kendali as $kendali)
-                                                        <li>
-                                                            {{ $kendali->nama_kendali }} -
-                                                            {{ $kendali->deskripsi_kendali }} -
-                                                            {{ $kendali->refFungsi->indikator_fungsi }}
-                                                        </li>
-                                                    @endforeach
-                                                </ul>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </li>
-                @endforeach
-            </ul> --}}
-
+            <h5>Rekomendasi Tatakelola</h5>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($sistem_terpilih as $iiv)
+                        @foreach ($iiv->tatakelola as $tatakelola)
+                            <tr>
+                                <td>{{ $tatakelola->deskripsi_tatakelola }}</td>
+                            </tr>
+                        @endforeach
+                    @endforeach
+                </tbody>
         </div>
     </div>
+    {{-- <ul>
+        @foreach ($sistem_terpilih as $iiv)
+            <li>
+                {{ $iiv->nama }} - {{ $iiv->refInstansi->nama_instansi }} - {{ $iiv->nilai_risiko ?? 0 }}
+                <ul>
+                    @foreach ($iiv->tujuan as $tujuan)
+                        <li>
+                            {{ $tujuan->refTujuan->tujuan_keamanan }} - {{ $tujuan->deskripsi_tujuan }}
+                            <ul>
+                                @foreach ($tujuan->risiko as $risiko)
+                                    <li>
+                                        {{ $risiko->deskripsi_risiko }} - {{ $risiko->deskripsi_dampak }} -
+                                        {{ $risiko->deskripsi_kemungkinan }} -
+                                        {{ $risiko->nilai_dampak_regional }} -
+                                        {{ $risiko->nilai_dampak_nasional }} - {{ $risiko->nilai_kemungkinan }}
+                                        <ul>
+                                            @foreach ($risiko->kendali as $kendali)
+                                                <li>
+                                                    {{ $kendali->nama_kendali }} -
+                                                    {{ $kendali->deskripsi_kendali }} -
+                                                    {{ $kendali->refFungsi->indikator_fungsi }}
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </li>
+                    @endforeach
+                </ul>
+            </li>
+        @endforeach
+    </ul> --}}
 @endsection

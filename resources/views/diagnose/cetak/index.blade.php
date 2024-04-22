@@ -235,17 +235,10 @@
             <th scope="col">Rekomendasi</th>
         </tr>
         @foreach ($sistem_terpilih as $iiv)
-            @foreach ($iiv->tujuan as $tujuan)
-                @foreach ($tujuan->risiko as $risiko)
-                    @foreach ($risiko->kendali as $kendali)
-                        @if ($kendali->ref_fungsi_id == 8)
-                            <tr class="items">
-                                <td>{{ $kendali->nama_kendali }}</td>
-                                <td>{{ $kendali->deskripsi_kendali }}</td>
-                            </tr>
-                        @endif
-                    @endforeach
-                @endforeach
+            @foreach ($iiv->sumberdaya as $sumberdaya)
+                <tr class="items">
+                    <td>{{ $sumberdaya->deskripsi_sumberdaya }}</td>
+                </tr>
             @endforeach
         @endforeach
     </table>

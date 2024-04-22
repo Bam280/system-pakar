@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\IIV;
 use App\Models\Interdepen;
+use App\Models\RefJenisTatakelola;
 use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -187,20 +188,22 @@ class DiagnoseFormController extends Controller
 
     public function form4()
     {
-        return view('diagnose.form.form4');
+        $all_tatakelola = RefJenisTatakelola::all();
+        $data_form4 = session('diagnose_data')['form4'] ?? [];
+        return view('diagnose.form.form4', compact('all_tatakelola', 'data_form4'));
     }
 
     public function form4store(Request $request)
     {
         $data=$request->validate([
             //sumberdaya
-            'kriteria_pendanaan_pengamanan' => 'nullable|array',
-            'kriteria_pendanaan_pemulihan' => 'nullable|array',
-            'kriteria_pendanaan_pendukung' => 'nullable|array',
-            'kriteria_keterampilan_pengamanan' => 'nullable|array',
-            'kriteria_keterampilan_identifikasi' => 'nullable|array',
-            'kesadaran_interdepen' => 'nullable|array',
-            'kriteria_kesadaran_risiko' => 'nullable|array',
+            'kriteria_pendanaan_pengamanan' => 'nullable|in:YA',
+            'kriteria_pendanaan_pemulihan' => 'nullable|in:YA',
+            'kriteria_pendanaan_pendukung' => 'nullable|in:YA',
+            'kriteria_keterampilan_pengamanan' => 'nullable|in:YA',
+            'kriteria_keterampilan_identifikasi' => 'nullable|in:YA',
+            'kesadaran_interdepen' => 'nullable|in:YA',
+            'kriteria_kesadaran_risiko' => 'nullable|in:YA',
             //tatakelola
             'regulasi_tujuan' => 'nullable|array',
             'regulasi_fungsi' => 'nullable|array',
@@ -216,187 +219,139 @@ class DiagnoseFormController extends Controller
         $data['poin_sistem_tatakelola']=[];
         $data['poin_sistem_sumberdaya']=[];
 
-        if(!empty($data['kriteria_pendanaan_pengamanan'])) {
-            foreach ($data['kriteria_pendanaan_pengamanan'] as $value) {
-                if (empty($data['poin_sistem_tatakelola'][$value])) {
-                    $data['poin_sistem_tatakelola'][$value] = 0;
+        $poin_dasar = ['Lokal' => 1, 'Nasional' => 2, 'Internasional' => 3];
+
+        // Function to process each funding type with different multipliers
+        function processFundingType($data, &$poin_sistem_tatakelola, $kriteria, $multiplier, $poin_dasar) {
+            if (!empty($data[$kriteria])) {
+                foreach ($data[$kriteria] as $value) {
+                    // Check if the base value exists in the base points array, if not use 0
+                    $baseValue = isset($poin_dasar[$value]) ? $poin_dasar[$value] : 0;
+
+                    // Calculate the points to add
+                    $pointsToAdd = $baseValue * $multiplier;
+
+                    // Initialize or update the points in the management system
+                    if (empty($poin_sistem_tatakelola[$value])) {
+                        $poin_sistem_tatakelola[$value] = 0;
+                    }
+                    $poin_sistem_tatakelola[$value] += $pointsToAdd;
                 }
-                $data['poin_sistem_tatakelola'][$value] += 2;
             }
         }
 
-        if(!empty($data['kriteria_pendanaan_pemulihan'])) {
-            foreach ($data['kriteria_pendanaan_pemulihan'] as $value) {
-                if (empty($data['poin_sistem_tatakelola'][$value])) {
-                    $data['poin_sistem_tatakelola'][$value] = 0;
+        processFundingType($data, $data['poin_sistem_tatakelola'], 'regulasi_tujuan', 1, $poin_dasar);
+        processFundingType($data, $data['poin_sistem_tatakelola'], 'regulasi_fungsi', 3, $poin_dasar);
+        processFundingType($data, $data['poin_sistem_tatakelola'], 'regulasi_risiko', 1, $poin_dasar);
+        processFundingType($data, $data['poin_sistem_tatakelola'], 'standar_fungsi', 1, $poin_dasar);
+        processFundingType($data, $data['poin_sistem_tatakelola'], 'standar_aplikasi', 2, $poin_dasar);
+        processFundingType($data, $data['poin_sistem_tatakelola'], 'alur_tujuan', 4, $poin_dasar);
+        processFundingType($data, $data['poin_sistem_tatakelola'], 'alur_fungsi', 3, $poin_dasar);
+        processFundingType($data, $data['poin_sistem_tatakelola'], 'alur_risiko', 2, $poin_dasar);
+        processFundingType($data, $data['poin_sistem_tatakelola'], 'alur_aplikasi', 2, $poin_dasar);
+
+
+        // Function to handle the addition of points based on radio button input
+        function processFundingTypeWithRadioButtons($data, &$poin_sistem_tatakelola, $category, $multiplier) {
+            if (!empty($data[$category])) {
+                foreach ($data[$category] as $value) {
+                    // Check if the radio button for this value is 'YA'
+                    if (!empty($data['radio_values'][$value]) && $data['radio_values'][$value] === 'YA') {
+                        // Initialize the point for the value if not already set
+                        if (empty($poin_sistem_tatakelola[$value])) {
+                            $poin_sistem_tatakelola[$value] = 0;
+                        }
+                        // Add points according to the multiplier
+                        $poin_sistem_tatakelola[$value] += $multiplier;
+                    }
                 }
-                $data['poin_sistem_tatakelola'][$value] += 2;
             }
         }
 
-        if(!empty($data['kriteria_pendanaan_pendukung'])) {
-            foreach ($data['kriteria_pendanaan_pendukung'] as $value) {
-                if (empty($data['poin_sistem_tatakelola'][$value])) {
-                    $data['poin_sistem_tatakelola'][$value] = 0;
-                }
-                $data['poin_sistem_tatakelola'][$value] += 4;
-            }
-        }
+        // Process each category with the specified multiplier
+        processFundingTypeWithRadioButtons($data, $data['poin_sistem_tatakelola'], 'kriteria_pendanaan_pemulihan', 2);
+        processFundingTypeWithRadioButtons($data, $data['poin_sistem_tatakelola'], 'kriteria_pendanaan_pendukung', 4);
+        processFundingTypeWithRadioButtons($data, $data['poin_sistem_tatakelola'], 'kriteria_keterampilan_pengamanan', 3);
+        processFundingTypeWithRadioButtons($data, $data['poin_sistem_tatakelola'], 'kriteria_keterampilan_identifikasi', 7);
+        processFundingTypeWithRadioButtons($data, $data['poin_sistem_tatakelola'], 'kesadaran_interdepen', 4);
+        processFundingTypeWithRadioButtons($data, $data['poin_sistem_tatakelola'], 'kriteria_kesadaran_risiko', 3);
+        // Process each category with its specific multiplier
+        // processFundingType($data, $data['poin_sistem_sumberdaya'], 'kriteria_pendanaan_pemulihan', 2, $poin_dasar);
+        // processFundingType($data, $data['poin_sistem_sumberdaya'], 'kriteria_pendanaan_pendukung', 4, $poin_dasar);
+        // processFundingType($data, $data['poin_sistem_sumberdaya'], 'kriteria_keterampilan_pengamanan', 3, $poin_dasar);
+        // processFundingType($data, $data['poin_sistem_sumberdaya'], 'kriteria_keterampilan_identifikasi', 7, $poin_dasar);
+        // processFundingType($data, $data['poin_sistem_sumberdaya'], 'kesadaran_interdepen', 4, $poin_dasar);
+        // processFundingType($data, $data['poin_sistem_sumberdaya'], 'kriteria_kesadaran_risiko', 3, $poin_dasar);
 
-        if(!empty($data['kriteria_keterampilan_pengamanan'])) {
-            foreach ($data['kriteria_keterampilan_pengamanan'] as $value) {
-                if (empty($data['poin_sistem_tatakelola'][$value])) {
-                    $data['poin_sistem_tatakelola'][$value] = 0;
-                }
-                $data['poin_sistem_tatakelola'][$value] += 3;
-            }
-        }
 
-        if(!empty($data['kriteria_keterampilan_identifikasi'])) {
-            foreach ($data['kriteria_keterampilan_identifikasi'] as $value) {
-                if (empty($data['poin_sistem_tatakelola'][$value])) {
-                    $data['poin_sistem_tatakelola'][$value] = 0;
-                }
-                $data['poin_sistem_tatakelola'][$value] += 7;
-            }
-        }
+        // if(!empty($data['kriteria_pendanaan_pengamanan'])) {
+        //     foreach ($data['kriteria_pendanaan_pengamanan'] as $value) {
+        //         if (empty($data['poin_sistem_tatakelola'][$value])) {
+        //             $data['poin_sistem_tatakelola'][$value] = 0;
+        //         }
+        //         $data['poin_sistem_tatakelola'][$value] += 2;
+        //     }
+        // }
 
-        if(!empty($data['kesadaran_interdepen'])) {
-            foreach ($data['kesadaran_interdepen'] as $value) {
-                if (empty($data['poin_sistem_tatakelola'][$value])) {
-                    $data['poin_sistem_tatakelola'][$value] = 0;
-                }
-                $data['poin_sistem_tatakelola'][$value] += 4;
-            }
-        }
+        // if(!empty($data['kriteria_pendanaan_pemulihan'])) {
+        //     foreach ($data['kriteria_pendanaan_pemulihan'] as $value) {
+        //         if (empty($data['poin_sistem_tatakelola'][$value])) {
+        //             $data['poin_sistem_tatakelola'][$value] = 0;
+        //         }
+        //         $data['poin_sistem_tatakelola'][$value] += 2;
+        //     }
+        // }
 
-        if(!empty($data['kriteria_kesadaran_risiko'])) {
-            foreach ($data['kriteria_kesadaran_risiko'] as $value) {
-                if (empty($data['poin_sistem_tatakelola'][$value])) {
-                    $data['poin_sistem_tatakelola'][$value] = 0;
-                }
-                $data['poin_sistem_tatakelola'][$value] += 3;
-            }
-        }
+        // if(!empty($data['kriteria_pendanaan_pendukung'])) {
+        //     foreach ($data['kriteria_pendanaan_pendukung'] as $value) {
+        //         if (empty($data['poin_sistem_tatakelola'][$value])) {
+        //             $data['poin_sistem_tatakelola'][$value] = 0;
+        //         }
+        //         $data['poin_sistem_tatakelola'][$value] += 4;
+        //     }
+        // }
+
+        // if(!empty($data['kriteria_keterampilan_pengamanan'])) {
+        //     foreach ($data['kriteria_keterampilan_pengamanan'] as $value) {
+        //         if (empty($data['poin_sistem_tatakelola'][$value])) {
+        //             $data['poin_sistem_tatakelola'][$value] = 0;
+        //         }
+        //         $data['poin_sistem_tatakelola'][$value] += 3;
+        //     }
+        // }
+
+        // if(!empty($data['kriteria_keterampilan_identifikasi'])) {
+        //     foreach ($data['kriteria_keterampilan_identifikasi'] as $value) {
+        //         if (empty($data['poin_sistem_tatakelola'][$value])) {
+        //             $data['poin_sistem_tatakelola'][$value] = 0;
+        //         }
+        //         $data['poin_sistem_tatakelola'][$value] += 7;
+        //     }
+        // }
+
+        // if(!empty($data['kesadaran_interdepen'])) {
+        //     foreach ($data['kesadaran_interdepen'] as $value) {
+        //         if (empty($data['poin_sistem_tatakelola'][$value])) {
+        //             $data['poin_sistem_tatakelola'][$value] = 0;
+        //         }
+        //         $data['poin_sistem_tatakelola'][$value] += 4;
+        //     }
+        // }
+
+        // if(!empty($data['kriteria_kesadaran_risiko'])) {
+        //     foreach ($data['kriteria_kesadaran_risiko'] as $value) {
+        //         if (empty($data['poin_sistem_tatakelola'][$value])) {
+        //             $data['poin_sistem_tatakelola'][$value] = 0;
+        //         }
+        //         $data['poin_sistem_tatakelola'][$value] += 3;
+        //     }
+        // }
 
         //sumberdaya
 
-        if(!empty($data['regulasi_tujuan'])) {
-            foreach ($data['regulasi_tujuan'] as $value) {
-                if (empty($data['poin_sistem_sumberdaya'][$value])) {
-                    $data['poin_sistem_sumberdaya'][$value] = 0;
-                }
-                $data['poin_sistem_sumberdaya'][$value] += 1;
-            }
-        }
-
-        if(!empty($data['regulasi_fungsi'])) {
-            foreach ($data['regulasi_fungsi'] as $value) {
-                if (empty($data['poin_sistem_sumberdaya'][$value])) {
-                    $data['poin_sistem_sumberdaya'][$value] = 0;
-                }
-                $data['poin_sistem_sumberdaya'][$value] += 3;
-            }
-        }
-
-        if(!empty($data['regulasi_risiko'])) {
-            foreach ($data['regulasi_risiko'] as $value) {
-                if (empty($data['poin_sistem_sumberdaya'][$value])) {
-                    $data['poin_sistem_sumberdaya'][$value] = 0;
-                }
-                $data['poin_sistem_sumberdaya'][$value] += 1;
-            }
-        }
-
-        if(!empty($data['standar_fungsi'])) {
-            foreach ($data['standar_fungsi'] as $value) {
-                if (empty($data['poin_sistem_sumberdaya'][$value])) {
-                    $data['poin_sistem_sumberdaya'][$value] = 0;
-                }
-                $data['poin_sistem_sumberdaya'][$value] += 1;
-            }
-        }
-
-        if(!empty($data['standar_aplikasi'])) {
-            foreach ($data['standar_aplikasi'] as $value) {
-                if (empty($data['poin_sistem_sumberdaya'][$value])) {
-                    $data['poin_sistem_sumberdaya'][$value] = 0;
-                }
-                $data['poin_sistem_sumberdaya'][$value] += 2;
-            }
-        }
-
-        if(!empty($data['alur_tujuan'])) {
-            foreach ($data['alur_tujuan'] as $value) {
-                if (empty($data['poin_sistem_sumberdaya'][$value])) {
-                    $data['poin_sistem_sumberdaya'][$value] = 0;
-                }
-                $data['poin_sistem_sumberdaya'][$value] += 4;
-            }
-        }
-
-        if(!empty($data['alur_fungsi'])) {
-            foreach ($data['alur_fungsi'] as $value) {
-                if (empty($data['poin_sistem_sumberdaya'][$value])) {
-                    $data['poin_sistem_sumberdaya'][$value] = 0;
-                }
-                $data['poin_sistem_sumberdaya'][$value] += 3;
-            }
-        }
-
-        if(!empty($data['alur_risiko'])) {
-            foreach ($data['alur_risiko'] as $value) {
-                if (empty($data['poin_sistem_sumberdaya'][$value])) {
-                    $data['poin_sistem_sumberdaya'][$value] = 0;
-                }
-                $data['poin_sistem_sumberdaya'][$value] += 2;
-            }
-        }
-
-        if(!empty($data['alur_aplikasi'])) {
-            foreach ($data['alur_aplikasi'] as $value) {
-                if (empty($data['poin_sistem_sumberdaya'][$value])) {
-                    $data['poin_sistem_sumberdaya'][$value] = 0;
-                }
-                $data['poin_sistem_sumberdaya'][$value] += 2;
-            }
-        }
-
-        //get max poin antar sistem
-        $poin_order_tatakelola = [];
-        $poin_order_sumberdaya = [];
-
-        foreach ($data['poin_sistem_tatakelola'] as $key => $value) {
-            if (empty($poin_order_tatakelola[$value])) {
-                $poin_order_tatakelola[$value] = [
-                    'sistem' => [],
-                    'poin' => $value,
-                ];
-            }
-            $poin_order_tatakelola[$value]['sistem'][] = $key;
-        }
-
-        foreach ($data['poin_sistem_sumberdaya'] as $key => $value) {
-            if (empty($poin_order_sumberdaya[$value])) {
-                $poin_order_sumberdaya[$value] = [
-                    'sistem' => [],
-                    'poin' => $value,
-                ];
-            }
-            $poin_order_sumberdaya[$value]['sistem'][] = $key;
-        }
-
-        krsort($poin_order_tatakelola);
-        krsort($poin_order_sumberdaya);
-
-        $data['poin_order_tatakelola'] = $poin_order_tatakelola;
-        $data['poin_order_sumberdaya'] = $poin_order_sumberdaya;
-
-        $max_tatakelola = $poin_order_tatakelola[array_key_first($poin_order_tatakelola)];
-        $max_sumberdaya = $poin_order_sumberdaya[array_key_first($poin_order_sumberdaya)];
-
-        $nilai_total = $max_tatakelola['poin'] + $max_sumberdaya['poin'];
-        
+        $totalPoinTatakelola = array_sum($data['poin_sistem_tatakelola']);
+        $totalPoinSumberdaya = array_sum($data['poin_sistem_sumberdaya']);
+        // $nilai_total = $max_tatakelola['poin'] + $max_sumberdaya['poin'];
         
         $data = [
             ...session('diagnose_data'),
@@ -404,8 +359,12 @@ class DiagnoseFormController extends Controller
         ];
         
         
-        $data['kriteria_terpilih'] = [$max_tatakelola['sistem'][0], $max_sumberdaya['sistem'][0]];
-        $data['nilai_total'] = $nilai_total;
+        // $data['kriteria_terpilih'] = [$max_tatakelola['sistem'][0], $max_sumberdaya['sistem'][0]];
+        $data['total_poin_tatakelola'] = $totalPoinTatakelola;
+        $data['total_poin_sumberdaya'] = $totalPoinSumberdaya;
+        // $data['nilai_total'] = $nilai_total;
+
+        dd ($data);
         session()->put('diagnose_data', $data);
         return to_route('diagnose.form.result');
 
@@ -416,7 +375,7 @@ class DiagnoseFormController extends Controller
         $iiv = IIV::with('refInstansi', 'interdepenSistemIIV', 'interdepenSistemIIV.sistemElektronik')->whereIn('nama', session('diagnose_data')['sistem_terpilih'])->get();
         
         $session_data = session('diagnose_data');
-        // dd($session_data);
+        dd($session_data);
         
 
         IIV::FirstOrCreate([
