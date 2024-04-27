@@ -38,7 +38,17 @@ class IIVDataTable extends DataTable
     public function query(IIV $model): QueryBuilder
     {
         return $model
-        ->when(Auth::user()->role !== UserRole::ADMIN, static fn ($query) => $query->where('user_id', Auth::user()->id))
+        // ->when(Auth::user()->role !== UserRole::ADMIN, static fn ($query) => $query->where('user_id', Auth::user()->id))
+        ->when(Auth::user()->role !== UserRole::ADMIN, function ($query) {
+            // Dapatkan id instansi dari pengguna yang terotentikasi
+            $currentUserInstansiId = Auth::user()->ref_instansi_id;
+            
+            // Query yang mencakup record milik pengguna terotentikasi atau milik pengguna lain dengan instansi yang sama
+            $query->where(function($subQuery) use ($currentUserInstansiId) {
+                $subQuery->where('user_id', Auth::user()->id)
+                         ->orWhere('ref_instansi_id', $currentUserInstansiId);
+            });
+        })
         ->with('refInstansi')
         ->newQuery();
     }

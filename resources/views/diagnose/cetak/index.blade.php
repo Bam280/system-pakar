@@ -73,44 +73,28 @@
     </div>
 
     <br>
-    <h5>Melalui input yang dimasukkan oleh user pada form sebelumnya berikut adalah prolehan nilai yang didapat
-    </h5>
-    <table class="products">
-        <tr>
-            <th>Nama sistem terinput</th>
-            <th>Nilai interdepenSistem</th>
-        </tr>
-        <tr class="items">
-            @foreach ($diagnose_data['form2']['poin_order'] as $poin_order)
-                @foreach ($poin_order['sistem'] as $nilai_sistem)
-                    <td>{{ $nilai_sistem }}</td>
-                    <td>{{ $poin_order['poin'] }}</td>
+    @if (isset($diagnose_data['form2']))
+        <h5>Melalui input yang dimasukkan oleh user pada form sebelumnya berikut adalah prolehan nilai yang didapat
+        </h5>
+        <table class="products">
+            <tr>
+                <th>Nama sistem terinput</th>
+                <th>Nilai interdepenSistem</th>
+            </tr>
+            <tr class="items">
+                @foreach ($diagnose_data['form2']['poin_order'] as $poin_order)
+                    @foreach ($poin_order['sistem'] as $nilai_sistem)
+                        <td>{{ $nilai_sistem }}</td>
+                        <td>{{ $poin_order['poin'] }}</td>
+                    @endforeach
                 @endforeach
-            @endforeach
-        </tr>
-    </table>
+            </tr>
+        </table>
+        <br>
+    @endif
 
-    <br>
 
     <h5>Dengan rincian sebagai berikut :</h5>
-
-    {{-- <h5>Sistem Terpilih</h5>
-    <table class="products">
-        <tr>
-            <th>Nama</th>
-            <th>Instansi</th>
-            <th>Nilai resiko</th>
-        </tr>
-        @foreach ($iiv as $k => $item)
-            <tr class="items">
-                <td>{{ $item->nama }}</td>
-                <td>{{ $item->refInstansi?->nama_instansi }}</td>
-                <td>{{ $item->nilai_risiko ?? 0 }}</td>
-            </tr>
-        @endforeach
-    </table> --}}
-
-    <br>
 
     <h5>1. Untuk mencegah keamanan data dan informasi</h5>
     <table class="products">

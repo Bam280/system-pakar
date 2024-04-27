@@ -158,32 +158,12 @@
                                 <div class="col-md-auto">
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="kriteria_pendanaan_pengamanan"
-                                            id="inlineRadio1" value="Ya">
+                                            id="inlineRadio1" value="1">
                                         <label class="form-check-label" for="inlineRadio1">Ya</label>
                                     </div>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="kriteria_pendanaan_pengamanan"
                                             id="inlineRadio2" value="0">
-                                        <label class="form-check-label" for="inlineRadio2">Tidak</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="row">
-                                <div class="col">
-                                    <label for="kriteria_pendanaan_pemulihan" class="form-label">Kriteria Pendanaan
-                                        Pemulihan</label>
-                                </div>
-                                <div class="col-md-auto">
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio"
-                                            name="kriteria_pendanaan_pemulihan" id="inlineRadio1" value="Ya">
-                                        <label class="form-check-label" for="inlineRadio1">Ya</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio"
-                                            name="kriteria_pendanaan_pemulihan" id="inlineRadio2" value="0">
                                         <label class="form-check-label" for="inlineRadio2">Tidak</label>
                                     </div>
                                 </div>
@@ -204,6 +184,26 @@
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio"
                                             name="kriteria_pendanaan_pendukung" id="inlineRadio2" value="0">
+                                        <label class="form-check-label" for="inlineRadio2">Tidak</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="row">
+                                <div class="col">
+                                    <label for="kriteria_pendanaan_risiko" class="form-label">Kriteria Pendanaan
+                                        Risiko</label>
+                                </div>
+                                <div class="col-md-auto">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="kriteria_pendanaan_risiko"
+                                            id="inlineRadio1" value="1">
+                                        <label class="form-check-label" for="inlineRadio1">Ya</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="kriteria_pendanaan_risiko"
+                                            id="inlineRadio2" value="0">
                                         <label class="form-check-label" for="inlineRadio2">Tidak</label>
                                     </div>
                                 </div>

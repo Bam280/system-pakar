@@ -25,27 +25,32 @@
                 <textarea class="form-control" name="deskripsi_sistem" id="deskripsi_sistem" rows="3" readonly>{{ $diagnose_data['form1']['deskripsi_sistem'] }}</textarea>
             </div>
 
-            <h5>Melalui input yang dimasukkan oleh user pada form sebelumnya berikut adalah prolehan nilai yang didapat</h5>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th scope="col">Nama sistem terinput</th>
-                        <th scope="col">Nilai interdepenSistem</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($diagnose_data['form2']['poin_order'] as $poin_order)
-                        @foreach ($poin_order['sistem'] as $nilai_sistem)
+            @if (isset($diagnose_data['form2']))
+                <h5>Melalui input yang dimasukkan oleh user pada form sebelumnya berikut adalah prolehan nilai yang didapat
+                </h5>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nama sistem terinput</th>
+                            <th scope="col">Nilai interdepenSistem</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($diagnose_data['form2']['poin_order'] as $poin_order)
                             <tr>
-                                <td>{{ $nilai_sistem }}</td>
+                                <td>{{ $poin_order['sistem'][0] }}</td>
                                 <td>{{ $poin_order['poin'] }}</td>
                             </tr>
                         @endforeach
-                    @endforeach
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            @endif
 
-            <h4>Sistem yang terpilih dari hasil diatas adalah</h4>
+            @if (isset($diagnose_data['form2']))
+                <h4>Sistem yang terpilih dari hasil diatas adalah</h4>
+            @else
+                <h4>Sistem yang terpilih adalah</h4>
+            @endif
             <table class="table table-bordered">
                 <thead>
                     <tr>
