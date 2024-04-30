@@ -25,9 +25,9 @@
                 <textarea class="form-control" name="deskripsi_sistem" id="deskripsi_sistem" rows="3" readonly>{{ $diagnose_data['form1']['deskripsi_sistem'] }}</textarea>
             </div>
 
+            <h5>Melalui input yang dimasukkan oleh user pada form sebelumnya berikut adalah prolehan nilai yang didapat
+            </h5>
             @if (isset($diagnose_data['form2']))
-                <h5>Melalui input yang dimasukkan oleh user pada form sebelumnya berikut adalah prolehan nilai yang didapat
-                </h5>
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -42,6 +42,23 @@
                                 <td>{{ $poin_order['poin'] }}</td>
                             </tr>
                         @endforeach
+                    </tbody>
+                </table>
+            @else
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nama sistem pemenang</th>
+                            <th scope="col">Nilai Kemiripan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            @foreach ($diagnose_data['sistem_terpilih'] as $nama)
+                                <td>{{ $nama }}</td>
+                            @endforeach
+                            <td>{{ $diagnose_data['form4']['nilai_total'] }}</td>
+                        </tr>
                     </tbody>
                 </table>
             @endif

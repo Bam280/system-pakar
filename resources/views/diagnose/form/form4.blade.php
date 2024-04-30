@@ -152,8 +152,8 @@
                         <div class="mb-3">
                             <div class="row">
                                 <div class="col">
-                                    <label for="kriteria_pendanaan_pengamanan" class="form-label">Kriteria Pendanaan
-                                        Pengamanana</label>
+                                    <label for="kriteria_pendanaan_pengamanan" class="form-label">Pendanaan untuk kendali
+                                        pengamanan</label>
                                 </div>
                                 <div class="col-md-auto">
                                     <div class="form-check form-check-inline">
@@ -163,7 +163,7 @@
                                     </div>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="kriteria_pendanaan_pengamanan"
-                                            id="inlineRadio2" value="0">
+                                            id="inlineRadio2" value="0" checked>
                                         <label class="form-check-label" for="inlineRadio2">Tidak</label>
                                     </div>
                                 </div>
@@ -172,8 +172,8 @@
                         <div class="mb-3">
                             <div class="row">
                                 <div class="col">
-                                    <label for="kriteria_pendanaan_pendukung" class="form-label">Kriteria Pendanaan
-                                        Pendukung</label>
+                                    <label for="kriteria_pendanaan_pendukung" class="form-label">Pendanaan untuk pendukung
+                                        pengamana</label>
                                 </div>
                                 <div class="col-md-auto">
                                     <div class="form-check form-check-inline">
@@ -183,7 +183,7 @@
                                     </div>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio"
-                                            name="kriteria_pendanaan_pendukung" id="inlineRadio2" value="0">
+                                            name="kriteria_pendanaan_pendukung" id="inlineRadio2" value="0" checked>
                                         <label class="form-check-label" for="inlineRadio2">Tidak</label>
                                     </div>
                                 </div>
@@ -192,8 +192,8 @@
                         <div class="mb-3">
                             <div class="row">
                                 <div class="col">
-                                    <label for="kriteria_pendanaan_risiko" class="form-label">Kriteria Pendanaan
-                                        Risiko</label>
+                                    <label for="kriteria_pendanaan_risiko" class="form-label">Pendanaan untuk kegiatan
+                                        manajemen risiko</label>
                                 </div>
                                 <div class="col-md-auto">
                                     <div class="form-check form-check-inline">
@@ -203,7 +203,7 @@
                                     </div>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="kriteria_pendanaan_risiko"
-                                            id="inlineRadio2" value="0">
+                                            id="inlineRadio2" value="0" checked>
                                         <label class="form-check-label" for="inlineRadio2">Tidak</label>
                                     </div>
                                 </div>
@@ -212,8 +212,8 @@
                         <div class="mb-3">
                             <div class="row">
                                 <div class="col">
-                                    <label for="kriteria_keterampilan_pengamanan" class="form-label">Kriteria Keterampilan
-                                        Pengamanan</label>
+                                    <label for="kriteria_keterampilan_pengamanan" class="form-label">Pembinaan
+                                        keterampilan penggunaan kendali pengamanan</label>
                                 </div>
                                 <div class="col-md-auto">
                                     <div class="form-check form-check-inline">
@@ -223,7 +223,8 @@
                                     </div>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio"
-                                            name="kriteria_keterampilan_pengamanan" id="inlineRadio2" value="0">
+                                            name="kriteria_keterampilan_pengamanan" id="inlineRadio2" value="0"
+                                            checked>
                                         <label class="form-check-label" for="inlineRadio2">Tidak</label>
                                     </div>
                                 </div>
@@ -232,8 +233,8 @@
                         <div class="mb-3">
                             <div class="row">
                                 <div class="col">
-                                    <label for="kriteria_keterampilan_identifikasi" class="form-label">Kriteria
-                                        Keterampilan Identifikasi</label>
+                                    <label for="kriteria_keterampilan_identifikasi" class="form-label">Pembinaan
+                                        keterampilan mengidentifikasi sistem elektronik</label>
                                 </div>
                                 <div class="col-md-auto">
                                     <div class="form-check form-check-inline">
@@ -243,7 +244,8 @@
                                     </div>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio"
-                                            name="kriteria_keterampilan_identifikasi" id="inlineRadio2" value="0">
+                                            name="kriteria_keterampilan_identifikasi" id="inlineRadio2" value="0"
+                                            checked>
                                         <label class="form-check-label" for="inlineRadio2">Tidak</label>
                                     </div>
                                 </div>
@@ -252,7 +254,9 @@
                         <div class="mb-3">
                             <div class="row">
                                 <div class="col">
-                                    <label for="kesadaran_interdepen" class="form-label">Kesadaran Interdepen</label>
+                                    <label for="kesadaran_interdepen" class="form-label">Pembinaan kesadaran akan
+                                        interdependensi
+                                    </label>
                                 </div>
                                 <div class="col-md-auto">
                                     <div class="form-check form-check-inline">
@@ -262,7 +266,7 @@
                                     </div>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="kesadaran_interdepen"
-                                            id="inlineRadio2" value="0">
+                                            id="inlineRadio2" value="0" checked>
                                         <label class="form-check-label" for="inlineRadio2">Tidak</label>
                                     </div>
                                 </div>
@@ -271,8 +275,9 @@
                         <div class="mb-3">
                             <div class="row">
                                 <div class="col">
-                                    <label for="kriteria_kesadaran_risiko" class="form-label">Kriteria Kesadaran
-                                        Risiko</label>
+                                    <label for="kriteria_kesadaran_risiko" class="form-label">Pembinaan kesadaran akan
+                                        risiko keamanan siber
+                                    </label>
                                 </div>
                                 <div class="col-md-auto">
                                     <div class="form-check form-check-inline">
@@ -282,7 +287,7 @@
                                     </div>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="kriteria_kesadaran_risiko"
-                                            id="inlineRadio2" value="0">
+                                            id="inlineRadio2" value="0" checked>
                                         <label class="form-check-label" for="inlineRadio2">Tidak</label>
                                     </div>
                                 </div>

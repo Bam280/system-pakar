@@ -73,7 +73,6 @@
                     </tr>
                 </thead>
                 <tbody>
-
                     @foreach ($iiv as $k => $item)
                         <tr>
                             <td>
@@ -95,8 +94,8 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th scope="col">Tujuan</th>
-                        <th scope="col">Deskripsi Tujuan</th>
+                        <th scope="col">Kendali</th>
+                        <th scope="col">Deskripsi Kendali</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -122,8 +121,8 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th scope="col">Tujuan</th>
-                        <th scope="col">Deskripsi Tujuan</th>
+                        <th scope="col">Kendali</th>
+                        <th scope="col">Deskripsi Kendali</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -148,8 +147,8 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th scope="col">Tujuan</th>
-                        <th scope="col">Deskripsi Tujuan</th>
+                        <th scope="col">Kendali</th>
+                        <th scope="col">Deskripsi Kendali</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -174,8 +173,8 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th scope="col">Tujuan</th>
-                        <th scope="col">Deskripsi Tujuan</th>
+                        <th scope="col">Kendali</th>
+                        <th scope="col">Deskripsi Kendali</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -200,8 +199,8 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th scope="col">Tujuan</th>
-                        <th scope="col">Deskripsi Tujuan</th>
+                        <th scope="col">Kendali</th>
+                        <th scope="col">Deskripsi Kendali</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -251,7 +250,7 @@
                     @foreach ($sistem_terpilih as $iiv)
                         @foreach ($iiv->tatakelola as $tatakelola)
                             <tr>
-                                <td>{{ $tatakelola->deskripsi_tatakelola }}</td>
+                                <td>{{ $tatakelola->deskripsi_tata_kelola }}</td>
                             </tr>
                         @endforeach
                     @endforeach

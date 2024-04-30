@@ -14,7 +14,7 @@ class TataKelola extends Model
     // Define the fillable columns
     protected $fillable = [
         'ref_tata_kelola_id',
-        'deslripsi_tata_kelola',
+        'deskripsi_tatakelola',
         'iiv_id',
         'kendali_id',
         // Add more columns here

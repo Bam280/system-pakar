@@ -19,7 +19,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'instansi_ref',
+        'ref_instansi_id',
         'email',
         'password',
         'role',
@@ -54,5 +54,10 @@ class User extends Authenticatable
     public function ref_instansi()
     {
         return $this->belongsTo(RefInstansi::class, 'instansi_ref');
+    }
+
+    public function result_histories()
+    {
+        return $this->hasMany(ResultHistories::class);
     }
 }

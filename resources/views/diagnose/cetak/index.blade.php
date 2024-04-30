@@ -81,13 +81,27 @@
                 <th>Nama sistem terinput</th>
                 <th>Nilai interdepenSistem</th>
             </tr>
-            <tr class="items">
-                @foreach ($diagnose_data['form2']['poin_order'] as $poin_order)
-                    @foreach ($poin_order['sistem'] as $nilai_sistem)
+            @foreach ($diagnose_data['form2']['poin_order'] as $poin_order)
+                @foreach ($poin_order['sistem'] as $nilai_sistem)
+                    <tr class="items">
                         <td>{{ $nilai_sistem }}</td>
                         <td>{{ $poin_order['poin'] }}</td>
-                    @endforeach
+                    </tr>
                 @endforeach
+            @endforeach
+        </table>
+        <br>
+    @else
+        <table class="products">
+            <tr>
+                <th scope="col">Nama sistem pemenang</th>
+                <th scope="col">Nilai Kemiripan</th>
+            </tr>
+            <tr class="items">
+                @foreach ($diagnose_data['sistem_terpilih'] as $nama)
+                    <td>{{ $nama }}</td>
+                @endforeach
+                <td>{{ $poin_order['poin'] }}</td>
             </tr>
         </table>
         <br>
@@ -96,121 +110,140 @@
 
     <h5>Dengan rincian sebagai berikut :</h5>
 
-    <h5>1. Untuk mencegah keamanan data dan informasi</h5>
-    <table class="products">
-        <tr>
-            <th scope="col">Kendali</th>
-            <th scope="col">Deskripsi Kendali</th>
-        </tr>
-        @foreach ($sistem_terpilih as $iiv)
-            @foreach ($iiv->tujuan as $tujuan)
-                @foreach ($tujuan->risiko as $risiko)
-                    @foreach ($risiko->kendali as $kendali)
-                        @if ($kendali->ref_fungsi_id == 1 || $kendali->ref_fungsi_id == 2)
-                            <tr class="items">
-                                <td>{{ $kendali->nama_kendali }}</td>
-                                <td>{{ $kendali->deskripsi_kendali }}</td>
-                            </tr>
-                        @endif
+    <ol>
+
+        <li>
+            <h5>Untuk mencegah keamanan data dan informasi</h5>
+        </li>
+        <table class="products">
+            <tr>
+                <th scope="col">Kendali</th>
+                <th scope="col">Deskripsi Kendali</th>
+            </tr>
+            @foreach ($sistem_terpilih as $iiv)
+                @foreach ($iiv->tujuan as $tujuan)
+                    @foreach ($tujuan->risiko as $risiko)
+                        @foreach ($risiko->kendali as $kendali)
+                            @if ($kendali->ref_fungsi_id == 1 || $kendali->ref_fungsi_id == 2)
+                                <tr class="items">
+                                    <td>{{ $kendali->nama_kendali }}</td>
+                                    <td>{{ $kendali->deskripsi_kendali }}</td>
+                                </tr>
+                            @endif
+                        @endforeach
                     @endforeach
                 @endforeach
             @endforeach
-        @endforeach
-    </table>
+        </table>
 
-    <br>
-    <h5>2. Untuk mengurangi keinginan pelaku kejahatan</h5>
+        <br>
 
-    <table class="products">
-        <tr>
-            <th scope="col">Kendali</th>
-            <th scope="col">Deskripsi Kendali</th>
-        </tr>
-        @foreach ($sistem_terpilih as $iiv)
-            @foreach ($iiv->tujuan as $tujuan)
-                @foreach ($tujuan->risiko as $risiko)
-                    @foreach ($risiko->kendali as $kendali)
-                        @if ($kendali->ref_fungsi_id == 2)
-                            <tr class="items">
-                                <td>{{ $kendali->nama_kendali }}</td>
-                                <td>{{ $kendali->deskripsi_kendali }}</td>
-                            </tr>
-                        @endif
+        <li>
+            <h5>Untuk mengurangi keinginan pelaku kejahatan</h5>
+        </li>
+
+        <table class="products">
+            <tr>
+                <th scope="col">Kendali</th>
+                <th scope="col">Deskripsi Kendali</th>
+            </tr>
+            @foreach ($sistem_terpilih as $iiv)
+                @foreach ($iiv->tujuan as $tujuan)
+                    @foreach ($tujuan->risiko as $risiko)
+                        @foreach ($risiko->kendali as $kendali)
+                            @if ($kendali->ref_fungsi_id == 2)
+                                <tr class="items">
+                                    <td>{{ $kendali->nama_kendali }}</td>
+                                    <td>{{ $kendali->deskripsi_kendali }}</td>
+                                </tr>
+                            @endif
+                        @endforeach
                     @endforeach
                 @endforeach
             @endforeach
-        @endforeach
-    </table>
+        </table>
 
-    <br>
-    <h5>3. Untuk mendeteksi masalah keamanan</h5>
+        <br>
 
-    <table class="products">
-        <tr>
-            <th scope="col">Kendali</th>
-            <th scope="col">Deskripsi Kendali</th>
-        </tr>
-        @foreach ($sistem_terpilih as $iiv)
-            @foreach ($iiv->tujuan as $tujuan)
-                @foreach ($tujuan->risiko as $risiko)
-                    @foreach ($risiko->kendali as $kendali)
-                        @if ($kendali->ref_fungsi_id == 3 || $kendali->ref_fungsi_id == 4 || $kendali->ref_fungsi_id == 5)
-                            <tr class="items">
-                                <td>{{ $kendali->nama_kendali }}</td>
-                                <td>{{ $kendali->deskripsi_kendali }}</td>
-                            </tr>
-                        @endif
+        <li>
+            <h5>Untuk mendeteksi masalah keamanan</h5>
+        </li>
+
+        <table class="products">
+            <tr>
+                <th scope="col">Kendali</th>
+                <th scope="col">Deskripsi Kendali</th>
+            </tr>
+            @foreach ($sistem_terpilih as $iiv)
+                @foreach ($iiv->tujuan as $tujuan)
+                    @foreach ($tujuan->risiko as $risiko)
+                        @foreach ($risiko->kendali as $kendali)
+                            @if ($kendali->ref_fungsi_id == 3 || $kendali->ref_fungsi_id == 4 || $kendali->ref_fungsi_id == 5)
+                                <tr class="items">
+                                    <td>{{ $kendali->nama_kendali }}</td>
+                                    <td>{{ $kendali->deskripsi_kendali }}</td>
+                                </tr>
+                            @endif
+                        @endforeach
                     @endforeach
                 @endforeach
             @endforeach
-        @endforeach
-    </table>
-    <br>
-    <h5>4. Untuk menindaklanjuti permasalahan keamanan</h5>
+        </table>
+        <br>
 
-    <table class="products">
-        <tr>
-            <th scope="col">Kendali</th>
-            <th scope="col">Deskripsi Kendali</th>
-        </tr>
-        @foreach ($sistem_terpilih as $iiv)
-            @foreach ($iiv->tujuan as $tujuan)
-                @foreach ($tujuan->risiko as $risiko)
-                    @foreach ($risiko->kendali as $kendali)
-                        @if ($kendali->ref_fungsi_id == 6)
-                            <tr class="items">
-                                <td>{{ $kendali->nama_kendali }}</td>
-                                <td>{{ $kendali->deskripsi_kendali }}</td>
-                            </tr>
-                        @endif
+        <li>
+            <h5>Untuk menindaklanjuti permasalahan keamanan</h5>
+        </li>
+
+        <table class="products">
+            <tr>
+                <th scope="col">Kendali</th>
+                <th scope="col">Deskripsi Kendali</th>
+            </tr>
+            @foreach ($sistem_terpilih as $iiv)
+                @foreach ($iiv->tujuan as $tujuan)
+                    @foreach ($tujuan->risiko as $risiko)
+                        @foreach ($risiko->kendali as $kendali)
+                            @if ($kendali->ref_fungsi_id == 6)
+                                <tr class="items">
+                                    <td>{{ $kendali->nama_kendali }}</td>
+                                    <td>{{ $kendali->deskripsi_kendali }}</td>
+                                </tr>
+                            @endif
+                        @endforeach
                     @endforeach
                 @endforeach
             @endforeach
-        @endforeach
-    </table>
-    <br>
-    <h5>5. Untuk memulihkan pelayanan</h5>
+        </table>
+        <br>
 
-    <table class="products">
-        <tr>
-            <th scope="col">Kendali</th>
-            <th scope="col">Deskripsi Kendali</th>
-        </tr>
-        @foreach ($sistem_terpilih as $iiv)
-            @foreach ($iiv->tujuan as $tujuan)
-                @foreach ($tujuan->risiko as $risiko)
-                    @foreach ($risiko->kendali as $kendali)
-                        @if ($kendali->ref_fungsi_id == 7)
-                            <tr class="items">
-                                <td>{{ $kendali->nama_kendali }}</td>
-                                <td>{{ $kendali->deskripsi_kendali }}</td>
-                            </tr>
-                        @endif
+
+        <li>
+            <h5>Untuk memulihkan pelayanan</h5>
+        </li>
+
+        <table class="products">
+            <tr>
+                <th scope="col">Kendali</th>
+                <th scope="col">Deskripsi Kendali</th>
+            </tr>
+            @foreach ($sistem_terpilih as $iiv)
+                @foreach ($iiv->tujuan as $tujuan)
+                    @foreach ($tujuan->risiko as $risiko)
+                        @foreach ($risiko->kendali as $kendali)
+                            @if ($kendali->ref_fungsi_id == 7)
+                                <tr class="items">
+                                    <td>{{ $kendali->nama_kendali }}</td>
+                                    <td>{{ $kendali->deskripsi_kendali }}</td>
+                                </tr>
+                            @endif
+                        @endforeach
                     @endforeach
                 @endforeach
             @endforeach
-        @endforeach
-    </table>
+        </table>
+    </ol>
+
     <br>
     <h5>Rekomendasi Sumber Daya</h5>
 
@@ -222,6 +255,22 @@
             @foreach ($iiv->sumberdaya as $sumberdaya)
                 <tr class="items">
                     <td>{{ $sumberdaya->deskripsi_sumberdaya }}</td>
+                </tr>
+            @endforeach
+        @endforeach
+    </table>
+    <br>
+
+    <h5>Rekomendasi Tatakelola</h5>
+
+    <table class="products">
+        <tr>
+            <th scope="col">Rekomendasi</th>
+        </tr>
+        @foreach ($sistem_terpilih as $iiv)
+            @foreach ($iiv->tatakelola as $tatakelola)
+                <tr class="items">
+                    <td>{{ $tatakelola->deskripsi_tata_kelola }}</td>
                 </tr>
             @endforeach
         @endforeach

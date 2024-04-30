@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\IIV;
 use App\Models\Interdepen;
+use App\Models\RefInterdepen;
 use App\Models\RefJenisTatakelola;
+use App\Models\ResultHistory;
 use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use PDF;
 
@@ -30,6 +33,9 @@ class DiagnoseFormController extends Controller
             'nama_sistem' => 'required',
             'deskripsi_sistem' => 'required',
             'kesamaan_sistem' => 'nullable',
+        ], [
+            'nama_sistem.required' => 'Mohon untuk tidak mengosongkan nama sistem yang akan anda Diagnose.',
+            'deskripsi_sistem.required' => 'Mohon untuk tidak mengosongkan deskripsi sistem yang akan anda Diagnose.',
         ]);
 
         session()->put('diagnose_data', [
@@ -47,49 +53,42 @@ class DiagnoseFormController extends Controller
     public function form2()
     {
         $all_iiv = IIV::all();
+        $allRefInterdepen = RefInterdepen::all();
         $data_form2 = session('diagnose_data')['form2'] ?? [];
-        return view('diagnose.form.form2', compact('all_iiv', 'data_form2'));
+        return view('diagnose.form.form2', compact('all_iiv', 'data_form2', 'allRefInterdepen'));
     }
 
     public function form2Store(Request $request)
     {
+        $allRefInterdepen = RefInterdepen::all();
+
+        $formValidation = [];
+        foreach ($allRefInterdepen as $refInterdepen) {
+            $slug = Str::slug($refInterdepen->label, '_');
+            $formValidation[$slug] = 'nullable|array';
+            $formValidation[$slug . '.*'] = 'nullable|string';
+        }
+
         $data = $request->validate([
-            'sistem_terhubung_lan' => 'nullable|array',
-            'sistem_terhubung_lan.*' => 'nullable|string',
-
-            'sistem_berbagi_database' => 'nullable|array',
-            'sistem_berbagi_database.*' => 'nullable|string',
-
-            'sistem_memiliki_hardware_sama' => 'nullable|array',
-            'sistem_memiliki_hardware_sama.*' => 'nullable|string',
+            ...$formValidation,
         ]);
 
         $data['poin_sistem'] = [];
+        $data['sistem_pilihan'] = [];
 
-        if(!empty($data['sistem_terhubung_lan'])) {
-            foreach ($data['sistem_terhubung_lan'] as $value) {
-                if (empty($data['poin_sistem'][$value])) {
-                    $data['poin_sistem'][$value] = 0;
+        foreach ($allRefInterdepen as $refInterdepen) {
+            $slug = Str::slug($refInterdepen->label, '_');
+            if (!empty($data[$slug])) {
+                foreach ($data[$slug] as $value) {
+                    if (empty($data['poin_sistem'][$value])) {
+                        $data['poin_sistem'][$value] = 0;
+                    }
+                    if(empty($data['sistem_pilihan'][$value])) {
+                        $data['sistem_pilihan'][$value] = [];
+                    }
+                    $data['sistem_pilihan'][$value][] = $refInterdepen->label;
+                    $data['poin_sistem'][$value] += $refInterdepen->poin;
                 }
-                $data['poin_sistem'][$value] += 2;
-            }
-        }
-
-        if(!empty($data['sistem_berbagi_database'])) {
-            foreach ($data['sistem_berbagi_database'] as $value) {
-                if (empty($data['poin_sistem'][$value])) {
-                    $data['poin_sistem'][$value] = 0;
-                }
-                $data['poin_sistem'][$value] += 2;
-            }
-        }
-
-        if(!empty($data['sistem_memiliki_hardware_sama'])) {
-            foreach ($data['sistem_memiliki_hardware_sama'] as $value) {
-                if (empty($data['poin_sistem'][$value])) {
-                    $data['poin_sistem'][$value] = 0;
-                }
-                $data['poin_sistem'][$value] += 1;
             }
         }
 
@@ -143,25 +142,14 @@ class DiagnoseFormController extends Controller
             'nilai_kemungkinan' => 'required|numeric|min:0|max:5',
             'nilai_dampak_organisasi' => 'required|numeric|min:0|max:5',
             'nilai_dampak_nasional' => 'required|numeric|min:0|max:5',
+        ], [
+            'nilai_kemungkinan.required' => 'Mohon untuk tidak mengosongkan nilai kemungkinan.',
+            'nilai_dampak_organisasi.required' => 'Mohon untuk tidak mengosongkan nilai dampak organisasi.',
+            'nilai_dampak_nasional.required' => 'Mohon untuk tidak mengosongkan nilai dampak nasional.',
         ]);
 
         $nilai_dampak = $data['nilai_dampak_organisasi'] + $data['nilai_dampak_nasional'] / 2;
         $data['nilai_risiko'] = $data['nilai_kemungkinan'] * $nilai_dampak;
-
-        // get closest nilai_risiko at iiv
-        
-        // Mencari nilai risiko terdekat
-        // $nilai_risiko_terdekat = INF;
-        // $sistem_terdekat = null;
-        // $nilai_risiko_target = $data['nilai_risiko'];
-
-        // foreach (session('diagnose_data')['form2']['poin_sistem'] as $sistem => $nilai_risiko) {
-        //     $selisih_risiko = abs($nilai_risiko_target - $nilai_risiko);
-        //     if ($selisih_risiko < $nilai_risiko_terdekat) {
-        //         $nilai_risiko_terdekat = $selisih_risiko;
-        //         $sistem_terdekat = $sistem;
-        //     }
-        // }
 
         $iiv1 = IIV::whereIn('nama', array_keys(session('diagnose_data')['form2']['poin_sistem']))->where('nilai_risiko', '>=', $data['nilai_risiko'])->orderBy('nilai_risiko', 'asc')->limit(1)->get();
         $iiv2 = IIV::whereIn('nama', array_keys(session('diagnose_data')['form2']['poin_sistem']))->where('nilai_risiko', '<', $data['nilai_risiko'])->orderBy('nilai_risiko', 'desc')->limit(1)->get();
@@ -303,6 +291,10 @@ class DiagnoseFormController extends Controller
         // dd (session('diagnose_data'));
         $iiv = IIV::with('refInstansi', 'interdepenSistemIIV', 'interdepenSistemIIV.sistemElektronik')->whereIn('nama', session('diagnose_data')['sistem_terpilih'])->get();
 
+        $session_data = session('diagnose_data');
+
+
+
         if (!empty($session_data['form1']) && !empty($session_data['form2'])){
             IIV::FirstOrCreate([
                 'nama' => $session_data['form1']['nama_sistem'],
@@ -312,6 +304,7 @@ class DiagnoseFormController extends Controller
                 'nilai_risiko' => 0.0,
             ]);
         }
+
         if (!empty($session_data['form2'])){
             if (isset($session_data['form2']['poin_sistem'])) {
                 foreach ($session_data['form2']['poin_sistem'] as $key => $value) {
@@ -327,40 +320,36 @@ class DiagnoseFormController extends Controller
                 }
             }
 
-            Interdepen::FirstOrCreate([
-                'ref_interdepen_id' => 1,
-                'sistem_elektronik_id' => IIV::where('nama', $session_data['form1']['nama_sistem'])->first()->id,
-                'sistem_iiv_id' => IIV::where('nama', $session_data['form2']['poin_order'][array_key_first($session_data['form2']['poin_order'])]['sistem'][0])->first()->id,
-                'deskripsi_interdepen' => "",
-            ]);
+            foreach ($session_data['sistem_terpilih'] as $sistem_terpilih) {
+                foreach ($session_data['form2']['sistem_pilihan'][$sistem_terpilih] as $sistem_pilihan) {
+                    Interdepen::FirstOrCreate([
+                        'ref_interdepen_id' => RefInterdepen::where('label', $sistem_pilihan)->first()->id,
+                        'sistem_elektronik_id' => IIV::where('nama', $session_data['form1']['nama_sistem'])->first()->id,
+                        'sistem_iiv_id' => IIV::where('nama', $sistem_terpilih)->first()->id,
+                        'deskripsi_interdepen' => "",
+                    ]);
+                }
+            }
         }
-        
-        $session_data = session('diagnose_data');
-        // dd($session_data);
+
+        ResultHistory::FirstOrCreate([
+            'user_id' => Auth::user()->id,
+            'attributes' => $session_data,
+        ]);
 
 
         return view('diagnose.form.result', [
             'iiv' => $iiv,
             'diagnose_data' => session('diagnose_data'),
         ]);
-
-        // $iiv = IIV::with('refInstansi', 'interdepenSistemIIV', 'interdepenSistemIIV.sistemElektronik')->whereIn('nama', session('diagnose_data')['sistem_terpilih'])->get();
-        // $iiv_sistemD = IIV::with('refInstansi', 'interdepenSistemIIV', 'interdepenSistemIIV.sistemElektronik')->whereIn('nilai_kemiripan', session('diagnose')['form4']['nilai_total'])->get();
-        
         
     }
 
     public function result2()
     {
-        // if (!empty(session('diagnose_data')['sistem_terpilih'])){
-        //     $iiv = IIV::with('refInstansi', 'interdepenSistemIIV', 'interdepenSistemIIV.sistemElektronik')->whereIn('nama', session('diagnose_data')['sistem_terpilih'])->get();
-        // } if (!empty(session('diagnose')['form4']['nilai_total'])){
-        //     $iiv = IIV::with('refInstansi', 'interdepenSistemIIV', 'interdepenSistemIIV.sistemElektronik')->whereIn('nilai_kemiripan', session('diagnose')['form4']['nilai_total'])->get();
-        // }
+        
         $iiv = IIV::with('refInstansi', 'interdepenSistemIIV', 'interdepenSistemIIV.sistemElektronik')->whereIn('nama', session('diagnose_data')['sistem_terpilih'])->get();
-        // $iiv_sistemD = IIV::with('refInstansi', 'interdepenSistemIIV', 'interdepenSistemIIV.sistemElektronik')->whereIn('nilai_kemiripan', session('diagnose')['form4']['nilai_total'])->get();
-
-        // flatten $iiv->interdepenSistemIIV->sistemElektronik n als0 $iiv data 
+        
 
         $sistem_terpilih = $iiv->pluck('id')->toArray();
         $sistem_terpilih = array_merge($sistem_terpilih, $iiv->pluck('interdepenSistemIIV')->flatten()->pluck('sistemElektronik')->flatten()->pluck('id')->toArray());
@@ -368,15 +357,7 @@ class DiagnoseFormController extends Controller
         // $sistem_terpilih = IIV::with(['sumberdaya'])->whereIn('id', $sistem_terpilih->pluck('id')->toArray())->get();
         $session_data = session('diagnose_data');
         // dd($session_data);
-        // $interp = Interdepen::with('sistemElektronik', 'sistemIIV', 'sistemElektronik.interdepenSistemIIV')->whereIn('nama', session('diagnose_data')['sistem_terpilih'])->get();
-        // $detail_interp = $interp->pluck('sistemElektronik')->toArray();
-        // $detail_interp = array_merge($detail_interp, $interp->pluck('sistemElektronik')->toArray());
-        // dd ($detail_interp);
-        
-        // $diag = session('diagnose_data');
-        // dd ($diag);
-
-        // dd($sistem_terpilih);
+       
 
         return view('diagnose.form.result2',[
             'iiv' => $iiv,
@@ -395,8 +376,6 @@ class DiagnoseFormController extends Controller
         $sistem_terpilih = array_merge($sistem_terpilih, $iiv->pluck('interdepenSistemIIV')->flatten()->pluck('sistemElektronik')->flatten()->pluck('id')->toArray());
         $sistem_terpilih = IIV::with(['tujuan', 'tujuan.refTujuan', 'tujuan.risiko', 'tujuan.risiko.kendali', 'tujuan.risiko.kendali.refFungsi'])->whereIn('id', $sistem_terpilih)->get(); 
         
-        // $sumberdaya = IIV::with('sumberdaya')->whereIn('id', $sistem_terpilih->pluck('id')->toArray())->get();
-        // $tataKelola = IIV::with('tataKelola')->whereIn('id', $sistem_terpilih->pluck('id')->toArray())->get();
         $session_data = session('diagnose_data');
         
         $pdf = FacadePdf::loadview('diagnose.cetak.index',[
