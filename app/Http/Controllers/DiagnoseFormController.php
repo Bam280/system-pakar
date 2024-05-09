@@ -7,6 +7,7 @@ use App\Models\Interdepen;
 use App\Models\RefInterdepen;
 use App\Models\RefJenisTatakelola;
 use App\Models\ResultHistory;
+use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -293,13 +294,11 @@ class DiagnoseFormController extends Controller
 
         $session_data = session('diagnose_data');
 
-
-
         if (!empty($session_data['form1']) && !empty($session_data['form2'])){
             IIV::FirstOrCreate([
                 'nama' => $session_data['form1']['nama_sistem'],
                 'deskripsi_sistem' => $session_data['form1']['deskripsi_sistem'],
-                'ref_instansi_id' => Auth::user()->instansi_ref,
+                'ref_instansi_id' => Auth::user()->ref_instansi_id,
                 'user_id' => Auth::user()->id,
                 'nilai_risiko' => 0.0,
             ]);
@@ -312,7 +311,7 @@ class DiagnoseFormController extends Controller
                         IIV::FirstOrCreate([
                             'nama' => $key,
                             'deskripsi_sistem' => $session_data['form1']['deskripsi_sistem'],
-                            'ref_instansi_id' => Auth::user()->instansi_ref,
+                            'ref_instansi_id' => Auth::user()->ref_instansi_id,
                             'user_id' => Auth::user()->id,
                             'nilai_risiko' => 0.0,
                         ]);
