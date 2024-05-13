@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\risiko;
+use App\Models\Risiko;
+use App\DataTables\RisikoDataTable;
 use App\Http\Requests\StorerisikoRequest;
 use App\Http\Requests\UpdaterisikoRequest;
 
@@ -11,18 +12,19 @@ class RisikoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(RisikoDataTable $dataTable)
     {
-        //
+        return $dataTable->render('pages.risiko.index');
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Risiko $risiko)
     {
-        //
+        return view('pages.risiko.form', compact('risiko'));
     }
+    
 
     /**
      * Store a newly created resource in storage.

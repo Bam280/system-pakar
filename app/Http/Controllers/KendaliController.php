@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\kendali;
+use App\Models\Kendali;
+use App\DataTables\KendaliDataTable;
 use App\Http\Requests\StorekendaliRequest;
 use App\Http\Requests\UpdatekendaliRequest;
 
@@ -11,9 +12,9 @@ class KendaliController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(KendaliDataTable $dataTable)
     {
-        //
+        return $dataTable->render('pages.kendali.index');
     }
 
     /**
@@ -21,7 +22,7 @@ class KendaliController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**

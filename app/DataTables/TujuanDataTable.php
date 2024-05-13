@@ -2,14 +2,14 @@
 
 namespace App\DataTables;
 
-use App\Models\Kendali;
+use App\Models\Tujuan;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
 
-class KendaliDataTable extends DataTable
+class TujuanDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -19,13 +19,13 @@ class KendaliDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', static fn (Kendali $kendali) => view('components.datatable-action', [
-                'editLink' => route('kendali.edit', $kendali),
-                'deleteLink' => route('kendali.destroy', $kendali),
+            ->addColumn('action', static fn (Tujuan $tujuan) => view('components.datatable-action', [
+                'editLink' => route('tujuan.edit', $tujuan),
+                'deleteLink' => route('tujuan.destroy', $tujuan),
             ]))
-            ->addColumn('nama_kendali', static fn (Kendali $kendali) => $kendali->nama_kendali)
-            ->addColumn('deskripsi_kendali', static fn (Kendali $kendali) => $kendali->deskripsi_kendali)
-            ->addColumn('ref_fungsi_id', static fn (Kendali $kendali) => $kendali->ref_fungsi_id)
+            ->addColumn('deskripsi_tujuan', static fn (Tujuan $tujuan) => $tujuan->deskripsi_tujuan)
+            ->addColumn('iiv_id', static fn (Tujuan $tujuan) => $tujuan->iiv_id)
+            ->addColumn('ref_tujuan_id', static fn (Tujuan $tujuan) => $tujuan->ref_tujuan_id)
             // ->addColumn('created_at', static fn (Kendali $kendali) => $kendali->created_at->format('d/m/Y H:i:s'))
             // ->addColumn('updated_at', static fn (Kendali $kendali) => $kendali->updated_at->format('d/m/Y H:i:s'))
             ->setRowId('id');
@@ -34,7 +34,7 @@ class KendaliDataTable extends DataTable
     /**
      * Get the query source of dataTable.
      */
-    public function query(Kendali $model): QueryBuilder
+    public function query(Tujuan $model): QueryBuilder
     {
         return $model->newQuery();
     }
@@ -45,7 +45,7 @@ class KendaliDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('kendali-table')
+                    ->setTableId('tujuan-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     //->dom('Bfrtip')
@@ -63,9 +63,9 @@ class KendaliDataTable extends DataTable
                   ->printable(false)
                   ->addClass('text-center'),
             Column::make('id')->hidden(),
-            Column::make('nama_kendali'),
-            Column::make('deskripsi_kendali'),
-            Column::make('ref_fungsi_id'),
+            Column::make('deskripsi_tujuan'),
+            Column::make('iiv_id'),
+            Column::make('ref_tujuan_id'),
             // Column::make('created_at'),
             // Column::make('updated_at'),
         ];
@@ -76,6 +76,6 @@ class KendaliDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Kendali_' . date('YmdHis');
+        return 'Tujuan_' . date('YmdHis');
     }
 }

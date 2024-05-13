@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\tujuan;
-use App\Http\Requests\StoretujuanRequest;
-use App\Http\Requests\UpdatetujuanRequest;
+use App\Models\Tujuan;
+use App\DataTables\TujuanDataTable;
+use Illuminate\Http\Request;
 
 class TujuanController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(TujuanDataTable $dataTable)
     {
-        //
+        return $dataTable->render('pages.tujuan.index');
     }
 
     /**
@@ -21,21 +21,30 @@ class TujuanController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.tujuan.form', compact('tujuan'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoretujuanRequest $request)
+    public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'deskripsi_tujuan' => ['required', 'longtext'],
+            'iiv_id' => ['required', 'integer'],
+            'ref_tujuan_id' => ['required', 'integer'],
+        ]);
+
+        Tujuan::create($data);
+
+        return to_route('tujuan.index')
+            ->with('success', 'Data berhasil disimpan');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(tujuan $tujuan)
+    public function show(Tujuan $tujuan)
     {
         //
     }
@@ -43,24 +52,36 @@ class TujuanController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(tujuan $tujuan)
+    public function edit(Tujuan $tujuan)
     {
-        //
+        return view('pages.tujuan.form', compact('tujuan'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatetujuanRequest $request, tujuan $tujuan)
+    public function update(Request $request, Tujuan $tujuan)
     {
-        //
+        $data = $request->validate([
+            'deskripsi_tujuan' => ['required'],
+            'iiv_id' => ['required', 'integer'],
+            'ref_tujuan_id' => ['required', 'integer'],
+        ]);
+
+        Tujuan::update($data);
+
+        return to_route('tujuan.index')
+            ->with('success', 'Data berhasil disimpan');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(tujuan $tujuan)
+    public function destroy(Tujuan $tujuan)
     {
-        //
+        $tujuan->delete();
+
+        return to_route('tujuan.index')
+            ->with('success', 'Data berhasil dihapus');
     }
 }

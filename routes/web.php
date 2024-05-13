@@ -10,6 +10,9 @@ use App\Http\Controllers\RefFungsiController;
 use App\Http\Controllers\IIVController;
 use App\Http\Controllers\InterdepenController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\KendaliController;
+use App\Http\Controllers\RisikoController;
+use App\Http\Controllers\TujuanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,7 +44,10 @@ Route::group(
             Route::resource('ref-instansi', RefInstansiController::class)->except('show');
             Route::resource('ref-interdepen', RefInterdepenController::class)->except('show');
             Route::resource('ref-tujuan', RefTujuanController::class)->except('show');
-            Route::resource('ref-fungsi', RefFungsiController::class)->except('show');        
+            Route::resource('ref-fungsi', RefFungsiController::class)->except('show');   
+            Route::resource('kendali', KendaliController::class)->except('show');
+            Route::resource('risiko', RisikoController::class)->except('show');
+            Route::resource('tujuan', TujuanController::class)->except('show');     
         });
     }
 );

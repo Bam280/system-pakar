@@ -10,6 +10,21 @@
         <p>Sumber : <a
                 href="https://www.emerald.com/insight/content/doi/10.1108/ICS-03-2023-0031/full/html">https://www.emerald.com/insight/content/doi/10.1108/ICS-03-2023-0031/full/html</a>
         </p>
+
+        <h5>Sistem Pendukung Keputusan (SPK) ini dibangun untuk mendukung identifikasi kebutuhan pengamanan pada
+            Infrastruktur Informasi Vital (IIV) sektor administrasi pemerintahan. Pada SPK ini setiap sistem elektronik
+            sektor administrasi pemerintahan dianggap sebagai IIV dengan tingkatan yang berbeda sesuai dengan nilai
+            keterhubungan SPK akan menghasilkan tingkat keterhubungan sistem elektronik dan merekomendasikan kendali
+            pengamanan yang diperlukan berdasarkan sistem elektronik terhubung. Jika sistem elektronik tidak memiliki
+            keterhubungan dengan sistem elektronik lain, sistem akan memberikan rekomendasi berdasarkan kemiripan sumber
+            daya dan tata kelola
+
+            Untuk dapat menggunakan SPK ini, pengguna harus mengetahui Arsitektur Aplikasi. Ini meliputi basis data, sumber
+            data, perangakt keras, dan jaringan tempat sistem elektronik terpasang.
+
+            SPK ini merupakan bagian dari penelitian Mahasiswa S3 Fakultas Ilmu Komputer Universitas Indonesia
+        </h5>
+
         <h4>Penggunaan SPK</h4>
         <ol>
             <li>

@@ -36,35 +36,7 @@
 
             <h5>Sistem Terpilih</h5>
 
-            {{-- <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th scope="col">Nama</th>
-                        @if (count($iiv) > 0)
-                            <th scope="col">Instansi</th>
-                        @endif
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (count($iiv) > 0)
-                        @foreach ($iiv as $k => $item)
-                            <tr>
-                                <td>
-                                    {{ $item->nama }}
-                                </td>
-                                <td>{{ $item->refInstansi->nama_instansi }}</td>
-                            </tr>
-                        @endforeach
-                        @else
-                            @foreach ($diagnose_data['form2']['poin_order'] as $poin_order)
-                                <tr>
-                                    <td>{{ $poin_order['sistem'][0] }}</td>
-                                </tr>
-                            @break
-                        @endforeach
-                    @endif
-                </tbody>
-            </table> --}}
+
             <table class="table table-bordered">
                 <thead>
                     <tr>

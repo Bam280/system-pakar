@@ -39,7 +39,37 @@
                         IDP
                     </span>
                     <span class="sidebar-nav-name">
-                        IDP
+                        Interdepen
+                    </span>
+                </a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a href="{{ route('kendali.index') }}" class="sidebar-nav-link">
+                    <span class="sidebar-nav-abbr">
+                        KDL
+                    </span>
+                    <span class="sidebar-nav-name">
+                        Kendali
+                    </span>
+                </a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a href="{{ route('risiko.index') }}" class="sidebar-nav-link">
+                    <span class="sidebar-nav-abbr">
+                        RSK
+                    </span>
+                    <span class="sidebar-nav-name">
+                        Risiko
+                    </span>
+                </a>
+            </li>
+            <li class="sidebar-nav-item">
+                <a href="{{ route('tujuan.index') }}" class="sidebar-nav-link">
+                    <span class="sidebar-nav-abbr">
+                        TJN
+                    </span>
+                    <span class="sidebar-nav-name">
+                        Tujuan
                     </span>
                 </a>
             </li>
@@ -109,7 +139,7 @@
                         User
                     </span>
                 </a>
-            </li>    
+            </li>
         @endcan
 
     </ul>
