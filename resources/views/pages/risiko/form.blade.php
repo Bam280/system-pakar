@@ -1,7 +1,7 @@
 @php
-    $title = $tujuan->exists ? 'Edit' : 'Tambah';
-    $route = $tujuan->exists ? route('tujuan.update', $tujuan->id) : route('tujuan.store');
-    $method = $tujuan->exists ? 'PUT' : 'POST';
+    $title = $risiko->exists ? 'Edit' : 'Tambah';
+    $route = $risiko->exists ? route('risiko.update', $risiko->id) : route('risiko.store');
+    $method = $risiko->exists ? 'PUT' : 'POST';
 @endphp
 
 
@@ -9,7 +9,7 @@
 
 @section('content')
     <div class="pb-3">
-        <h3>{{ $title }} Nilai Tujuan</h3>
+        <h3>{{ $title }} Nilai Risiko</h3>
     </div>
 
     @if ($errors->any())
@@ -30,9 +30,22 @@
                         @csrf
                         @method($method)
                         <div class="form-group">
-                            <label class="form-label" for="deskripsi_tujuan">Deskripsi Tujauan</label>
-                            <input type="longtext" class="form-control" id="deskripsi_tujuan" name="deskripsi_tujuan"
-                                value="{{ old('deskripsi_tujuan') ?? $tujuan->deskripsi_tujuan }}"
+                            <label class="form-label" for="deskripsi_risiko">Deskripsi Risiko</label>
+                            <input type="longtext" class="form-control" id="deskripsi_risiko" name="deskripsi_risiko"
+                                value="{{ old('deskripsi_risiko') ?? $risiko->deskripsi_risiko }}"
+                                placeholder="Desc Tujuan">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="deskripsi_dampak">Deskripsi Dampak</label>
+                            deskripsi_dampak <input type="longtext" class="form-control" id="deskripsi_dampak"
+                                name="deskripsi_dampak" value="{{ old('deskripsi_dampak') ?? $risiko->deskripsi_dampak }}"
+                                placeholder="Desc Tujuan">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="deskripsi_kemungkinan">Deskripsi Kemungkinan</label>
+                            <input type="longtext" class="form-control" id="deskripsi_kemungkinan"
+                                name="deskripsi_kemungkinan"
+                                value="{{ old('deskripsi_kemungkinan') ?? $risiko->deskripsi_kemungkinan }}"
                                 placeholder="Desc Tujuan">
                         </div>
                         <div class="form-group">

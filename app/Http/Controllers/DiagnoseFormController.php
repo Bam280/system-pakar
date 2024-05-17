@@ -331,10 +331,25 @@ class DiagnoseFormController extends Controller
             }
         }
 
-        ResultHistory::FirstOrCreate([
-            'user_id' => Auth::user()->id,
+        $latest_history = ResultHistory::where('user_id', Auth::user()->id)->latest()->first();
+
+        // if (json_encode($latest_history->attributes) == json_encode($session_data)) {
+        //     $latest_history->update([
+        //         'attributes' => $session_data,
+        //     ]);
+        // } else {
+        //     ResultHistory::create([
+        //         'attributes' => $session_data,
+        //         'user_id' => Auth::user()->id,
+        //     ]);
+        // }
+
+        ResultHistory::createOrUpdate([
             'attributes' => $session_data,
+            'user_id' => Auth::user()->id,
         ]);
+
+        
 
 
         return view('diagnose.form.result', [

@@ -1,6 +1,6 @@
 @php
     $title = $interdepen->exists ? 'Edit' : 'Tambah';
-    $route = $interdepen->exists ? route('interdepen.update', $iiv->id) : route('interdepen.store');
+    $route = $interdepen->exists ? route('interdepen.update', $interdepen->id) : route('interdepen.store');
     $method = $interdepen->exists ? 'PUT' : 'POST';
 @endphp
 
@@ -39,7 +39,7 @@
                             <label class="form-label" for="sistem_elektronik_id">Deskripsi</label>
                             <input type="longtext" class="form-control" id="sistem_elektronik_id"
                                 name="sistem_elektronik_id"
-                                value="{{ old('sistem_elektronik_id') ?? $iiv->sistem_elektronik_id }}"
+                                value="{{ old('sistem_elektronik_id') ?? $interdepen->sistem_elektronik_id }}"
                                 placeholder="Deskripsi Sistem">
                         </div>
                         <div class="form-group">

@@ -64,11 +64,11 @@ class TujuanController extends Controller
     {
         $data = $request->validate([
             'deskripsi_tujuan' => ['required'],
-            'iiv_id' => ['required', 'integer'],
             'ref_tujuan_id' => ['required', 'integer'],
+            'iiv_id' => ['required', 'integer'],
         ]);
 
-        Tujuan::update($data);
+        $tujuan->update($data);
 
         return to_route('tujuan.index')
             ->with('success', 'Data berhasil disimpan');

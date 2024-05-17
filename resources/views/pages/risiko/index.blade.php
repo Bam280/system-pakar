@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="pb-3">
-        <h1>Table Nilai Tujuan</h1>
+        <h1>Table Nilai Risiko</h1>
     </div>
 
     <div class="row">
