@@ -40,6 +40,7 @@ class DiagnoseFormController extends Controller
         ]);
 
         session()->put('diagnose_data', [
+            ...(session('diagnose_data') ?? []),
             'form1' => $data,
         ]);
 
@@ -119,8 +120,10 @@ class DiagnoseFormController extends Controller
         
         if (count($max['sistem']) == 1) {
             $data['sistem_terpilih'] = [$max['sistem'][0]];
-            
+
             session()->put('diagnose_data', $data);
+
+            $this->resultStore();
             return to_route('diagnose.form.result');
         }
         
@@ -167,6 +170,7 @@ class DiagnoseFormController extends Controller
         // dd ($data);
         
         session()->put('diagnose_data', $data);
+        $this->resultStore();
         return to_route('diagnose.form.result');
 
     }
@@ -274,24 +278,22 @@ class DiagnoseFormController extends Controller
 
         // Ambil nama dari entri yang paling dekat
         $sistem_terpilih = collect([$closest->nama])->toArray();
-        // $data['kriteria_terpilih'] = [$max_tatakelola['sistem'][0], $max_sumberdaya['sistem'][0]];
-        
+        // $data['kriteria_terpilih'] = [$max_tatakelola['sistem'][0], $max_sumberdaya['sistem'][0]]
+
         $data = [
             ...session('diagnose_data'),
             'form4' => $data,
             'sistem_terpilih' => $sistem_terpilih,
         ];
-        // dd ($data);
+
         session()->put('diagnose_data', $data);
+        $this->resultStore();
         return to_route('diagnose.form.result');
 
     }
 
-    public function result()
-    {        
-        // dd (session('diagnose_data'));
-        $iiv = IIV::with('refInstansi', 'interdepenSistemIIV', 'interdepenSistemIIV.sistemElektronik')->whereIn('nama', session('diagnose_data')['sistem_terpilih'])->get();
-
+    private function resultStore()
+    {
         $session_data = session('diagnose_data');
 
         if (!empty($session_data['form1']) && !empty($session_data['form2'])){
@@ -331,26 +333,16 @@ class DiagnoseFormController extends Controller
             }
         }
 
-        $latest_history = ResultHistory::where('user_id', Auth::user()->id)->latest()->first();
-
-        // if (json_encode($latest_history->attributes) == json_encode($session_data)) {
-        //     $latest_history->update([
-        //         'attributes' => $session_data,
-        //     ]);
-        // } else {
-        //     ResultHistory::create([
-        //         'attributes' => $session_data,
-        //         'user_id' => Auth::user()->id,
-        //     ]);
-        // }
-
-        ResultHistory::createOrUpdate([
+        ResultHistory::create([
             'attributes' => $session_data,
             'user_id' => Auth::user()->id,
         ]);
+    }
 
-        
-
+    public function result()
+    {        
+        // dd (session('diagnose_data'));
+        $iiv = IIV::with('refInstansi', 'interdepenSistemIIV', 'interdepenSistemIIV.sistemElektronik')->whereIn('nama', session('diagnose_data')['sistem_terpilih'])->get();
 
         return view('diagnose.form.result', [
             'iiv' => $iiv,

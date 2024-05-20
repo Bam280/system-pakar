@@ -1,3 +1,14 @@
+@props([
+    'showLink' => null,
+    'editLink' => null,
+    'deleteLink' => null,
+])
+
+@if($showLink)
+<a href="{{ $showLink }}" class="btn btn-sm btn-primary">
+    <span class="oi oi-eye"></span>
+</a>
+@endif
 
 @if($editLink)
 <a href="{{ $editLink }}" class="btn btn-sm btn-primary">

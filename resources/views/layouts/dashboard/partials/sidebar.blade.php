@@ -30,6 +30,16 @@
                 </span>
             </a>
         </li>
+        <li class="sidebar-nav-item">
+            <a href="{{ route('result-history.index') }}" class="sidebar-nav-link">
+                <span class="sidebar-nav-abbr">
+                    H
+                </span>
+                <span class="sidebar-nav-name">
+                    Result History
+                </span>
+            </a>
+        </li>
 
 
         @can('admin-access')

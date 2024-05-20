@@ -11,6 +11,7 @@ use App\Http\Controllers\IIVController;
 use App\Http\Controllers\InterdepenController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\KendaliController;
+use App\Http\Controllers\ResultHistoryController;
 use App\Http\Controllers\RisikoController;
 use App\Http\Controllers\TujuanController;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +39,9 @@ Route::group(
         Route::view('dashboard', 'pages.dashboard')->name('dashboard');
         Route::resource('iiv', IIVController::class)->except('show');
         
+        Route::get('result-history', [ResultHistoryController::class, 'index'])->name('result-history.index');
+        Route::get('result-history/{resultHistory}/rerun', [ResultHistoryController::class, 'rerun'])->name('result-history.rerun');
+
         Route::group(['middleware' => 'can:admin-access'], function () {
             Route::resource('interdepen', InterdepenController::class)->except('show');
             Route::resource('user', UserController::class)->except('show');
