@@ -35,8 +35,8 @@ class DiagnoseFormController extends Controller
             'deskripsi_sistem' => 'required',
             'kesamaan_sistem' => 'nullable',
         ], [
-            'nama_sistem.required' => 'Mohon untuk tidak mengosongkan nama sistem yang akan anda Diagnose.',
-            'deskripsi_sistem.required' => 'Mohon untuk tidak mengosongkan deskripsi sistem yang akan anda Diagnose.',
+            'nama_sistem.required' => 'Mohon untuk tidak mengosongkan nama sistem yang akan anda Diagnosa.',
+            'deskripsi_sistem.required' => 'Mohon untuk tidak mengosongkan deskripsi sistem yang akan anda Diagnosa.',
         ]);
 
         session()->put('diagnose_data', [

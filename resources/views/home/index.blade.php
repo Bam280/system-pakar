@@ -67,7 +67,7 @@
                         <div class="card text-center">
                             <div class="card-body align-items-center">
                                 <a href="{{ route('diagnose.form.form1') }}" class="btn btn-secondary btn-lg">Mulai
-                                    Diagnose</a>
+                                    Diagnosa</a>
                             </div>
                         </div>
                     </div>

@@ -16,7 +16,7 @@
                     D
                 </span>
                 <span class="sidebar-nav-name">
-                    Diagnose
+                    Diagnosa
                 </span>
             </a>
         </li>

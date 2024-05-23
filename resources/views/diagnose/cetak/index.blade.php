@@ -53,7 +53,7 @@
 <body>
 
     <div class="margin-top">
-        <h1 style="text-align: center;">Hasil Diagnose</h1>
+        <h1 style="text-align: center;">Hasil Diagnosa</h1>
         <table class="w-full">
             <tr>
                 <td class="w-half">
