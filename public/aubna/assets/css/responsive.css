@@ -1,0 +1,1002 @@
+/*================ Normal desktop :992px.==================== */
+
+@media (min-width: 992px) and (max-width: 1169px) {
+	.find_doctor>li>.aubna-btn {
+		display: none
+	}
+	.welcome-left h2 {
+		font-size: 40px;
+		line-height: 55px
+	}
+	.percautions-inn ul li {
+		display: block
+	}
+	.percautions-inn ul li:nth-child(2n) {
+		margin-right: 0
+	}
+	.percautions-right ul li:nth-child(2n) {
+		margin-left: 0
+	}
+	.percautions-image img {
+		left: 15px
+	}
+	.faq-bg {
+		right: 0;
+		width: 450px
+	}
+	.blog_info .blog-detail {
+		padding: 20px
+	}
+	.quarantine-form {
+		width: 70%
+	}
+	.aubna-breadcrumb-area {
+		padding: 130px 0px 100px
+	}
+	.google-map-area iframe {
+		height: 330px
+	}
+}
+
+
+/*================ Tablet desktop :768px.==================*/
+
+@media (min-width: 768px) and (max-width: 991px) {
+	body {
+		font-size: 15px
+	}
+	p {
+		font-size: 15px
+	}
+	nav.navbar {
+		padding-top: 15px;
+		padding-bottom: 15px
+	}
+	.navbar-collapse {
+		height: 100px;
+		overflow-y: scroll
+	}
+	nav.fixed-top {
+		padding-top: 15px;
+		padding-bottom: 15px
+	}
+	nav.fixed-top .menu-toggle::before,
+	nav.fixed-top .menu-toggle::after {
+		background: #111;
+		transition: all 0.4s ease 0s
+	}
+	nav.fixed-top .menu-toggle {
+		border-top: 2px solid #111;
+		border-bottom: 2px solid #111;
+		color: #111;
+	}
+	.navbar-collapse {
+		background: #fff none repeat scroll 0 0;
+		margin-top: 20px;
+	}
+	nav.navbar .navbar-toggler {
+		border: 0;
+		padding-right: 0;
+	}
+	nav.navbar .nav-item .nav-link {
+		padding: 8px 7px;
+		color: #111;
+		font-size: 14px
+	}
+	nav.navbar .nav-item {
+		z-index: 1
+	}
+	nav.navbar .nav-item .nav-link.active {
+		color: #111 !important;
+	}
+	nav.navbar .nav-item.dropdown::after {
+		position: absolute;
+		content: "\f107";
+		font-family: FontAwesome;
+		right: 5px;
+		top: 0;
+		color: #fd658f;
+		line-height: 42px;
+		overflow: hidden;
+		z-index: -1;
+		text-align: center;
+		font-size: 20px;
+	}
+	li.nav-item.dropdown .dropdown-toggle:before {
+		display: none;
+	}
+	.dropdown-menu {
+		display: none;
+	}
+	.dropdown-menu {
+		width: auto;
+		box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+		margin-left: 20px;
+		background: #F1F5FE none repeat scroll 0 0;
+	}
+	nav.fixed-top .menu-toggle.is-active {
+		border-top: 0px solid #111;
+		border-bottom: 0px solid #111;
+		color: #111;
+	}
+	.navbar-nav.nav_action,
+	.navbar-nav.find_doctor {
+		display: none
+	}
+	.welcome-left h2 {
+		font-size: 30px;
+		line-height: 40px
+	}
+	.welcome-left {
+		padding-right: 0
+	}
+	.welcome-left ul li {
+		font-size: 16px
+	}
+	.inner-header .inner-content {
+		padding: 120px 15px 0px 15px
+	}
+	.welcome-right {
+		padding: 20px
+	}
+	.welcome-right h3 {
+		font-size: 24px
+	}
+	.waves {
+		height: 60px;
+		min-height: 60px
+	}
+	.aubna-promo-area {
+		padding-top: 70px
+	}
+	.single-promo {
+		margin: 30px auto 0;
+		width: 70%
+	}
+	.about-heading h2 {
+		font-size: 30px
+	}
+	.about-right {
+		width: 60%;
+		margin: 30px auto 0;
+	}
+	.about-wave {
+		display: none;
+	}
+	.single-symtoms {
+		width: 70%;
+		margin: 30px auto 0
+	}
+	.percautions-inn {
+		text-align: right
+	}
+	.percautions-inn ul li:nth-child(2n) {
+		margin-right: 0
+	}
+	.percautions-right ul li:nth-child(2n) {
+		margin-left: 0
+	}
+	.tab-hide {
+		display: none
+	}
+	.percautions-right {
+		text-align: left !important
+	}
+	.percautions-inn ul {
+		width: 85%;
+		float: right
+	}
+	.percautions-inn ul li {
+		display: block
+	}
+	.percautions-right ul {
+		float: left;
+	}
+	.site-heading h2 {
+		font-size: 30px
+	}
+	.donate-box {
+		width: 100%
+	}
+	.donate-box h2 {
+		font-size: 35px;
+		line-height: 45px;
+		margin-bottom: 15px;
+	}
+	.glance-map img {
+		width: 100%;
+		margin-top: 20%;
+	}
+	.site-heading {
+		width: 75%
+	}
+	.faq-bg {
+		display: none
+	}
+	.faqs-left {
+		width: 70%;
+		float: none;
+		margin: 0 auto;
+	}
+	.product-item {
+		width: 70%;
+		margin: 30px auto 0
+	}
+	.call-box h2 {
+		font-size: 35px
+	}
+	.aubna-call-area {
+		padding: 60px 0
+	}
+	.blog-item {
+		width: 70%;
+		margin: 30px auto 0
+	}
+	.call-box h3 {
+		font-size: 25px
+	}
+	.single-footer {
+		width: 70%;
+		margin: 0 auto 50px;
+	}
+	.aubna-breadcrumb-area {
+		padding: 120px 0px 100px
+	}
+	.breadcrumb-inn h2 {
+		font-size: 40px
+	}
+	.about-page .about-right {
+		margin-top: 0;
+	}
+	.about-page .about-left {
+		margin-top: 30px
+	}
+	.specialist-page .single-doctor {
+		margin: 30px auto 0;
+		width: 70%
+	}
+	.quarantine-form {
+		width: 70%
+	}
+	.quarantine-right {
+		width: 70%;
+		margin-top: 30px;
+	}
+	.aubna-faqs-page-area .welcome-right {
+		width: 85%;
+		margin: 30px auto 0
+	}
+	.welcome-right form p button {
+		width: auto
+	}
+	.error-page-left h2 {
+		font-size: 80px;
+		line-height: 50px
+	}
+	.error-page-right h3 {
+		font-size: 30px
+	}
+	.product-details-image {
+		width: 70%;
+		margin: 0 auto
+	}
+	.product-details-text {
+		width: 70%;
+		margin: 30px auto 0
+	}
+	.product-details-text h3 {
+		font-size: 26px
+	}
+	.order-summury-box {
+		margin-top: 30px;
+	}
+	.blog-page-left .pagination-box-row {
+		width: 70%;
+		margin: 0 auto
+	}
+	.sidebar-widget {
+		width: 70%;
+		margin: 50px auto 0
+	}
+	.aubna-comment-list {
+		width: 70%;
+		margin: 50px auto 0
+	}
+	.single-comment-box.comment_reply {
+		padding-left: 30px
+	}
+	.aubna-leave-comment {
+		width: 70%;
+		margin: 50px auto 0
+	}
+	.contact-box-right {
+		width: 70%;
+		margin: 0 auto
+	}
+	.contact-box-left {
+		width: 70%;
+		margin: 30px auto 0
+	}
+	.google-map-area iframe {
+		height: 290px
+	}
+}
+
+
+/*================== small mobile :320px. ===================*/
+
+@media (max-width: 767px) {
+	body {
+		font-size: 15px
+	}
+	p {
+		font-size: 15px
+	}
+	.navbar-collapse {
+		height: 80px;
+		overflow-y: scroll
+	}
+	nav.navbar {
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+	nav.fixed-top {
+		padding-top: 10px;
+		padding-bottom: 10px
+	}
+	nav.fixed-top .menu-toggle::before,
+	nav.fixed-top .menu-toggle::after {
+		background: #111;
+		transition: all 0.4s ease 0s
+	}
+	nav.fixed-top .menu-toggle {
+		border-top: 2px solid #111;
+		border-bottom: 2px solid #111;
+		color: #111;
+	}
+	.inner-header .inner-content {
+		padding: 60px 15px 0px 15px
+	}
+	.welcome-left {
+		padding-right: 0
+	}
+	.welcome-left h2 {
+		font-size: 32px;
+		line-height: 45px;
+		margin-bottom: 15px;
+	}
+	.welcome-right {
+		display: none
+	}
+	.waves {
+		height: 40px;
+		min-height: 40px;
+	}
+	.welcome-left a.aubna-btn {
+		display: inline-block;
+		margin-top: 30px
+	}
+	.navbar-collapse {
+		background: #fff none repeat scroll 0 0;
+		margin-top: 20px;
+	}
+	nav.navbar .navbar-toggler {
+		border: 0;
+		padding-right: 0;
+	}
+	nav.navbar .nav-item .nav-link {
+		padding: 8px 7px;
+		color: #111;
+		font-size: 14px
+	}
+	nav.navbar .nav-item {
+		z-index: 1
+	}
+	nav.navbar .nav-item .nav-link.active {
+		color: #111 !important;
+	}
+	nav.navbar .nav-item.dropdown::after {
+		position: absolute;
+		content: "\f107";
+		font-family: FontAwesome;
+		right: 5px;
+		top: 0;
+		color: #fd658f;
+		line-height: 42px;
+		overflow: hidden;
+		z-index: -1;
+		text-align: center;
+		font-size: 20px;
+	}
+	li.nav-item.dropdown .dropdown-toggle:before {
+		display: none;
+	}
+	.dropdown-menu {
+		display: none;
+	}
+	.dropdown-menu {
+		width: auto;
+		box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+		margin-left: 20px;
+		background: #F1F5FE none repeat scroll 0 0;
+	}
+	nav.fixed-top .menu-toggle.is-active {
+		border-top: 0px solid #111;
+		border-bottom: 0px solid #111;
+		color: #111;
+	}
+	.navbar-nav.nav_action,
+	.navbar-nav.find_doctor {
+		display: none
+	}
+	.welcome-left ul li {
+		font-size: 15px
+	}
+	.aubna-promo-area {
+		padding-top: 70px
+	}
+	.single-promo {
+		margin-top: 30px
+	}
+	.promo-text h3 {
+		font-size: 19px
+	}
+	.promo-icon {
+		width: 65px
+	}
+	.about-heading h2 {
+		font-size: 24px;
+		line-height: 35px;
+		margin-bottom: 5px;
+	}
+	.about-left .aubna-btn {
+		margin-top: 0
+	}
+	.about-right {
+		margin-top: 50px
+	}
+	.about-wave {
+		display: none
+	}
+	.site-heading {
+		width: 100%
+	}
+	.site-heading h2 {
+		font-size: 28px;
+		line-height: 35px
+	}
+	.donate-box {
+		width: 100%
+	}
+	.donate-box h2 {
+		font-size: 30px;
+		line-height: 40px
+	}
+	.percautions-image {
+		display: none
+	}
+	.percautions-inn {
+		text-align: center
+	}
+	.percautions-inn ul li:nth-child(2n) {
+		margin-left: 0px;
+		margin-right: 0px;
+	}
+	.percautions-right ul li:nth-child(2n) {
+		margin-left: 0px
+	}
+	.glance-map {
+		margin-top: 30px;
+		text-align: center;
+	}
+	.faq-bg {
+		display: none
+	}
+	.faqs-left {
+		width: 100%;
+		float: none;
+	}
+	.faqs-left h2 {
+		font-size: 28px;
+		line-height: 35px;
+		margin-bottom: 35px
+	}
+	.call-box h2 {
+		font-size: 30px;
+		line-height: 45px
+	}
+	.call-box h3 {
+		font-size: 22px
+	}
+	.footer-top-area::before {
+		display: none
+	}
+	.footer-top-area {
+		padding: 50px 0 0
+	}
+	.footer-logo img {
+		width: 140px
+	}
+	.footer-links {
+		column-count: 1
+	}
+	.aubna-footer-area {
+		/* background: url(../img/banner.jpg) no-repeat scroll 0 0/cover */
+	}
+	.aubna-breadcrumb-area {
+		padding: 120px 0px 90px
+	}
+	.breadcrumb-inn h2 {
+		font-size: 30px
+	}
+	.about-page .about-right {
+		margin-top: 0
+	}
+	.about-page .about-left {
+		margin-top: 30px;
+	}
+	.about-page .about-left .aubna-btn {
+		margin-top: 20px
+	}
+	.aubna-call-area {
+		padding: 50px 0
+	}
+	.quarantine-heading h2 {
+		font-size: 26px;
+		line-height: 35px
+	}
+	.quarantine-right img {
+		margin-top: 20px
+	}
+	.self-quarantine-area .site-heading h2 {
+		font-size: 26px
+	}
+	.quarantine-form {
+		width: 100%
+	}
+	.aubna-faqs-page-area .faqs-left {
+		width: 100%;
+		float: none
+	}
+	.aubna-faqs-page-area .welcome-right {
+		display: block;
+		margin-top: 50px;
+		padding: 30px
+	}
+	.welcome-right h3 {
+		font-size: 24px
+	}
+	.error-page-box {
+		width: 100%
+	}
+	.error-page-left h2 {
+		font-size: 70px;
+		line-height: 55px
+	}
+	.error-page-right h3 {
+		font-size: 24px;
+		line-height: 35px
+	}
+	.pagination li {
+		margin-right: 0
+	}
+	.pagination li a {
+		width: 30px;
+		height: 30px;
+		line-height: 30px;
+		font-size: 14px
+	}
+	.product-details-text {
+		margin-top: 30px
+	}
+	.product-details-text h3 {
+		font-size: 26px;
+		margin-bottom: 10px
+	}
+	.single-shop-price>p {
+		font-size: 15px;
+		margin-top: 10px
+	}
+	.single-shop-page-btn {
+		display: block
+	}
+	.single-shop-page-btn ul {
+		margin-left: 0;
+		margin-top: 20px
+	}
+	.order-summury-box {
+		margin-top: 30px;
+	}
+	.checkout-action .aubna-btn {
+		position: relative;
+		top: 5px;
+	}
+	.aubna-payment .payment label {
+		font-size: 14px
+	}
+	.blog-page-left .other_info {
+		display: block;
+		text-align: left
+	}
+	.blog-page-left .other_info label {
+		display: block;
+		text-align: left;
+		margin: 10px 0
+	}
+	.sidebar-widget {
+		margin-top: 50px;
+	}
+	.blog-page-left .blog-detail h3 {
+		font-size: 20px
+	}
+	.destination-desc-img {
+		margin: 10px 0;
+	}
+	.blog-cat a {
+		margin: 2px 0
+	}
+	.comment-group-title h3,
+	.aubna-leave-comment h3 {
+		font-size: 24px
+	}
+	.comment-info p {
+		padding-left: 10px
+	}
+	.comment-text {
+		padding: 15px
+	}
+	.single-comment-box.comment_reply {
+		padding-left: 20px
+	}
+	.contact-box-left {
+		margin-top: 30px;
+	}
+	.google-map-area iframe {
+		height: 255px
+	}
+}
+
+
+/* ======================Large Mobile :480px.================== */
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+	body {
+		font-size: 15px
+	}
+	p {
+		font-size: 15px
+	}
+	nav.navbar {
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+	nav.fixed-top {
+		padding-top: 10px;
+		padding-bottom: 10px
+	}
+	nav.fixed-top .menu-toggle::before,
+	nav.fixed-top .menu-toggle::after {
+		background: #111;
+		transition: all 0.4s ease 0s
+	}
+	nav.fixed-top .menu-toggle {
+		border-top: 2px solid #111;
+		border-bottom: 2px solid #111;
+		color: #111;
+	}
+	.inner-header .inner-content {
+		padding: 60px 15px 0px 15px
+	}
+	.inner-header {
+		height: 590px
+	}
+	.welcome-left {
+		padding-right: 0
+	}
+	.welcome-left h2 {
+		font-size: 32px;
+		line-height: 45px;
+		margin-bottom: 15px;
+	}
+	.welcome-right {
+		display: none
+	}
+	.waves {
+		height: 40px;
+		min-height: 40px;
+	}
+	.welcome-left a.aubna-btn {
+		display: inline-block;
+		margin-top: 30px
+	}
+	.navbar-collapse {
+		background: #fff none repeat scroll 0 0;
+		margin-top: 20px;
+	}
+	nav.navbar .navbar-toggler {
+		border: 0;
+		padding-right: 0;
+	}
+	nav.navbar .nav-item .nav-link {
+		padding: 8px 7px;
+		color: #111;
+		font-size: 14px
+	}
+	nav.navbar .nav-item {
+		z-index: 1
+	}
+	nav.navbar .nav-item .nav-link.active {
+		color: #111 !important;
+	}
+	nav.navbar .nav-item.dropdown::after {
+		position: absolute;
+		content: "\f107";
+		font-family: FontAwesome;
+		right: 5px;
+		top: 0;
+		color: #fd658f;
+		line-height: 42px;
+		overflow: hidden;
+		z-index: -1;
+		text-align: center;
+		font-size: 20px;
+	}
+	li.nav-item.dropdown .dropdown-toggle:before {
+		display: none;
+	}
+	.dropdown-menu {
+		display: none;
+	}
+	.dropdown-menu {
+		width: auto;
+		box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+		margin-left: 20px;
+		background: #F1F5FE none repeat scroll 0 0;
+	}
+	nav.fixed-top .menu-toggle.is-active {
+		border-top: 0px solid #111;
+		border-bottom: 0px solid #111;
+		color: #111;
+	}
+	.navbar-nav.nav_action,
+	.navbar-nav.find_doctor {
+		display: none
+	}
+	.welcome-left ul li {
+		font-size: 15px
+	}
+	.aubna-promo-area {
+		padding-top: 70px
+	}
+	.single-promo {
+		margin-top: 30px
+	}
+	.promo-text h3 {
+		font-size: 19px
+	}
+	.promo-icon {
+		width: 65px
+	}
+	.about-heading h2 {
+		font-size: 24px;
+		line-height: 35px;
+		margin-bottom: 5px;
+	}
+	.about-left .aubna-btn {
+		margin-top: 0
+	}
+	.about-right {
+		margin-top: 50px
+	}
+	.about-wave {
+		display: none
+	}
+	.site-heading {
+		width: 100%
+	}
+	.site-heading h2 {
+		font-size: 28px;
+		line-height: 35px
+	}
+	.donate-box {
+		width: 100%
+	}
+	.donate-box h2 {
+		font-size: 30px;
+		line-height: 40px
+	}
+	.percautions-image {
+		display: none
+	}
+	.percautions-inn {
+		text-align: center
+	}
+	.percautions-inn ul li:nth-child(2n) {
+		margin-left: 0px;
+		margin-right: 0px;
+	}
+	.percautions-right ul li:nth-child(2n) {
+		margin-left: 0px
+	}
+	.glance-map {
+		margin-top: 30px;
+		text-align: center;
+	}
+	.faq-bg {
+		display: none
+	}
+	.faqs-left {
+		width: 100%;
+		float: none;
+	}
+	.faqs-left h2 {
+		font-size: 28px;
+		line-height: 35px;
+		margin-bottom: 35px
+	}
+	.call-box h2 {
+		font-size: 30px;
+		line-height: 45px
+	}
+	.call-box h3 {
+		font-size: 22px
+	}
+	.footer-top-area::before {
+		display: none
+	}
+	.footer-top-area {
+		padding: 50px 0 0
+	}
+	.footer-logo img {
+		width: 140px
+	}
+	.footer-links {
+		column-count: 2
+	}
+	.aubna-footer-area {
+		/* background: url(../img/banner.jpg) no-repeat scroll 0 0/cover */
+	}
+	.aubna-breadcrumb-area {
+		padding: 120px 0px 90px
+	}
+	.breadcrumb-inn h2 {
+		font-size: 30px
+	}
+	.about-page .about-right {
+		margin-top: 0
+	}
+	.about-page .about-left {
+		margin-top: 30px;
+	}
+	.about-page .about-left .aubna-btn {
+		margin-top: 20px
+	}
+	.aubna-call-area {
+		padding: 50px 0
+	}
+	.quarantine-heading h2 {
+		font-size: 26px;
+		line-height: 35px
+	}
+	.quarantine-right img {
+		margin-top: 20px
+	}
+	.self-quarantine-area .site-heading h2 {
+		font-size: 26px
+	}
+	.quarantine-form {
+		width: 100%
+	}
+	.aubna-faqs-page-area .faqs-left {
+		width: 100%;
+		float: none
+	}
+	.aubna-faqs-page-area .welcome-right {
+		display: block;
+		margin-top: 50px;
+		padding: 30px
+	}
+	.welcome-right h3 {
+		font-size: 24px
+	}
+	.error-page-box {
+		width: 100%
+	}
+	.error-page-left h2 {
+		font-size: 70px;
+		line-height: 55px
+	}
+	.error-page-right h3 {
+		font-size: 24px;
+		line-height: 35px
+	}
+	.pagination li {
+		margin-right: 0
+	}
+	.pagination li a {
+		width: 30px;
+		height: 30px;
+		line-height: 30px;
+		font-size: 14px
+	}
+	.product-details-text {
+		margin-top: 30px
+	}
+	.product-details-text h3 {
+		font-size: 26px;
+		margin-bottom: 10px
+	}
+	.single-shop-price>p {
+		font-size: 15px;
+		margin-top: 10px
+	}
+	.single-shop-page-btn {
+		display: flex
+	}
+	.single-shop-page-btn ul {
+		margin-left: 20px;
+		margin-top: 0px
+	}
+	.order-summury-box {
+		margin-top: 30px;
+	}
+	.checkout-action .aubna-btn {
+		position: relative;
+		top: 5px;
+	}
+	.aubna-payment .payment label {
+		font-size: 14px
+	}
+	.blog-page-left .other_info {
+		display: flex;
+		text-align: left
+	}
+	.blog-page-left .other_info label {
+		display: block;
+		text-align: left;
+		margin: 10px
+	}
+	.sidebar-widget {
+		margin-top: 50px;
+	}
+	.blog-page-left .blog-detail h3 {
+		font-size: 20px
+	}
+	.destination-desc-img {
+		margin: 10px 0;
+	}
+	.blog-cat a {
+		margin: 2px 0
+	}
+	.comment-group-title h3,
+	.aubna-leave-comment h3 {
+		font-size: 24px
+	}
+	.comment-info p {
+		padding-left: 10px
+	}
+	.comment-text {
+		padding: 15px
+	}
+	.single-comment-box.comment_reply {
+		padding-left: 20px
+	}
+	.contact-box-left {
+		margin-top: 30px;
+	}
+	.google-map-area iframe {
+		height: 255px
+	}
+	.percautions-inn ul {
+		width: 70%;
+		margin: 10px auto 0;
+	}
+	.percautions-inn ul li {
+		display: block
+	}
+	.navbar-collapse {
+		height: 150px;
+		overflow-y: scroll
+	}
+}
+

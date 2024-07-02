@@ -26,7 +26,7 @@ class IIVDataTable extends DataTable
                 'deleteLink' => Auth::user()->role === UserRole::ADMIN ? route('iiv.destroy', $iiv) : null,
             ]))
             ->addColumn('deskripsi_sistem', static fn (IIV $iiv) => $iiv->deskripsi_sistem)
-            ->addColumn('nama_instansi', static fn (IIV $iiv) => $iiv->refInstansi->nama_instansi)
+            ->addColumn('nama_instansi', static fn (IIV $iiv) => $iiv->refInstansi?->nama_instansi)
             ->addColumn('created_at', static fn (IIV $iiv) => $iiv->created_at->format('d/m/Y H:i:s'))
             ->addColumn('updated_at', static fn (IIV $iiv) => $iiv->updated_at->format('d/m/Y H:i:s'))
             ->setRowId('id');

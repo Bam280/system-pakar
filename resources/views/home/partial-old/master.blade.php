@@ -6,6 +6,12 @@
 <body>
 
 
+    <!-- Page Loader Start -->
+    <div id="js-preloader" class="js-preloader">
+        <div class="preloader-inner"></div>
+    </div>
+    <!-- Page Loader End -->
+
     @include('home.partial.navbar')
 
     @yield('content')
